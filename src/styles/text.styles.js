@@ -1,61 +1,48 @@
+import styled from 'styled-components';
+import theme from './theme';
 
-.heading3Xl {
-    font-size: 3.5rem;
+const H1 = styled.h1`
+    font-size: 5rem;
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.02rem;
     margin: 1rem 0;
-}
+    color: ${theme.colors.light};
+`;
 
-.heading2Xl {
+const H2 = styled.h2`
     font-size: 2.5rem;
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -0.05rem;
     margin: 1rem 0;
-}
+`;
 
-.headingXl {
+const H3 = styled.h3`
     font-size: 2rem;
     line-height: 1.3;
     font-weight: 800;
     letter-spacing: -0.05rem;
     margin: 1rem 0;
-}
+`;
 
-.headingLg {
+const H4 = styled.h4`
     font-size: 1.5rem;
     line-height: 1.4;
     margin: 1rem 0;
-}
+`;
 
-.headingMd {
+const H5 = styled.h5`
     font-size: 1.2rem;
     line-height: 1.5;
-}
+`;
 
-.borderCircle {
-    border-radius: 9999px;
-}
+const TextCss = {
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+};
 
-.colorInherit {
-    color: inherit;
-}
-
-.padding1px {
-    padding-top: 1px;
-}
-
-.list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.listItem {
-    margin: 0 0 1.25rem;
-}
-
-.lightText {
-    color: #666;
-}
+export default TextCss;

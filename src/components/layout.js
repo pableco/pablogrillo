@@ -1,15 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { WrapperCss, HeaderCss, BackLinkCss } from './layout.styles';
+import TextCss from '../styles/text.styles';
+import { Rounded } from '../styles/helpers.styles';
 
 const name = 'pablo grillo'
 export const siteTitle = 'Personal website'
 
+
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.container}>
+        <WrapperCss>
         <Head>
             <link rel="icon" href="/favicon.ico" />
             <meta
@@ -19,58 +21,61 @@ export default function Layout({ children, home }) {
             <meta
             property="og:image"
             content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
+                siteTitle
             )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
             />
             <meta name="og:title" content={siteTitle} />
             <meta name="twitter:card" content="summary_large_image" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;800&display=swap" rel="stylesheet" />
-
             </Head>
-        <header className={styles.header}>
-        {home ? (
-            <>
-            <Image
-                priority
-                src="/images/avatar.png"
-                className={utilStyles.borderCircle}
-                height={128}
-                width={128}
-                alt={name}
-            />
-            <h1 className={utilStyles.heading3Xl}>{name}</h1>
-            </>
-            ) : (
+            <HeaderCss>
+            {home
+            ? (
                 <>
-                <Link href="/">
-                    <a>
+                    <Rounded>
                         <Image
                             priority
                             src="/images/avatar.png"
-                            className={utilStyles.borderCircle}
                             height={128}
                             width={128}
                             alt={name}
                         />
-                    </a>
-                </Link>
-                <h2 className={utilStyles.heading2Xl}>
-                    <Link href="/">
-                        <a className={utilStyles.colorInherit}>{name}</a>
-                    </Link>
-                </h2>
+                    </Rounded>
+                    <TextCss.H1>{name}</TextCss.H1>
                 </>
-                )}
-                </header>
+            )
+            : (
+                <>
+                    <Link href="/">
+                        <a>
+                        <Rounded>
+                            <Image
+                                priority
+                                src="/images/avatar.png"
+                                height={128}
+                                width={128}
+                                alt={name}
+                            />
+                        </Rounded>
+                        </a>
+                    </Link>
+                    <TextCss.H2>
+                        <Link href="/">
+                            <a>{name}</a>
+                        </Link>
+                    </TextCss.H2>
+                </>
+            )}
+            </HeaderCss>
                     <main>{children}</main>
                 {!home && (
-                    <div className={styles.backToHome}>
+                    <BackLinkCss>
                         <Link href="/">
                             <a>← Back to home</a>
                         </Link>
-                    </div>
+                    </BackLinkCss>
                     )}
-                    </div>
-                    )
+        </WrapperCss>
+    )
 }
