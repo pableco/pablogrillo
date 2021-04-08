@@ -5,7 +5,8 @@ import { WrapperCss, HeaderCss, BackLinkCss } from './layout.styles';
 import TextCss from '../styles/text.styles';
 import { Rounded } from '../styles/helpers.styles';
 
-const name = 'pablo grillo'
+const name = 'pablo grillo';
+const title = 'UX ENGINEER / FRONT END';
 export const siteTitle = 'Personal website'
 
 
@@ -43,6 +44,7 @@ export default function Layout({ children, home }) {
                         />
                     </Rounded>
                     <TextCss.H1>{name}</TextCss.H1>
+                    <TextCss.H2>{title}</TextCss.H2>
                 </>
             )
             : (
