@@ -1,4 +1,7 @@
 const theme = {
+    background: {
+        body: 'images/bgmin.svg',
+    },
     colors: {
         default: '#FFF',
         light: '#E5E5E5',
