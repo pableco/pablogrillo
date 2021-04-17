@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
         color: ${theme.colors.default};
         font-weight: 100;
         background-color: ${theme.colors.primaryBg};
+        background-image: url(${theme.background.body});
+        background-position: 100% 0;
+        background-size: 9.2rem 26.1rem;
+        background-repeat: repeat-y;
     }
 
     * {
