@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
     h3 {
         font-weight: 800;
     }
+
+    p {
+        margin: 0;
+    }
 `;
 
 export default GlobalStyle;

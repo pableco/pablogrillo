@@ -29,7 +29,7 @@ const H3 = styled.h3`
 const H4 = styled.h4`
     font-size: 1.1rem;
     line-height: 1.4;
-    margin: 1rem 0;
+    margin: .5rem 0 .5rem;
     font-weight: 400;
 `;
 
