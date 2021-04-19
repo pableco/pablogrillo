@@ -42,9 +42,6 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 800;
     }
 
-    p {
-        margin: 0;
-    }
 `;
 
 export default GlobalStyle;

@@ -38,12 +38,17 @@ const H5 = styled.h5`
     line-height: 1.5;
 `;
 
-const TextCss = {
+const P = styled.p`
+    margin: 0;
+`;
+
+const Typo = {
     H1,
     H2,
     H3,
     H4,
     H5,
+    P,
 };
 
-export default TextCss;
+export default Typo;
