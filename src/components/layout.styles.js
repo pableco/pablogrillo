@@ -18,7 +18,7 @@ const BackLinkCss = styled.div`
 `;
 
 const HomeWrapperCss = styled.div`
-    margin: 3rem auto 0;
+    margin: 3rem 0 0 0;
 `;
 
 const SectionWrapperCss = styled.section`

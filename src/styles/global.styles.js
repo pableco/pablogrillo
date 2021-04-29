@@ -1,5 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+
 import theme from './theme';
+import mediaQueries from './mediaQueries.styles';
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -15,7 +17,16 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${theme.colors.primaryBg};
         background-image: url(${theme.background.body});
         background-position: 100% 0;
-        background-size: 9.2rem 26.1rem;
+        background-size: 6.7rem 19.0rem;
+        @media ${mediaQueries.mobileL} {
+            background-size: 9.2rem 26.1rem;
+        }
+        @media ${mediaQueries.tablet} {
+            background-size: 12.5rem 35.4rem;
+        }
+        @media ${mediaQueries.laptopL} {
+            background-size: 15.3rem 43.4rem;
+        }
         background-repeat: repeat-y;
     }
 
