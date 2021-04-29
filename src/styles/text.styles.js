@@ -43,7 +43,15 @@ const P = styled.p`
 `;
 
 const A = styled.a`
-    text-decoration: underline;
+    &,
+    &:active{
+        color: ${theme.colors.neutral000};
+        text-decoration: underline;
+    }
+    &:hover{
+        color: ${theme.colors.neutral200};
+        text-decoration: none;
+    }
 `;
 
 
