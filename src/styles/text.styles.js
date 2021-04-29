@@ -42,6 +42,19 @@ const P = styled.p`
     margin: 0;
 `;
 
+const A = styled.a`
+    &,
+    &:active{
+        color: ${theme.colors.neutral000};
+        text-decoration: underline;
+    }
+    &:hover{
+        color: ${theme.colors.neutral200};
+        text-decoration: none;
+    }
+`;
+
+
 const Typo = {
     H1,
     H2,
@@ -49,6 +62,7 @@ const Typo = {
     H4,
     H5,
     P,
+    A,
 };
 
 export default Typo;

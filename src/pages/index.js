@@ -2,6 +2,9 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import { SectionWrapperCss, YearCss } from '../components/layout.styles';
 import Typo from '../styles/text.styles';
+import { List, IconItem } from '../styles/list.styles';
+import * as Icons from '../icons';
+
 
 export default function Home() {
     return (
@@ -64,6 +67,31 @@ export default function Home() {
                         <Typo.P>Universidad de Buenos Aires <em>(two years completed)</em></Typo.P>
                     </dd>
                 </dl>
+            </SectionWrapperCss>
+            <SectionWrapperCss>
+                <Typo.H3>contact</Typo.H3>
+                <List>
+                    <IconItem>
+                        <Icons.Email /><Typo.A href="mailto:pgrillo@gmail.com">pgrillo@gmail.com</Typo.A>
+                    </IconItem>
+                    <IconItem>
+                        <Icons.Phone /><Typo.A href="tel:+34 696 299 023">+34 696 299 023</Typo.A>
+                    </IconItem>
+                </List>
+            </SectionWrapperCss>
+            <SectionWrapperCss>
+                <Typo.H3>social</Typo.H3>
+                <List>
+                    <IconItem>
+                        <Icons.Github /><Typo.A href="https://www.github.com/pableco">github.com/pableco</Typo.A>
+                    </IconItem>
+                    <IconItem>
+                        <Icons.Linkedin /><Typo.A href="https://es.linkedin.com/in/grillopablo">es.linkedin.com/in/grillopablo</Typo.A>
+                    </IconItem>
+                    <IconItem>
+                        <Icons.Behance /><Typo.A href="https://behance.net/pableco">behance.net/pableco</Typo.A>
+                    </IconItem>
+                </List>
             </SectionWrapperCss>
         </Layout>
     )
