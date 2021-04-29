@@ -42,6 +42,11 @@ const P = styled.p`
     margin: 0;
 `;
 
+const A = styled.a`
+    text-decoration: underline;
+`;
+
+
 const Typo = {
     H1,
     H2,
@@ -49,6 +54,7 @@ const Typo = {
     H4,
     H5,
     P,
+    A,
 };
 
 export default Typo;
