@@ -1,8 +1,19 @@
 import styled from 'styled-components';
+
 import theme from './theme';
+import mediaQueries from './mediaQueries.styles';
 
 const H1 = styled.h1`
-    font-size: 7rem;
+    font-size: 3rem;
+    @media ${mediaQueries.mobileL} {
+        font-size: 4rem;
+    }
+    @media ${mediaQueries.tablet} {
+        font-size: 5rem;
+    }
+    @media ${mediaQueries.laptopL} {
+        font-size: 7rem;
+    }
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.2rem;
@@ -11,7 +22,13 @@ const H1 = styled.h1`
 `;
 
 const H2 = styled.h2`
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+    @media ${mediaQueries.mobileL} {
+        font-size: 1.6rem;
+    }
+    @media ${mediaQueries.tablet} {
+        font-size: 1.8rem;
+    }
     line-height: 1.2;
     font-weight: 400;
     letter-spacing: -0.05rem;
