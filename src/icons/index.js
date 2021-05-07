@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import theme from '../styles/theme';
 
 import EmailIcon from './email.svg';
 import PhoneIcon from './phone.svg';
@@ -7,7 +8,8 @@ import BehanceIcon from './behance.svg';
 import GithubIcon from './github.svg';
 
 const defaultIconProps = css`
-    width: 1.8rem;
+    height: ${theme.iconsSizeB};
+    width: ${theme.iconsSizeB};
 `;
 
 const Email = styled(EmailIcon)`
