@@ -52,7 +52,9 @@ const GlobalStyle = createGlobalStyle`
     h3 {
         font-weight: 800;
     }
-
+    textarea {
+        font-family: inherit;
+    }
 `;
 
 export default GlobalStyle;
