@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
 
     a:hover {
         text-decoration: underline;
-    }
+    } 
 
     img {
         max-width: 100%;
@@ -52,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
     h3 {
         font-weight: 800;
     }
+    
     textarea {
         font-family: inherit;
     }
