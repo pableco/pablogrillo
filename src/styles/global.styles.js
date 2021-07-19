@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 
     a {
         color: ${theme.colors.primary};
-    } 
+    }
 
     a:hover {
         text-decoration: underline;
@@ -52,21 +52,6 @@ const GlobalStyle = createGlobalStyle`
     h3 {
         font-weight: 800;
     }
-
-    .w{
-
-    }
-
-    .f{
-
-    }
-    .s{
-
-    }
-    .t{
-
-    }
-
 `;
 
 export default GlobalStyle;
