@@ -36,11 +36,11 @@ const GlobalStyle = createGlobalStyle`
 
     a {
         color: ${theme.colors.primary};
-    }
+    } 
 
     a:hover {
         text-decoration: underline;
-    }
+    } 
 
     img {
         max-width: 100%;
@@ -51,6 +51,20 @@ const GlobalStyle = createGlobalStyle`
     h2,
     h3 {
         font-weight: 800;
+    }
+
+    .w{
+
+    }
+
+    .f{
+
+    }
+    .s{
+
+    }
+    .t{
+
     }
 
 `;
