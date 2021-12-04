@@ -14,9 +14,10 @@ export default function Home() {
             </Head>
             <SectionWrapperCss>
                 <Typo.H3>about</Typo.H3>
-                <p>Pablo is a user experience engineer with a demonstrated history of working in the leisure, travel & tourism industry. He leads a community of 14 Front End developers, working with an emphasis in scalability and readability.</p>
-                <p>Skilled in UI, HTML5, LESS, SASS, JavaScript, FLUX, React, Styled Components, Webpack, Jest, Enzyme, Cypress, Selenium, Google Analytics and Google Tag Manager.</p>
-                <p>He has had jobs as external contractor in worldwide consulting agencies, consolidated companies and design studies working for brands like Coke, Adidas, Carte d'or, Bacardi, etc.</p>
+                <Typo.P>I am a Design Engineer, half designer and half developer. My university education in computer science and design allowed me to get jobs as an external contractor on worldwide consulting agencies or as CIO and founder of a startup. I have been through consolidated companies and design studies working for brands like Coke, Adidas, Carte d'Or, Bacardi, Telefonica, Endesa, Carrefour, etc.</Typo.P>
+                <Typo.P>Also I leads a community of 14 Front End developers, working with an emphasis in scalability and readability.</Typo.P>
+                <Typo.P>Skilled in UI, HTML5, LESS, SASS, JavaScript, FLUX, React, Styled Components, Webpack, Jest, Enzyme, Cypress, Selenium, Google Analytics and Google Tag Manager.</Typo.P>
+                <Typo.P>I believe in the transforming value of design methodologies in the social and business environment. For that reason, I am part of the founding board of Fudament.es a non-profit association that use a design thinking mindset to solve social problems. </Typo.P>
             </SectionWrapperCss>
             <SectionWrapperCss>
                 <Typo.H3>work</Typo.H3>

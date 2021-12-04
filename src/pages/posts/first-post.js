@@ -12,7 +12,7 @@ export default function FirstPost() {
             <TextCss.H1>First Post</TextCss.H1>
             <TextCss.H2>
                 <Link href="/">
-                <a>Back to home</a>
+                    <a>Back to home</a>
                 </Link>
             </TextCss.H2>
         </Layout>
