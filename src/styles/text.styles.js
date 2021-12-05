@@ -1,24 +1,45 @@
-import styled from 'styled-components';
-
-import theme from './theme';
+import styled, { css } from 'styled-components';
 import mediaQueries from './mediaQueries.styles';
 
-const H1 = styled.h1`
-    font-size: 3rem;
-    @media ${mediaQueries.mobileL} {
-        font-size: 4rem;
-    }
-    @media ${mediaQueries.tablet} {
-        font-size: 5rem;
-    }
-    @media ${mediaQueries.laptopL} {
-        font-size: 7rem;
-    }
-    line-height: 1.2;
-    font-weight: 600;
-    letter-spacing: -0.2rem;
-    margin: 1rem 0;
-    color: ${theme.colors.light};
+const Name = styled.h1`
+    ${({ theme }) => css`
+        font-size: ${theme.h4};
+        /* @media ${mediaQueries.mobileL} {
+            font-size: ${theme.h3};
+        }
+        @media ${mediaQueries.tablet} {
+            font-size: ${theme.h2};
+        }
+        @media ${mediaQueries.laptopL} {
+            font-size: ${theme.h1};
+        } */
+        margin: ${theme.r010} 0 0;
+        font-weight: 100;
+        letter-spacing: ${theme.letterb1};
+        text-transform: uppercase;
+        text-align: center;
+    `};
+`;
+
+const Title = styled.h2`
+    ${({ theme }) => css`
+        border-radius: ${theme.round};
+        border: ${theme.borderS} solid ${theme.neutral900};
+        font-size: ${theme.small};
+        font-weight: 400;
+        letter-spacing: ${theme.letterb};
+        margin: 0 0 ${theme.r100} 0;
+        padding: .25rem .75rem .1rem;
+        text-align: center;
+        text-transform: uppercase;
+
+        /* @media ${mediaQueries.mobileL} {
+            font-size: 1rem;
+        }
+        @media ${mediaQueries.tablet} {
+            font-size: 1rem;
+        } */
+    `};
 `;
 
 const H2 = styled.h2`
@@ -36,11 +57,14 @@ const H2 = styled.h2`
 `;
 
 const H3 = styled.h3`
-    font-size: 1.8rem;
-    line-height: 1.3;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    margin: 1rem 0;
+    ${({ theme }) => css`
+        font-size: ${theme.h5};
+        line-height: 1;
+        font-weight: ${theme.regular};
+        letter-spacing: ${theme.lsh6};
+        margin: 1rem 0;
+        text-transform: uppercase;
+    `};
 `;
 
 const H4 = styled.h4`
@@ -56,24 +80,28 @@ const H5 = styled.h5`
 `;
 
 const P = styled.p`
-    margin: 0;
+    ${({ theme }) => css`
+        font-size: ${theme.b1};
+        font-weight: 100;
+        letter-spacing: ${theme.ls};
+        margin: 0;
+    `};
 `;
 
 const A = styled.a`
     &,
     &:active{
-        color: ${theme.colors.neutral000};
         text-decoration: underline;
     }
     &:hover{
-        color: ${theme.colors.neutral200};
         text-decoration: none;
     }
 `;
 
 
 const Typo = {
-    H1,
+    Name,
+    Title,
     H2,
     H3,
     H4,

@@ -1,61 +1,105 @@
-import { createGlobalStyle } from 'styled-components';
-
-import theme from './theme';
-import mediaQueries from './mediaQueries.styles';
+import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-    html,
-    body {
-        padding: 0;
-        margin: 0;
-        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-        Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-        line-height: 1.6;
-        font-size: 16px;
-        color: ${theme.colors.default};
-        font-weight: 100;
-        background-color: ${theme.colors.primaryBg};
-        background-image: url(${theme.background.body});
-        background-position: 100% 0;
-        background-size: 6.7rem 19.0rem;
-        @media ${mediaQueries.mobileL} {
-            background-size: 9.2rem 26.1rem;
+    ${({ theme }) => css`
+    /*
+        http://meyerweb.com/eric/tools/css/reset/
+        v2.0 | 20110126
+        License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center, dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video,
+        button, input {
+            border: 0;
+            font: inherit;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
         }
-        @media ${mediaQueries.tablet} {
-            background-size: 12.5rem 35.4rem;
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
         }
-        @media ${mediaQueries.laptopL} {
-            background-size: 15.3rem 43.4rem;
+
+        ol,
+        ul {
+            list-style: none;
         }
-        background-repeat: repeat-y;
-    }
 
-    * {
-        box-sizing: border-box;
-    }
+        blockquote,
+        q {
+            quotes: none;
+        }
 
-    a {
-        color: ${theme.colors.primary};
-    }
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
 
-    a:hover {
-        text-decoration: underline;
-    } 
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
 
-    img {
-        max-width: 100%;
-        display: block;
-    }
 
-    h1,
-    h2,
-    h3 {
-        font-weight: 800;
-    }
-    
-    textarea {
-        font-family: inherit;
-    }
+        /* APP STYLES */
+
+        * {
+            box-sizing: border-box;
+            line-height: ${theme.lineHeightB};
+        }
+
+        html,
+        body {
+            background-color: ${theme.colorBg};
+            color: ${theme.colorText};
+            height: 100%;
+        }
+
+        html {
+            font-family: ${theme.setBase};
+            font-size: ${theme.sizeBase};
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            font-style: ${theme.styleBase};
+            line-height: ${theme.lineHeightB};
+        }
+
+        a {
+            color: ${theme.main};
+        }
+
+        a:hover {
+            text-decoration: underline;
+        } 
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        textarea {
+            font-family: inherit;
+        }
+    `};
 `;
 
 export default GlobalStyle;

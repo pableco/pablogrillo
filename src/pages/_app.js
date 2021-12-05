@@ -3,9 +3,10 @@ import GlobalStyle from '../styles/global.styles';
 import theme from '../styles/theme';
 
 export default function App({ Component, pageProps }) {
+
     return (
         <ThemeProvider theme={theme}>
-            <GlobalStyle />
+            <GlobalStyle theme={theme}/>
             <Component {...pageProps} />
         </ThemeProvider>
     )
