@@ -99,6 +99,10 @@ const GlobalStyle = createGlobalStyle`
         textarea {
             font-family: inherit;
         }
+
+        svg {
+            fill: currentColor;
+        }
     `};
 `;
 

@@ -106,7 +106,7 @@ const SectionTitleCss = styled.div`
 const SectionContentCss = styled.div`
     ${({ theme }) => css`
         grid-column: 2 / 3;
-        padding: 5rem;
+        padding: 2rem;
     `};
 `;
 
