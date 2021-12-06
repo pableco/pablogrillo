@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import theme from './theme';
+import mediaQueries from './mediaQueries.styles';
 
 const List = styled.ul`
 `;
@@ -10,7 +10,7 @@ const IconItem = styled.li`
         display: flex;
         padding: 0 0 ${theme.r200};
         align-items: center;
-        color: ${theme.main};
+        color: ${theme.colorLink};
         font-size: ${theme.b1};
     `};
 `;

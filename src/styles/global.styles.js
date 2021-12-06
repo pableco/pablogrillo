@@ -83,12 +83,18 @@ const GlobalStyle = createGlobalStyle`
             line-height: ${theme.lineHeightB};
         }
 
-        a {
-            color: ${theme.main};
-        }
-
-        a:hover {
+        a{
+            color: ${theme.colorLink};
             text-decoration: underline;
+        }
+        a:visited {
+            color: ${theme.colorVisited || theme.colorLink};
+        }
+        a:active {
+            color: ${theme.colorActive || theme.colorLink};
+        }
+        a:hover {
+            color: ${theme.colorOver || theme.colorLink};
         } 
 
         img {
@@ -102,6 +108,10 @@ const GlobalStyle = createGlobalStyle`
 
         svg {
             fill: currentColor;
+        }
+        mark {
+            background-color: transparent;
+            border-bottom: 1px solid ${theme.neutral200};
         }
     `};
 `;

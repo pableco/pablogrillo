@@ -1,66 +1,83 @@
 import styled, { css } from 'styled-components';
-import TextCss from '../styles/text.styles';
 import mediaQueries from '../styles/mediaQueries.styles';
 
 const layoutConstants = {
     columTitle: '5rem',
+    titleHeight: '11rem',
 };
 
-/* @media ${mediaQueries.mobileL} {
-}
-@media ${mediaQueries.tablet} {
-}
-@media ${mediaQueries.laptopL} {
-} */
-
 const WrapperCss = styled.div`
-    width: 100%;
-    padding: 0;
-    height: 100%;
-    margin: 0;
-    @media ${mediaQueries.mobileL} {
-        margin: 0 0 0 5rem;
-    }
+    ${({ theme }) => css`
+        width: 100%;
+        padding: 0;
+        height: 100%;
+        padding: 0;
+        position: relative;
+        @media ${mediaQueries.mobileL} {
+            padding: 0 0 0 5rem;
+        }
+
+        @media ${mediaQueries.laptop} {
+            padding: 0 0 0 20rem;
+        }
+
+        @media ${mediaQueries.laptopL} {
+            padding-right: 20rem;
+        }
+    `};
 `;
 
 const HeaderCss = styled.div`
     ${({ theme }) => css`
+        border-bottom: ${theme.borderM} solid ${theme.neutral900};
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: ${layoutConstants.columTitle} auto;
+        grid-template-rows: auto;
+        height: 100vh;
+        justify-content: stretch;
+        border-right: ${theme.borderM} solid ${theme.neutral900};
+    `};
+`;
+
+const EmptyColumn = styled.div`
+    ${({ theme }) => css`
         background-color: ${theme.colorBg};
-        border-bottom: ${theme.borderS} solid ${theme.neutral900};
-        position: sticky;
-        top: 0;
-        z-index: ${theme.zBaseTop};
+        border: ${theme.borderm} solid ${theme.neutral900};
+        border-width: 0 ${theme.borderM} 0 ${theme.borderM};
+        height: 100%;
+        width: 100%;
     `};
 `;
 
 const MenuCss = styled.menu`
     ${({ theme }) => css`
         background-color: ${theme.colorBg};
-        border: ${theme.borderS} solid ${theme.neutral900};
+        border: ${theme.borderM} solid ${theme.neutral900};
         z-index: ${theme.zBaseTop};
         display: none;
     `};
 `;
 
-const ContentColumTitle = styled.div`
+const ContentColumnTitle = styled.div`
     ${({ theme }) => css`
-        flex: 1 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+        position: sticky;
+        top: 0;
+        justify-self: center;
+        align-self: center;
     `};
 `;
 
 const Column = styled.div`
     @media ${mediaQueries.tablet} {
-        max-width: 46%;
-        padding: 0 4% 0 0;
+        min-width: 47%;
+        padding: 0 3% 0 0;
     }
 `;
 
 const MainCss = styled.main`
     ${({ theme }) => css`
-
+        border-right: ${theme.borderM} solid ${theme.neutral900};
     `};
 `;
 
@@ -68,25 +85,7 @@ const SectionWrapperCss = styled.section`
     ${({ theme }) => css`
         display: grid;
         grid-template: auto 1fr / ${layoutConstants.columTitle} 1fr;
-        border-bottom: ${theme.borderS} solid ${theme.neutral900};
-        /* align-items: stretch;
-        border-bottom: ${theme.borderS} solid ${theme.neutral900};
-        display: flex;
-        flex-direction: row;
-        position: relative;
-
-        :before {
-            content: '';
-            background: ${theme.neutral100};
-            border: ${theme.borderS} solid ${theme.neutral900};
-            border-width: 0 ${theme.borderS} 0 ${theme.borderS};
-            flex: 0 0 ${layoutConstants.columTitle};
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: ${layoutConstants.columTitle};
-            height: 100%;
-        } */
+        border-bottom: ${theme.borderM} solid ${theme.neutral900};
     `};
 `;
 
@@ -94,40 +93,96 @@ const SectionTitleCss = styled.div`
     ${({ theme }) => css`
         grid-column: 1 / 2;
         background: ${theme.neutral100};
+        border: ${theme.borderM} solid ${theme.neutral900};
+        border-width: 0 ${theme.borderM} 0 ${theme.borderM};
+
+        @media ${mediaQueries.tablet} {
+            display: flex;
+        }
+
         h3 {
+            line-height: ${layoutConstants.columTitle};
             position: sticky;
-            top: 0;
+            height: ${layoutConstants.titleHeight};
+            top: calc(50vh - ${layoutConstants.titleHeight} / 2);
             transform: rotate(180deg);
             writing-mode: vertical-lr;
+            text-align: center;
+
+            @media ${mediaQueries.tablet} {
+                position: static;
+                top: inherit;
+                height: inherit;
+            }
+        }
+    `};
+`;
+
+const SectionContentCommon = css`
+    ${({ theme }) => css`
+        grid-column: 2 / 3;
+        padding: ${theme.r200};
+
+        @media ${mediaQueries.mobileL} {
+            padding: ${theme.r300};
+        }
+        @media ${mediaQueries.tablet} {
+            padding: ${theme.r400};
+        }
+        @media ${mediaQueries.laptop} {
+            padding: ${theme.r600};
+        }
+        @media ${mediaQueries.laptopL} {
+            padding: ${theme.r800};
         }
     `};
 `;
 
 const SectionContentCss = styled.div`
     ${({ theme }) => css`
-        grid-column: 2 / 3;
-        padding: 2rem;
+        ${SectionContentCommon}
+
+        display: grid;
+        column-gap: ${theme.r200};
+
+        dd {
+            margin-bottom: ${theme.r100};
+        }
+
+        @media ${mediaQueries.tablet} {
+            grid-template-columns: repeat(2, 1fr);
+        }
     `};
 `;
 
-const YearCss = styled(TextCss.H4)`
+const SectionFooterCss =  styled.footer`
     ${({ theme }) => css`
-        border: ${theme.borderS} solid ${theme.neutral900};
-        border-radius: ${theme.round};
-        padding: .1rem .75rem;
-        display: inline-block;
+        ${SectionContentCommon}
+
+        ul {
+
+            display: grid;
+            column-gap: ${theme.r200};
+
+            @media ${mediaQueries.tablet} {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     `};
 `;
+
+SectionFooterCss.displayName = 'SectionFooterCss';
 
 export {
     Column,
-    MenuCss,
+    ContentColumnTitle,
+    EmptyColumn,
     HeaderCss,
-    ContentColumTitle,
     MainCss,
+    MenuCss,
     SectionContentCss,
-    SectionWrapperCss,
+    SectionFooterCss,
     SectionTitleCss,
-    YearCss,
+    SectionWrapperCss,
     WrapperCss,
 }

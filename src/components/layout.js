@@ -1,21 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import {
-    HeaderCss,
-    MainCss,
-    MenuCss,
     WrapperCss,
-    ContentColumTitle,
 } from './layout.styles';
-import TextCss from '../styles/text.styles';
-
-const name = 'pablo grillo';
-const title = 'Product Designer | Design Engineer';
 export const siteTitle = 'Personal website'
 
-
 export default function Layout({ children }) {
+
     return (
         <>
             <Head>
@@ -39,21 +29,7 @@ export default function Layout({ children }) {
                     rel="stylesheet" />
             </Head>
             <WrapperCss>
-                <HeaderCss>
-                    <ContentColumTitle>
-                        <TextCss.Name>{name}</TextCss.Name>
-                        <TextCss.Title>{title}</TextCss.Title>
-                    </ContentColumTitle>
-                </HeaderCss>
-                <MenuCss>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#education">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </MenuCss>
-                <MainCss>
-                    {children}
-                </MainCss>
+                {children}
             </WrapperCss>
         </>
     )

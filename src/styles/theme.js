@@ -218,7 +218,7 @@ export const animationTime = {
 export const borders = {
     borderS: '.1rem',
     borderM: '.2rem',
-    borderL: '.3rem',
+    borderL: '.4rem',
 };
 
 export const formColors = {
@@ -268,19 +268,14 @@ export const base = {
     /* text shadow default fallback for tex over images */
     textShadow: `0 .1rem .3rem ${boxShadowOpacity.boxShadowOpacity025}`,
 
-    sectionTitleDecorator: ' " - " ',
-    sectionTitleColor: colors.colorMain,
 
-    readMoreBGGradient: `linear-gradient(to top, ${colors.neutral000}, ${colors.neutralTransparent000})`,
-    readMoreColorText: colors.neutral500,
-    readMoreLinkColor: colors.colorMain,
     /* DON'T DELETE  optional variables [start] */
     /* Typos */
     // fontSetTitle: 'Playfair Display, serif;',
     /* Colors */
     colorBg: colors.neutral050,
     colorText: colors.neutral900,
-    colorLink: colors.colorCustom,
+    colorLink: colors.neutral900,
     /* buttons */
     // buttonPrimaryTextColor: colors.neutral000,
     // buttonSecondaryTextColor: colors.colorMid,
