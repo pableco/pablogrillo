@@ -40,25 +40,29 @@ const Github = styled(GithubIcon)`
 const WrapperDown = styled.div`
     ${({ theme, visible }) => css`
         fill: none;
-        height: ${theme.iconsSizeM};
+        height: ${theme.iconsSizeML};
         margin: 0 auto;
         opacity: ${visible ? 1 : 0};
         position: absolute;
-        top: 85vh;
+        top: 80vh;
         transition: opacity ${theme.animationTimeM} ease-in-out;
-        width: ${theme.iconsSizeM};
-        left: calc(50% + ${theme.iconsSizeM} / 2);
+        width: ${theme.iconsSizeML};
+        left: calc(50% );
 
         @media ${mediaQueries.mobileL} {
-            left: calc(50% + 2.5rem + ${theme.iconsSizeM} / 2);
+            left: calc(50% + 2.5rem + ${theme.iconsSizeML} / 2);
+        }
+
+        @media ${mediaQueries.mobileL} {
+            left: calc(50% + 2.5rem + ${theme.iconsSizeML} / 2);
         }
 
         @media ${mediaQueries.laptop} {
-            left: calc(50% + 10rem  + ${theme.iconsSizeM} / 2);
+            left: calc(50% + 10rem  + ${theme.iconsSizeML} / 2);
         }
 
         @media ${mediaQueries.laptopL} {
-            left: calc(50% + ${theme.iconsSizeM} / 2);
+            left: calc(50% + ${theme.iconsSizeML} / 2);
         }
     `};
 `;

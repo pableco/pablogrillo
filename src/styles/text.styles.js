@@ -9,6 +9,7 @@ const Name = styled.h1`
         letter-spacing: ${theme.letterb1};
         text-transform: uppercase;
         text-align: center;
+
         @media ${mediaQueries.mobileL} {
             font-size: 4rem;
         }
@@ -31,6 +32,7 @@ const Title = styled.h2`
         font-size: ${theme.small};
         font-weight: ${theme.bold};
         letter-spacing: ${theme.letterb};
+        line-height: ${theme.lhS};
         margin: 0 0 ${theme.r100} 0;
         padding: ${theme.r025} ${theme.r075} ${theme.r010};
         text-align: center;

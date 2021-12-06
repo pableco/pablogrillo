@@ -13,6 +13,7 @@ const WrapperCss = styled.div`
         height: 100%;
         padding: 0;
         position: relative;
+
         @media ${mediaQueries.mobileL} {
             padding: 0 0 0 5rem;
         }
@@ -29,6 +30,7 @@ const WrapperCss = styled.div`
 
 const HeaderCss = styled.div`
     ${({ theme }) => css`
+        background: linear-gradient(${theme.neutral050}, ${theme.neutral100});
         border-bottom: ${theme.borderM} solid ${theme.neutral900};
         display: grid;
         grid-auto-flow: row;
@@ -53,8 +55,15 @@ const EmptyColumn = styled.div`
 const MenuCss = styled.menu`
     ${({ theme }) => css`
         background-color: ${theme.colorBg};
-        border: ${theme.borderM} solid ${theme.neutral900};
+        border-bottom: ${theme.borderM} solid ${theme.neutral900};
         z-index: ${theme.zBaseTop};
+        display: flex;
+        justify-content: space-evenly;
+
+        li {
+            list-style: none;
+        }
+
         display: none;
     `};
 `;
