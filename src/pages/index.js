@@ -78,7 +78,7 @@ export default function Home() {
             </HeaderCss>
             <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
                 <UseAnimations
-                    size={20}
+                    size={28}
                     animation={arrowDown}
                     loop={showArrowHeight} />
             </Icons.WrapperDown>
