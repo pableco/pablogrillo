@@ -44,7 +44,7 @@ const WrapperDown = styled.div`
         margin: 0 auto;
         opacity: ${visible ? 1 : 0};
         position: absolute;
-        top: 90vh;
+        top: 85vh;
         transition: opacity ${theme.animationTimeM} ease-in-out;
         width: ${theme.iconsSizeM};
         left: calc(50% + ${theme.iconsSizeM} / 2);
