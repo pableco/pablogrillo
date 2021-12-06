@@ -1,35 +1,39 @@
 export const font = {
-    sourceFamilies: ['Lato:300,400,700'],
-    setBase: 'Lato',
+    sourceFamilies: ['Yantramanav:100,300,400,700'],
+    setBase: 'Yantramanav',
     sizeBase: '62.5%', // default 10px
     styleBase: 'normal',
 
-    XXS: '1rem',
-    XS: '1.2rem',
-    S: '1.4rem',
-    B: '1.6rem',
-    L: '1.8rem',
-    XL: '2rem',
-    XXL: '2.4rem',
-    XXXL: '3rem',
+    small: '1rem',
+    cap: '1.2rem',
+    b2: '1.4rem',
+    b1: '1.6rem',
+    h6: '2rem',
+    h5: '2.4rem',
+    h4: '3.4rem',
+    h3: '4.8rem',
+    h2: '6rem',
+    h1: '9.6rem',
 
-    bold: '700',
-    regular: '400',
-    light: '300',
+    bold: '400',
+    regular: '300',
+    light: '100',
 
-    lineHeightXS: '1', // default titles
-    lineHeightS: '1.3',
-    lineHeightB: '1.5', // default font body
-    lineHeightM: '1.75',
-    lineHeightL: '2',
+    lhXS: '1', // default titles
+    lhS: '1.3',
+    lhB: '1.5', // default font body
+    lhM: '1.75',
+    lhL: '2',
 
-    /* default letter spacing for titles */
-    letterXS: '0',
-    letterS: '.05em',
-    letterB: '.1em',
-    letterM: '.125em',
-    letterL: '.2em',
-
+    letterh1: '-.015rem',
+    letterh2: '-.005rem',
+    letter: '0',
+    letterh4: '.025rem',
+    letterh6: '.015rem',
+    letters2: '.01rem',
+    letterb1: '.05em',
+    letterb: '.075em',
+    letterBtn: '.125em',
 };
 // Colors
 export const colors = {
@@ -53,14 +57,14 @@ export const colors = {
     neutralOpacity900: 'hsla(0, 0%, 10%, .5)',
     neutralOpacity999: 'hsla(0, 0%, 0%, .5)',
 
-    primary: 'hsla(45, 37%, 54%, 1)',
-    primary025: 'hsla(45, 37%, 98%, 1)',
-    primary050: 'hsla(45, 37%, 95%, 1)',
-    primary100: 'hsla(45, 37%, 90%, 1)',
-    primary300: 'hsla(45, 37%, 70%, 1)',
-    primary500: 'hsla(45, 37%, 50%, 1)',
-    primary700: 'hsla(45, 37%, 30%, 1)',
-    primary900: 'hsla(45, 37%, 10%, 1)',
+    main: 'hsla(230, 95%, 54%, 1)',
+    main025: 'hsla(230, 95%, 98%, 1)',
+    main050: 'hsla(230, 95%, 95%, 1)',
+    main100: 'hsla(230, 95%, 90%, 1)',
+    main300: 'hsla(230, 95%, 70%, 1)',
+    main500: 'hsla(230, 95%, 50%, 1)',
+    main700: 'hsla(230, 95%, 30%, 1)',
+    main900: 'hsla(230, 95%, 10%, 1)',
 
     success: 'hsla(84, 50%, 45%, 1)',
     success100: 'hsla(84, 50%, 90%, 1)',
@@ -212,9 +216,9 @@ export const animationTime = {
 };
 
 export const borders = {
-    borderWidthS: '.1rem',
-    borderWidthM: '.2rem',
-    borderWidthL: '.3rem',
+    borderS: '.1rem',
+    borderM: '.2rem',
+    borderL: '.4rem',
 };
 
 export const formColors = {
@@ -258,26 +262,20 @@ export const images = {
 };
 
 export const base = {
-
     round: '2.5rem',
     roundedCard: '0',
     /* Icon in button defaut size */
     /* text shadow default fallback for tex over images */
     textShadow: `0 .1rem .3rem ${boxShadowOpacity.boxShadowOpacity025}`,
 
-    sectionTitleDecorator: ' " - " ',
-    sectionTitleColor: colors.colorMain,
 
-    readMoreBGGradient: `linear-gradient(to top, ${colors.neutral000}, ${colors.neutralTransparent000})`,
-    readMoreColorText: colors.neutral500,
-    readMoreLinkColor: colors.colorMain,
     /* DON'T DELETE  optional variables [start] */
     /* Typos */
     // fontSetTitle: 'Playfair Display, serif;',
     /* Colors */
-    colorBg: colors.neutral000,
+    colorBg: colors.neutral050,
     colorText: colors.neutral900,
-    colorLink: colors.colorCustom,
+    colorLink: colors.neutral900,
     /* buttons */
     // buttonPrimaryTextColor: colors.neutral000,
     // buttonSecondaryTextColor: colors.colorMid,
@@ -291,7 +289,7 @@ export const base = {
     // outlineLight: `1px solid ${colors.neutral200}`,
     /* DON'T DELETE  optional variables [end] */
     outline: 'none',
-    lineHeightField: icons.iconDefaultSize,
+    lhField: icons.iconDefaultSize,
 };
 
 const themeDefault = {
@@ -307,15 +305,6 @@ const themeDefault = {
     ...icons,
     ...images,
     ...base,
-    background: {
-        body: 'images/bgmin.svg',
-    },
-    colors: {
-        default: '#FFF',
-        primary: '#E5E5E5',
-        primaryBg: '#004C4F',
-        ...colors,
-    },
 };
 
 export default themeDefault;
