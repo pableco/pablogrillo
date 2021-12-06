@@ -101,7 +101,7 @@ export default function Home() {
                                 to get jobs as an external contractor on worldwide consulting
                                 agencies or as CIO and founder of a startup.
                                 I have been through consolidated companies and design studies working
-                                for brands like Coke, Adidas, Carte d'Or, Bacardi, Telefónica, Endesa, Carrefour, etc.
+                                for brands like Coke, Adidas, Carte d&apos;Or, Bacardi, Telefónica, Endesa, Carrefour, etc.
                             </Typo.P>
                             <Typo.P>
                                 Skilled in UI, HTML5, JavaScript, React, REDUX, Styled Components,
