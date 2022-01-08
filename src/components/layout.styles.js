@@ -2,7 +2,10 @@ import styled, { css } from 'styled-components';
 import mediaQueries from '../styles/mediaQueries.styles';
 
 const layoutConstants = {
-    columTitle: '5rem',
+    columTitleMobile: '5rem',
+    columTitleMobileL: '10rem',
+    columTitleLaptop: '15rem',
+    columTitleLaptopL: '20rem',
     titleHeight: '11rem',
 };
 
@@ -13,19 +16,20 @@ const WrapperCss = styled.div`
         height: 100%;
         padding: 0;
         position: relative;
-
-        @media ${mediaQueries.mobileL} {
-            padding: 0 0 0 5rem;
-        }
-
-        @media ${mediaQueries.laptop} {
-            padding: 0 0 0 20rem;
-        }
-
-        @media ${mediaQueries.laptopL} {
-            padding-right: 20rem;
-        }
     `};
+`;
+
+const MainCss = styled.main`
+    ${({ theme }) => css`
+        border-right: ${theme.borderM} solid ${theme.neutral900};
+    `};
+`;
+
+const Column = styled.div`
+    @media ${mediaQueries.tablet} {
+        min-width: 47%;
+        padding: 0 3% 0 0;
+    }
 `;
 
 const HeaderCss = styled.div`
@@ -34,7 +38,21 @@ const HeaderCss = styled.div`
         border-bottom: ${theme.borderM} solid ${theme.neutral900};
         display: grid;
         grid-auto-flow: row;
-        grid-template-columns: ${layoutConstants.columTitle} auto;
+
+        grid-template-columns: ${layoutConstants.columTitleMobile} auto;
+
+        @media ${mediaQueries.mobileL} {
+            grid-template-columns: ${layoutConstants.columTitleMobileL} auto;
+        }
+
+        @media ${mediaQueries.laptop} {
+            grid-template-columns: ${layoutConstants.columTitleLaptop} auto;
+        }
+
+        @media ${mediaQueries.laptopL} {
+            grid-template-columns: ${layoutConstants.columTitleLaptopL} auto;
+        }
+
         grid-template-rows: auto;
         height: 100vh;
         justify-content: stretch;
@@ -77,23 +95,23 @@ const ContentColumnTitle = styled.div`
     `};
 `;
 
-const Column = styled.div`
-    @media ${mediaQueries.tablet} {
-        min-width: 47%;
-        padding: 0 3% 0 0;
-    }
-`;
-
-const MainCss = styled.main`
-    ${({ theme }) => css`
-        border-right: ${theme.borderM} solid ${theme.neutral900};
-    `};
-`;
-
 const SectionWrapperCss = styled.section`
     ${({ theme }) => css`
         display: grid;
-        grid-template: auto 1fr / ${layoutConstants.columTitle} 1fr;
+        grid-template: auto 1fr / ${layoutConstants.columTitleMobile} 1fr;
+
+        @media ${mediaQueries.mobileL} {
+            grid-template-columns: ${layoutConstants.columTitleMobileL} auto;
+        }
+
+        @media ${mediaQueries.laptop} {
+            grid-template-columns: ${layoutConstants.columTitleLaptop} auto;
+        }
+
+        @media ${mediaQueries.laptopL} {
+            grid-template-columns: ${layoutConstants.columTitleLaptopL} auto;
+        }
+
         border-bottom: ${theme.borderM} solid ${theme.neutral900};
     `};
 `;
@@ -104,10 +122,8 @@ const SectionTitleCss = styled.div`
         background: ${theme.neutral100};
         border: ${theme.borderM} solid ${theme.neutral900};
         border-width: 0 ${theme.borderM} 0 ${theme.borderM};
-
-        @media ${mediaQueries.tablet} {
-            display: flex;
-        }
+        display: flex;
+        justify-content: space-evenly;
 
         h3 {
             line-height: ${layoutConstants.columTitle};

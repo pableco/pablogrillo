@@ -43,27 +43,8 @@ const WrapperDown = styled.div`
         height: ${theme.iconsSizeML};
         margin: 0 auto;
         opacity: ${visible ? 1 : 0};
-        position: absolute;
-        top: 80vh;
         transition: opacity ${theme.animationTimeM} ease-in-out;
         width: ${theme.iconsSizeML};
-        left: calc(50% );
-
-        @media ${mediaQueries.mobileL} {
-            left: calc(50% + 2.5rem + ${theme.iconsSizeML} / 2);
-        }
-
-        @media ${mediaQueries.mobileL} {
-            left: calc(50% + 2.5rem + ${theme.iconsSizeML} / 2);
-        }
-
-        @media ${mediaQueries.laptop} {
-            left: calc(50% + 10rem  + ${theme.iconsSizeML} / 2);
-        }
-
-        @media ${mediaQueries.laptopL} {
-            left: calc(50% + ${theme.iconsSizeML} / 2);
-        }
     `};
 `;
 
