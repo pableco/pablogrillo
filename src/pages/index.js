@@ -74,14 +74,14 @@ export default function Home() {
                 <ContentColumnTitle>
                     <Typo.Name>{name}</Typo.Name>
                     <Typo.Title>{title}</Typo.Title>
+                    <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
+                        <UseAnimations
+                            size={28}
+                            animation={arrowDown}
+                            loop={showArrowHeight} />
+                    </Icons.WrapperDown>
                 </ContentColumnTitle>
             </HeaderCss>
-            <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
-                <UseAnimations
-                    size={28}
-                    animation={arrowDown}
-                    loop={showArrowHeight} />
-            </Icons.WrapperDown>
             <MenuCss>
                 <li><a href="#about">About</a></li>
                 <li><a href="#work">Work</a></li>
@@ -162,7 +162,7 @@ export default function Home() {
                         <dl>
                             <Typo.YearCss>2012</Typo.YearCss>
                             <dd>
-                                <Typo.H4>User Experience Desing | Human Computer Interaction </Typo.H4>
+                                <Typo.H4>User Experience Design | Human Computer Interaction </Typo.H4>
                                 <Typo.P>Universitat Oberta de Catalunya </Typo.P>
                             </dd>
                             <Typo.YearCss>2009</Typo.YearCss>
