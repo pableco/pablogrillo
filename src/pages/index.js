@@ -96,7 +96,7 @@ export default function Home() {
                     <SectionContentCss>
                         <Column>
                             <Typo.P>
-                                I am a Design Engineer, half designer and half developer.
+                                I am a Design Engineer, half designer, and half developer.
                                 My university <mark>education in computer science and design</mark> allowed me
                                 to get jobs as an external contractor on worldwide consulting
                                 agencies or as CIO and founder of a startup.
@@ -109,15 +109,16 @@ export default function Home() {
                             </Typo.P>
                         </Column>
                         <Column>
+
                             <Typo.P>
-                                Also I Leads a community of 14 Front End developers,
+                                Also I lead a community of 14 Front End developers,
                                 working with an emphasis in scalability and readability.
                             </Typo.P>
                             <Typo.P>
                                 I believe in the transforming value of design methodologies
                                 in the social and business environment. For that reason,
                                 I am <mark>part of the founding board of Fudament.es a non-profit
-                                association that use a design thinking mindset and UX research</mark> to solve social problems.
+                                association that uses a design thinking mindset and UX research</mark> to solve social problems.
                             </Typo.P>
                         </Column>
                     </SectionContentCss>
