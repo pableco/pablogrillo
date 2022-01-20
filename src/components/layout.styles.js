@@ -35,7 +35,6 @@ const Column = styled.div`
 const HeaderCss = styled.div`
     ${({ theme }) => css`
         background: linear-gradient(${theme.neutral050}, ${theme.neutral100});
-        background-image: url('/images/bg.svg');
         border-bottom: ${theme.borderM} solid ${theme.neutral900};
         display: grid;
         grid-auto-flow: row;
