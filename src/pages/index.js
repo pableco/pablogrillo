@@ -186,6 +186,58 @@ export default function Home() {
                         </dl>
                     </SectionContentCss>
                 </SectionWrapperCss>
+                <SectionWrapperCss id='courses'>
+                    <SectionTitleCss nameHeight={nameHeight}>
+                        <Typo.H3>Courses</Typo.H3>
+                    </SectionTitleCss>
+                    <SectionContentCss>
+                        <dl>
+                            <Typo.YearCss>2020</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>AI for everyone</Typo.H4>
+                                <Typo.P><a href='https://www.deeplearning.ai/'>DeepLearning.AI</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2020</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Google Analytics Individual Qualification</Typo.H4>
+                                <Typo.P>Google</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2017</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Design Thinking & Innovation</Typo.H4>
+                                <Typo.P><a href='https://www.apd.es/'>apd.es</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2013</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Technology Based Entreprenuership</Typo.H4>
+                                <Typo.P><a href='https://www.fundaciobit.org/'>FundacioBit</a></Typo.P>
+                            </dd>
+
+                        </dl>
+                        <dl>
+                            <Typo.YearCss>2013</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Google Adwords Fundamentals</Typo.H4>
+                                <Typo.P>Google</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2011</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Tourism 2.0, On-line Reputation</Typo.H4>
+                                <Typo.P><a href='https://www.uoc.edu/'>UOC</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2010</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Project Management</Typo.H4>
+                                <Typo.P><a href='https://www.caeb.es/'>CAEB</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2008</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Information Architecture</Typo.H4>
+                                <Typo.P><a href='https://www.uba.ar/'>UBA</a></Typo.P>
+                            </dd>
+                        </dl>
+                    </SectionContentCss>
+                </SectionWrapperCss>
                 <SectionWrapperCss id='contact'>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.H3>Contact</Typo.H3>
