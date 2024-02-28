@@ -3,54 +3,28 @@ import mediaQueries from './mediaQueries.styles';
 
 const Name = styled.h1`
     ${({ theme }) => css`
-        font-size: ${theme.h4};
+        font-size: 10vmin;
         margin: ${theme.r010} 0 0;
         font-weight: ${theme.regular};
         letter-spacing: ${theme.letterb1};
         text-transform: uppercase;
         text-align: center;
-
-        @media ${mediaQueries.mobileL} {
-            font-size: 4rem;
-        }
-        @media ${mediaQueries.tablet} {
-            font-size: ${theme.h3};
-        }
-        @media ${mediaQueries.laptop} {
-            font-size: ${theme.h2};
-        }
-        @media ${mediaQueries.laptopL} {
-            font-size: ${theme.h1};
-        }
     `};
 `;
 
 const Title = styled.h2`
     ${({ theme }) => css`
         border-radius: ${theme.round};
-        border: ${theme.borderS} solid ${theme.neutral900};
-        font-size: ${theme.small};
+        background: ${theme.neutral700};
+        color: ${theme.neutral100};
+        font-size: 3.2vmin;
         font-weight: ${theme.bold};
         letter-spacing: ${theme.letterb};
         line-height: ${theme.lhS};
         margin: 0 0 ${theme.r100} 0;
-        padding: ${theme.r025} ${theme.r075} ${theme.r010};
+        padding: .4em .3em .3em .3em;
         text-align: center;
         text-transform: uppercase;
-
-        @media ${mediaQueries.mobileL} {
-            font-size: ${theme.cap};
-        }
-        @media ${mediaQueries.tablet} {
-            font-size: ${theme.b2};
-        }
-        @media ${mediaQueries.laptop} {
-            font-size: 1.8rem;
-            margin: 0 0 ${theme.r300} 0;
-        }
-        @media ${mediaQueries.laptopL} {
-            font-size: ${theme.h5};
-        }
     `};
 `;
 
@@ -93,8 +67,9 @@ const P = styled.p`
     ${({ theme }) => css`
         font-size: ${theme.b1};
         font-weight: ${theme.regular};
-        letter-spacing: ${theme.ls};
         padding-bottom: ${theme.r150};
+        line-height: ${theme.lhB};
+        color: ${theme.colorTextSecondary};
 
         @media ${mediaQueries.tablet} {
             font-size: ${theme.b2};
@@ -111,8 +86,9 @@ const P = styled.p`
 const YearCss = styled.dt`
     ${({ theme }) => css`
         font-size: ${theme.b2};
-        border: ${theme.borderS} solid ${theme.neutral900};
+        background: ${theme.neutral700};
         border-radius: ${theme.round};
+        color: ${theme.neutral050};
         padding: ${theme.r025} ${theme.r075} ${theme.r010};
         display: inline-block;
 
@@ -126,6 +102,47 @@ const A = styled.a`
 `;
 
 
+const AboutTitle = styled(H3)`
+    ${({ theme }) => css`
+        line-height: 11rem;
+        position: sticky;
+        height: 11rem;
+        top: calc(50vh - 11rem / 2);
+        transform: rotate(180deg);
+        writing-mode: vertical-lr;
+        text-align: center;
+
+        @media ${mediaQueries.tablet} {
+            position: static;
+            top: inherit;
+            height: inherit;
+        }
+    `};
+`;
+
+const WorkTitle = styled(AboutTitle)``;
+const ContactTitle = styled(AboutTitle)``;
+const CoursesTitle = styled(AboutTitle)``;
+
+
+const EducationTitle = styled(H3)`
+    ${({ theme }) => css`
+        line-height: 11rem;
+        position: sticky;
+        height: 14rem;
+        top: calc(50vh - 14rem / 2);
+        transform: rotate(180deg);
+        writing-mode: vertical-lr;
+        text-align: center;
+
+        @media ${mediaQueries.tablet} {
+            position: static;
+            top: inherit;
+            height: inherit;
+        }
+    `};
+`;
+
 const Typo = {
     Name,
     Title,
@@ -134,6 +151,11 @@ const Typo = {
     H4,
     P,
     A,
+    AboutTitle,
+    WorkTitle,
+    EducationTitle,
+    ContactTitle,
+    CoursesTitle,
 };
 
 export default Typo;

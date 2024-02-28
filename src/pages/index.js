@@ -1,13 +1,10 @@
 import { useState, useRef, useEffect } from "react"
 import Head from 'next/head';
-import UseAnimations from 'react-useanimations';
-import arrowDown from 'react-useanimations/lib/arrowDown';
 
 import Layout, { siteTitle } from '../components/layout';
 import {
     Column,
-    ContentColumnTitle,
-    EmptyColumn,
+    ContentTitle,
     HeaderCss,
     MainCss,
     MenuCss,
@@ -23,7 +20,8 @@ import {
 } from '../styles/list.styles';
 import * as Icons from '../icons';
 const name = 'pablo grillo';
-const title = 'Product Designer | Design Engineer';
+const designTitle = 'Design Engineer';
+const devTitle = 'UX Designer';
 
 export default function Home() {
     const [nameHeight, setNameHeight] = useState(0);
@@ -69,18 +67,13 @@ export default function Home() {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <HeaderCss ref={nameEl}>
-                <EmptyColumn />
-                <ContentColumnTitle>
+            <HeaderCss>
+                <ContentTitle ref={nameEl}>
                     <Typo.Name>{name}</Typo.Name>
-                    <Typo.Title>{title}</Typo.Title>
+                    <Typo.Title><span>{designTitle}</span> and <span>{devTitle}</span></Typo.Title>
                     <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
-                        <UseAnimations
-                            size={28}
-                            animation={arrowDown}
-                            loop={showArrowHeight} />
                     </Icons.WrapperDown>
-                </ContentColumnTitle>
+                </ContentTitle>
             </HeaderCss>
             <MenuCss>
                 <li><a href="#about">About</a></li>
@@ -91,7 +84,7 @@ export default function Home() {
             <MainCss>
                 <SectionWrapperCss id='about'>
                     <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.H3>About</Typo.H3>
+                        <Typo.AboutTitle>About</Typo.AboutTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
                         <Column>
@@ -125,7 +118,7 @@ export default function Home() {
                 </SectionWrapperCss>
                 <SectionWrapperCss id='work'>
                     <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.H3>Work</Typo.H3>
+                        <Typo.WorkTitle>Work</Typo.WorkTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
@@ -157,7 +150,7 @@ export default function Home() {
                 </SectionWrapperCss>
                 <SectionWrapperCss id='education'>
                     <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.H3>Education</Typo.H3>
+                        <Typo.EducationTitle>Education</Typo.EducationTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
@@ -188,7 +181,7 @@ export default function Home() {
                 </SectionWrapperCss>
                 <SectionWrapperCss id='courses'>
                     <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.H3>Courses</Typo.H3>
+                        <Typo.CoursesTitle>Courses</Typo.CoursesTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
@@ -240,7 +233,7 @@ export default function Home() {
                 </SectionWrapperCss>
                 <SectionWrapperCss id='contact'>
                     <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.H3>Contact</Typo.H3>
+                        <Typo.ContactTitle>Contact</Typo.ContactTitle>
                     </SectionTitleCss>
                     <SectionFooterCss>
                         <List>
