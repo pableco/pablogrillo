@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from "react"
 import Head from 'next/head';
-import UseAnimations from 'react-useanimations';
-import arrowDown from 'react-useanimations/lib/arrowDown';
 
 import Layout, { siteTitle } from '../components/layout';
 import {
@@ -74,10 +72,6 @@ export default function Home() {
                     <Typo.Name>{name}</Typo.Name>
                     <Typo.Title><span>{designTitle}</span> and <span>{devTitle}</span></Typo.Title>
                     <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
-                        <UseAnimations
-                            size={28}
-                            animation={arrowDown}
-                            loop={showArrowHeight} />
                     </Icons.WrapperDown>
                 </ContentTitle>
             </HeaderCss>
