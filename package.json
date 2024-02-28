@@ -18,7 +18,7 @@
         "styled-components": "^6.1.8"
     },
     "engines": {
-        "node": "^20.11.1"
+        "node": "18.x"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.16.3",
