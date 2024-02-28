@@ -9,9 +9,8 @@ import GithubIcon from './github.svg';
 
 const defaultIconProps = css`
     ${({ theme }) => css`
-        height: 1.5em;
-        width: 1.5em;
-        border: ${theme.borderS} solid currentColor;
+        height: 2em;
+        width: 2em;
         border-radius: ${theme.round};
         margin-right: 0.5em;
     `};

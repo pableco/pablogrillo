@@ -1,6 +1,6 @@
 export const font = {
-    sourceFamilies: ['Yantramanav:100,300,400,700'],
-    setBase: 'Yantramanav',
+    sourceFamilies: ['Avenir:100,300,400,700'],
+    setBase: 'Avenir',
     sizeBase: '62.5%', // default 10px
     styleBase: 'normal',
 
@@ -38,17 +38,17 @@ export const font = {
 // Colors
 export const colors = {
     neutral000: 'hsla(0, 0%, 100%, 1)', // #fff
-    neutral050: 'hsla(0, 0%, 97.4%, 1)', // #f8f8f8
-    neutral100: 'hsla(0, 0%, 90%, 1)', // #e6e6e6
-    neutral200: 'hsla(0, 0%, 80%, 1)', // #cccccc
-    neutral300: 'hsla(0, 0%, 70%, 1)', // #b3b3b3
-    neutral400: 'hsla(0, 0%, 60%, 1)', // #999999
-    neutral500: 'hsla(0, 0%, 50%, 1)', // #808080
-    neutral600: 'hsla(0, 0%, 40%, 1)', // #666666
-    neutral700: 'hsla(0, 0%, 30%, 1)', // #4d4d4d
-    neutral800: 'hsla(0, 0%, 20%, 1)', // #333333
-    neutral900: 'hsla(0, 0%, 10%, 1)', // #1a1a1a
-    neutral999: 'hsla(0, 0%, 0%, 1)', // #000
+    neutral050: 'hsla(230, 30%, 97.4%, 1)', // #f8f8f8
+    neutral100: 'hsla(230, 30%, 90%, 1)', // #e6e6e6
+    neutral200: 'hsla(230, 30%, 80%, 1)', // #cccccc
+    neutral300: 'hsla(230, 30%, 70%, 1)', // #b3b3b3
+    neutral400: 'hsla(230, 30%, 60%, 1)', // #999999
+    neutral500: 'hsla(230, 30%, 50%, 1)', // #808080
+    neutral600: 'hsla(230, 30%, 40%, 1)', // #666666
+    neutral700: 'hsla(230, 30%, 30%, 1)', // #4d4d4d
+    neutral800: 'hsla(230, 30%, 20%, 1)', // #333333
+    neutral900: 'hsla(230, 30%, 10%, 1)', // #1a1a1a
+    neutral999: 'hsla(230, 30%, 0%, 1)', // #000
 
     transparent000: 'hsla(0, 0%, 100%, 0)',
     transparent999: 'hsla(0, 0%, 0%, 0)',
@@ -274,8 +274,9 @@ export const base = {
     // fontSetTitle: 'Playfair Display, serif;',
     /* Colors */
     colorBg: colors.neutral050,
-    colorText: colors.neutral900,
-    colorLink: colors.neutral900,
+    colorText: colors.neutral700,
+    colorTextSecondary: colors.neutral500,
+    colorLink: colors.main500,
     /* buttons */
     // buttonPrimaryTextColor: colors.neutral000,
     // buttonSecondaryTextColor: colors.colorMid,

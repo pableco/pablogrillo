@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
         }
         a:hover {
             color: ${theme.colorOver || theme.colorLink};
-        } 
+        }
 
         img {
             max-width: 100%;
@@ -110,8 +110,7 @@ const GlobalStyle = createGlobalStyle`
             fill: currentColor;
         }
         mark {
-            background-color: transparent;
-            border-bottom: 1px solid ${theme.neutral200};
+            background-color: ${theme.main050};
         }
     `};
 `;
