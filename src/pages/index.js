@@ -89,23 +89,24 @@ export default function Home() {
                     <SectionContentCss>
                         <Column>
                             <Typo.P>
-                                I am a Design Engineer, half designer, and half developer.
-                                My university <mark>education in computer science and design</mark> allowed me
-                                to get jobs as an external contractor on worldwide consulting
-                                agencies or as CIO and founder of a startup.
-                                I have been through consolidated companies and design studies working
-                                for brands like Coke, Adidas, Carte d&apos;Or, Bacardi, Telefónica, Endesa, Carrefour, etc.
+                                I am a Design Engineer with a demonstrated history of working in ecommerce
+                                for the tourism industry. My <mark>education in computer science and design</mark> allowed me
+                                to work as an external contractor at worldwide consulting agencies and as CTO and co-founder of a startup.
+                                I have worked for brands like Coke, Adidas, Carte d&apos;Or, Bacardi, Telefónica, Endesa, Carrefour, etc.
                             </Typo.P>
                             <Typo.P>
-                                Skilled in UI, HTML5, JavaScript, React, REDUX, Styled Components,
-                                Webpack, Jest, React Testing Library, Google Analytics and Google Tag Manager.
+                                Currently at Roiback as <mark>Senior Design Engineer / Senior UX</mark>, redesigning backoffice tools,
+                                leading a team of developers and coordinating the company&apos;s designers.
+                                I built the mobile web app for hotel booking flows from scratch and led the design
+                                system &ldquo;TALAIOTS&rdquo; applying design tokens across the product.
                             </Typo.P>
                         </Column>
                         <Column>
-
                             <Typo.P>
-                                Also I lead a community of 14 Front End developers,
-                                working with an emphasis in scalability and readability.
+                                Skilled in UI, HTML5, CSS, JavaScript, React, REDUX, Styled Components,
+                                Python, AngularJS, Jest, React Testing Library, Google Analytics and Google Tag Manager.
+                                I&apos;ve led 5 separate teams of designers and developers across different time zones,
+                                with an emphasis on best practices, scalability, and asynchronous working.
                             </Typo.P>
                             <Typo.P>
                                 I believe in the transforming value of design methodologies
@@ -122,28 +123,72 @@ export default function Home() {
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
+                            <Typo.YearCss>2023</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Roiback — Senior Design Engineer / Senior UX</Typo.H4>
+                                <Typo.P>Redesigning the company&apos;s backoffice tools. Leading a team of developers and coordinating designers across the organization.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2021</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Roiback — Senior Design Engineer / UX Lead</Typo.H4>
+                                <Typo.P>Designed and developed the Design System &ldquo;TALAIOTS&rdquo;. A/B and user testing. Front-end trainer focused on scalability and readability. End-to-end process optimization using UI design as a shared language for all stakeholders.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2019</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Roiback — Senior UX Designer / Front End Engineer</Typo.H4>
+                                <Typo.P>Migrated the mobile web app experience to the desktop booking flow, moving the reservation process to React components.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2017</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Roiback — UX Designer / Front End Engineer</Typo.H4>
+                                <Typo.P>Built from scratch a mobile web app for hotel booking flows. Customization per hotel applying a design system and design tokens in a single web app.</Typo.P>
+                            </dd>
                             <Typo.YearCss>2016</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Roiback </Typo.H4>
-                                <Typo.P>Design Engineer and Front-end. Product Designer of reservation flow and mobile app.
-                                Conversion rate optimization.</Typo.P>
-                            </dd>
-                            <Typo.YearCss>2014</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>yourttoo.com | openmarket.travel </Typo.H4>
-                                <Typo.P>Co-Founder and CTO, providing technical vision for the Business Development of the company. Building and leading the tech team, product design and user experience. </Typo.P>
+                                <Typo.H4>Roiback — UX / Front End Lead</Typo.H4>
+                                <Typo.P>Led 5 separate teams of designers and developers across different time zones to update their communication flow, with an emphasis on best practices and asynchronous working.</Typo.P>
                             </dd>
                         </dl>
                         <dl>
+                            <Typo.YearCss>2022</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>W2M World2Meet — Digital Experience Manager</Typo.H4>
+                                <Typo.P>User behavior tracking across the group&apos;s brand sites. Implementation of Treasure Data and User Insider scripts. Planning and management of CMP and DIDOMI preference center.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2014</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>yourttoo.com — CTO & Co-Founder</Typo.H4>
+                                <Typo.P>Co-Founder and CIO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.</Typo.P>
+                            </dd>
                             <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Accenture Interactive | FJORD </Typo.H4>
-                                <Typo.P>External Services Provider | Web Designer Front-End Trainer for High Traffic Ecommerce Sites & Conversion Rate Optimization </Typo.P>
+                                <Typo.H4>Accenture España — External IT Consultant</Typo.H4>
+                                <Typo.P>Front-end supervisor and trainer. Website performance and conversion funnel optimization for high traffic ecommerce sites. UI designer.</Typo.P>
                             </dd>
-                            <Typo.YearCss>2009</Typo.YearCss>
+                            <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Orizonia </Typo.H4>
-                                <Typo.P>Reporting directly to the head of Marketing and Product. UX / UI / Analytics / Project Manager </Typo.P>
+                                <Typo.H4>Jour Trip — Founder & CEO</Typo.H4>
+                                <Typo.P>Web app where users design their custom trips, share them, find travel companions and get options from specialized travel agents.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2011</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Orizonia — UX/UI Designer, B2B sites and webapps</Typo.H4>
+                                <Typo.P>User Experience, User-Centered Design, Usability, UI Design, Design Engineer, Front End Development, Marketing Online.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2010</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Viajes Iberia — Senior Web Designer, Marketing Online</Typo.H4>
+                                <Typo.P>Design and development of landing pages for campaigns. Microsites for special promotions. Project management.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2006</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Ingamana — Web Designer & ActionScript Developer</Typo.H4>
+                                <Typo.P>Design and development of web applications in Flash, HTML, CSS and JavaScript for international studios and brands like Bacardi, Adidas, Carte d&apos;Or, Bic.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2003</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Moveo Imagen y Sonido — Co-Founder</Typo.H4>
+                                <Typo.P>Audiovisual production and post-production. Motion Graphics.</Typo.P>
                             </dd>
                         </dl>
                     </SectionContentCss>
@@ -171,7 +216,7 @@ export default function Home() {
                                 <Typo.H4>Graphic Design</Typo.H4>
                                 <Typo.P>Universidad de Buenos Aires <em>(two years completed)</em> </Typo.P>
                             </dd>
-                            <Typo.YearCss>2004</Typo.YearCss>
+                            <Typo.YearCss>2000</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Computer Science</Typo.H4>
                                 <Typo.P>Universidad de Buenos Aires <em>(two years completed)</em></Typo.P>
@@ -195,29 +240,33 @@ export default function Home() {
                                 <Typo.H4>Google Analytics Individual Qualification</Typo.H4>
                                 <Typo.P>Google</Typo.P>
                             </dd>
+                            <Typo.YearCss>2018</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>React.js Essential Training</Typo.H4>
+                                <Typo.P>LinkedIn Learning</Typo.P>
+                            </dd>
                             <Typo.YearCss>2017</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Design Thinking & Innovation</Typo.H4>
                                 <Typo.P><a href='https://www.apd.es/'>apd.es</a></Typo.P>
                             </dd>
+                            <Typo.YearCss>2017</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Design Thinking and Agile Methodologies</Typo.H4>
+                                <Typo.P>LinkedIn Learning</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2017</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Prototyping and Testing</Typo.H4>
+                                <Typo.P>LinkedIn Learning</Typo.P>
+                            </dd>
                             <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Technology Based Entreprenuership</Typo.H4>
+                                <Typo.H4>Technology Based Entrepreneurship</Typo.H4>
                                 <Typo.P><a href='https://www.fundaciobit.org/'>FundacioBit</a></Typo.P>
                             </dd>
-
                         </dl>
                         <dl>
-                            <Typo.YearCss>2013</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>Google Adwords Fundamentals</Typo.H4>
-                                <Typo.P>Google</Typo.P>
-                            </dd>
-                            <Typo.YearCss>2011</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>Tourism 2.0, On-line Reputation</Typo.H4>
-                                <Typo.P><a href='https://www.uoc.edu/'>UOC</a></Typo.P>
-                            </dd>
                             <Typo.YearCss>2010</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Project Management</Typo.H4>
@@ -227,6 +276,11 @@ export default function Home() {
                             <dd>
                                 <Typo.H4>Information Architecture</Typo.H4>
                                 <Typo.P><a href='https://www.uba.ar/'>UBA</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2021</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Google Data Analytics Professional Certificate</Typo.H4>
+                                <Typo.P><a href='https://www.coursera.org/professional-certificates/google-data-analytics'>Google / Coursera</a></Typo.P>
                             </dd>
                         </dl>
                     </SectionContentCss>
