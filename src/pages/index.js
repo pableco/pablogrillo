@@ -123,15 +123,20 @@ export default function Home() {
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
-                            <Typo.YearCss>2016</Typo.YearCss>
+                            <Typo.YearCss>2023</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Roiback — Design Engineer &amp; UX</Typo.H4>
-                                <Typo.P>From UX/Front End Lead to Senior Design Engineer. Built from scratch the mobile web app for hotel booking flows, led the Design System &ldquo;TALAIOTS&rdquo;, and since 2023 redesigning the company&apos;s backoffice tools while leading a team of developers and coordinating designers across the organization.</Typo.P>
+                                <Typo.H4>Roiback — Team Lead</Typo.H4>
+                                <Typo.P>Leading the redesign of the company&apos;s backoffice tools while managing a team of developers and coordinating designers across the organization.</Typo.P>
                             </dd>
                             <Typo.YearCss>2022</Typo.YearCss>
                             <dd>
                                 <Typo.H4>W2M World2Meet — Digital Experience Manager</Typo.H4>
                                 <Typo.P>User behavior tracking across the group&apos;s brand sites. Implementation of Treasure Data and User Insider scripts. Planning and management of CMP and DIDOMI preference center.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2016</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Roiback — Design Engineer &amp; UX</Typo.H4>
+                                <Typo.P>From UX/Front End Lead to Senior Design Engineer. Built from scratch the mobile web app for hotel booking flows and led the Design System &ldquo;TALAIOTS&rdquo;.</Typo.P>
                             </dd>
                             <Typo.YearCss>2014</Typo.YearCss>
                             <dd>
