@@ -200,6 +200,11 @@ export default function Home() {
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
+                            <Typo.YearCss>2024</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Google Data Analytics Professional Certificate</Typo.H4>
+                                <Typo.P><a href='https://www.coursera.org/professional-certificates/google-data-analytics'>Google / Coursera</a></Typo.P>
+                            </dd>
                             <Typo.YearCss>2020</Typo.YearCss>
                             <dd>
                                 <Typo.H4>AI for everyone</Typo.H4>
@@ -215,13 +220,13 @@ export default function Home() {
                                 <Typo.H4>Design Thinking & Innovation</Typo.H4>
                                 <Typo.P><a href='https://www.apd.es/'>apd.es</a></Typo.P>
                             </dd>
+                        </dl>
+                        <dl>
                             <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Technology Based Entrepreneurship</Typo.H4>
                                 <Typo.P><a href='https://www.fundaciobit.org/'>FundacioBit</a></Typo.P>
                             </dd>
-                        </dl>
-                        <dl>
                             <Typo.YearCss>2010</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Project Management</Typo.H4>
@@ -231,11 +236,6 @@ export default function Home() {
                             <dd>
                                 <Typo.H4>Information Architecture</Typo.H4>
                                 <Typo.P><a href='https://www.uba.ar/'>UBA</a></Typo.P>
-                            </dd>
-                            <Typo.YearCss>2021</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>Google Data Analytics Professional Certificate</Typo.H4>
-                                <Typo.P><a href='https://www.coursera.org/professional-certificates/google-data-analytics'>Google / Coursera</a></Typo.P>
                             </dd>
                         </dl>
                     </SectionContentCss>
