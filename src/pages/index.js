@@ -97,15 +97,16 @@ export default function Home() {
                                 for brands like Coke, Adidas, Carte d&apos;Or, Bacardi, Telefónica, Endesa, Carrefour, etc.
                             </Typo.P>
                             <Typo.P>
-                                Skilled in UI, HTML5, JavaScript, React, REDUX, Styled Components,
-                                Webpack, Jest, React Testing Library, Google Analytics and Google Tag Manager.
+                                Currently at Roiback as <mark>Senior Design Engineer / Senior UX</mark>, redesigning backoffice tools,
+                                leading a team of developers and coordinating the company&apos;s designers.
+                                I built the mobile web app for hotel booking flows from scratch and led the design
+                                system &ldquo;TALAIOTS&rdquo; applying design tokens across the product.
                             </Typo.P>
                         </Column>
                         <Column>
-
                             <Typo.P>
-                                Also I lead a community of 14 Front End developers,
-                                working with an emphasis in scalability and readability.
+                                I lead a community of 14 Front End developers across 5 separate teams of designers and developers
+                                across different time zones, with an emphasis on best practices, scalability, and asynchronous working.
                             </Typo.P>
                             <Typo.P>
                                 I believe in the transforming value of design methodologies
@@ -124,26 +125,35 @@ export default function Home() {
                         <dl>
                             <Typo.YearCss>2016</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Roiback </Typo.H4>
-                                <Typo.P>Design Engineer and Front-end. Product Designer of reservation flow and mobile app.
-                                Conversion rate optimization.</Typo.P>
+                                <Typo.H4>Roiback — Design Engineer &amp; UX</Typo.H4>
+                                <Typo.P>From UX/Front End Lead to Senior Design Engineer. Built from scratch the mobile web app for hotel booking flows, led the Design System &ldquo;TALAIOTS&rdquo;, and since 2023 redesigning the company&apos;s backoffice tools while leading a team of developers and coordinating designers across the organization.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2022</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>W2M World2Meet — Digital Experience Manager</Typo.H4>
+                                <Typo.P>User behavior tracking across the group&apos;s brand sites. Implementation of Treasure Data and User Insider scripts. Planning and management of CMP and DIDOMI preference center.</Typo.P>
                             </dd>
                             <Typo.YearCss>2014</Typo.YearCss>
                             <dd>
-                                <Typo.H4>yourttoo.com | openmarket.travel </Typo.H4>
-                                <Typo.P>Co-Founder and CTO, providing technical vision for the Business Development of the company. Building and leading the tech team, product design and user experience. </Typo.P>
+                                <Typo.H4>yourttoo.com — CTO &amp; Co-Founder</Typo.H4>
+                                <Typo.P>Co-Founder and CIO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.</Typo.P>
                             </dd>
                         </dl>
                         <dl>
                             <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Accenture Interactive | FJORD </Typo.H4>
-                                <Typo.P>External Services Provider | Web Designer Front-End Trainer for High Traffic Ecommerce Sites & Conversion Rate Optimization </Typo.P>
+                                <Typo.H4>Accenture España — External IT Consultant</Typo.H4>
+                                <Typo.P>Front-end supervisor and trainer. Website performance and conversion funnel optimization for high traffic ecommerce sites. UI designer.</Typo.P>
                             </dd>
-                            <Typo.YearCss>2009</Typo.YearCss>
+                            <Typo.YearCss>2011</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Orizonia </Typo.H4>
-                                <Typo.P>Reporting directly to the head of Marketing and Product. UX / UI / Analytics / Project Manager </Typo.P>
+                                <Typo.H4>Orizonia — UX/UI Designer, B2B sites and webapps</Typo.H4>
+                                <Typo.P>User Experience, User-Centered Design, Usability, UI Design, Design Engineer, Front End Development, Marketing Online.</Typo.P>
+                            </dd>
+                            <Typo.YearCss>2003</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Moveo Imagen y Sonido — Co-Founder</Typo.H4>
+                                <Typo.P>Audiovisual production and post-production. Motion Graphics.</Typo.P>
                             </dd>
                         </dl>
                     </SectionContentCss>
@@ -202,22 +212,11 @@ export default function Home() {
                             </dd>
                             <Typo.YearCss>2013</Typo.YearCss>
                             <dd>
-                                <Typo.H4>Technology Based Entreprenuership</Typo.H4>
+                                <Typo.H4>Technology Based Entrepreneurship</Typo.H4>
                                 <Typo.P><a href='https://www.fundaciobit.org/'>FundacioBit</a></Typo.P>
                             </dd>
-
                         </dl>
                         <dl>
-                            <Typo.YearCss>2013</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>Google Adwords Fundamentals</Typo.H4>
-                                <Typo.P>Google</Typo.P>
-                            </dd>
-                            <Typo.YearCss>2011</Typo.YearCss>
-                            <dd>
-                                <Typo.H4>Tourism 2.0, On-line Reputation</Typo.H4>
-                                <Typo.P><a href='https://www.uoc.edu/'>UOC</a></Typo.P>
-                            </dd>
                             <Typo.YearCss>2010</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Project Management</Typo.H4>
@@ -227,6 +226,11 @@ export default function Home() {
                             <dd>
                                 <Typo.H4>Information Architecture</Typo.H4>
                                 <Typo.P><a href='https://www.uba.ar/'>UBA</a></Typo.P>
+                            </dd>
+                            <Typo.YearCss>2021</Typo.YearCss>
+                            <dd>
+                                <Typo.H4>Google Data Analytics Professional Certificate</Typo.H4>
+                                <Typo.P><a href='https://www.coursera.org/professional-certificates/google-data-analytics'>Google / Coursera</a></Typo.P>
                             </dd>
                         </dl>
                     </SectionContentCss>
