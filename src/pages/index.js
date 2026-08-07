@@ -78,7 +78,8 @@ export default function Home() {
             <MenuCss>
                 <li><a href="#about">About</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#education">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#courses">Courses</a></li>
                 <li><a href="#contact">Contact</a></li>
             </MenuCss>
             <MainCss>
@@ -111,7 +112,7 @@ export default function Home() {
                             <Typo.P>
                                 I believe in the transforming value of design methodologies
                                 in the social and business environment. For that reason,
-                                I am <mark>part of the founding board of Fudament.es a non-profit
+                                I am <mark>part of the founding board of Fundament.es a non-profit
                                 association that uses a design thinking mindset and UX research</mark> to solve social problems.
                             </Typo.P>
                         </Column>
@@ -123,7 +124,7 @@ export default function Home() {
                     </SectionTitleCss>
                     <SectionContentCss>
                         <dl>
-                            <Typo.YearCss>2023</Typo.YearCss>
+                            <Typo.YearCss>2026</Typo.YearCss>
                             <dd>
                                 <Typo.H4>Roiback — Team Lead</Typo.H4>
                                 <Typo.P>Leading the redesign of the company&apos;s backoffice tools while managing a team of developers and coordinating designers across the organization.</Typo.P>
