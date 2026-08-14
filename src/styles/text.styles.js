@@ -114,13 +114,14 @@ const AboutTitle = styled(H3)`
 
         /*
          * line-height sets the vertical text's horizontal thickness. Below
-         * mobileL (375px), the rail column is only 5rem wide, so the
-         * default 11rem thickness overflows it — flex can't center a child
-         * wider than its container, so it docks to the start edge and
-         * bleeds into the content column instead. Shrinking it here keeps
-         * the title within the rail.
+         * mobileL (425px — see columTitleMobile in layout.styles.js), the
+         * rail column is only 5rem wide, so the default 11rem thickness
+         * overflows it — flex can't center a child wider than its
+         * container, so it docks to the start edge and bleeds into the
+         * content column instead. Shrinking it here keeps the title
+         * within the rail.
          */
-        @media ${mediaQueries.mobileXS} {
+        @media ${mediaQueries.belowMobileL} {
             line-height: 1rem;
         }
 
@@ -148,7 +149,7 @@ const EducationTitle = styled(H3)`
         writing-mode: vertical-lr;
         text-align: center;
 
-        @media ${mediaQueries.mobileXS} {
+        @media ${mediaQueries.belowMobileL} {
             line-height: 1rem;
         }
 

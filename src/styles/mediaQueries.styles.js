@@ -39,7 +39,10 @@ const mediaQueries = {
 
     // ipadLandscape: `all and (device-width: 768px) and
     // (device-height: 1024px) and (orientation:landscape)`
-    mobileXS: '(max-width: 324px)',
+    // Matches every width the rail column stays at its narrowest
+    // (columTitleMobile, 5rem — see layout.styles.js), up to the moment
+    // mobileL widens it. Derived from size.mobileL so the two can't drift.
+    belowMobileL: `(max-width: ${size.mobileL - 1}px)`,
     mobileS: `(min-width: ${size.mobileS}px)`,
     mobileM: `(min-width: ${size.mobileM}px)`,
     mobileL: `(min-width: ${size.mobileL}px)`,
