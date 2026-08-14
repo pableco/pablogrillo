@@ -1,4 +1,7 @@
 module.exports = {
+    compiler: {
+        styledComponents: { ssr: true },
+    },
     turbopack: {
         rules: {
             '*.svg': {
