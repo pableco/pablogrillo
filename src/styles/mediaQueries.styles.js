@@ -39,6 +39,7 @@ const mediaQueries = {
 
     // ipadLandscape: `all and (device-width: 768px) and
     // (device-height: 1024px) and (orientation:landscape)`
+    mobileXS: '(max-width: 324px)',
     mobileS: `(min-width: ${size.mobileS}px)`,
     mobileM: `(min-width: ${size.mobileM}px)`,
     mobileL: `(min-width: ${size.mobileL}px)`,
