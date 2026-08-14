@@ -46,6 +46,65 @@ export const about = {
     ],
 };
 
+export const skills = {
+    id: 'skills',
+    label: 'Skills',
+    columnSplit: 2,
+    groups: [
+        {
+            title: 'Frontend & Design Systems',
+            items: [
+                'TypeScript',
+                'JavaScript (ES6+)',
+                'React',
+                'HTML5',
+                'CSS3',
+                'Styled-components',
+                'MUI (Material UI)',
+                'Design Systems',
+                'Atomic Design',
+                'Storybook / Chromatic',
+                'Figma',
+                'Responsive Design',
+            ],
+        },
+        {
+            title: 'AI & Agents',
+            items: [
+                'Claude Code',
+                'Codex',
+                'AI Agents & Skills',
+                'MCP Servers',
+                'Agentic Workflows',
+                'Prompt Engineering',
+            ],
+        },
+        {
+            title: 'Testing',
+            items: [
+                'Vitest',
+                'Testing Library',
+                'Unit Testing',
+                'Functional Testing',
+                'Visual Regression (Chromatic)',
+                'TDD',
+            ],
+        },
+        {
+            title: 'Tools',
+            items: [
+                'Git / GitHub / GitLab',
+                'Vite / Webpack',
+                'npm',
+                'CI/CD',
+                'Docker',
+                'Jira',
+                'SonarQube',
+            ],
+        },
+    ],
+};
+
 export const work = {
     id: 'work',
     label: 'Work',
@@ -191,7 +250,7 @@ export const contact = {
 };
 
 /** Orden de las secciones, usado para el menú de navegación. */
-export const sections = [about, work, education, courses, contact];
+export const sections = [about, skills, work, education, courses, contact];
 
 /** Parte una lista en las dos columnas del layout. */
 export const splitAt = (items, index) => [items.slice(0, index), items.slice(index)];

@@ -123,6 +123,7 @@ const AboutTitle = styled(H3)`
 const WorkTitle = styled(AboutTitle)``;
 const ContactTitle = styled(AboutTitle)``;
 const CoursesTitle = styled(AboutTitle)``;
+const SkillsTitle = styled(AboutTitle)``;
 
 
 const EducationTitle = styled(H3)`
@@ -156,6 +157,7 @@ const Typo = {
     EducationTitle,
     ContactTitle,
     CoursesTitle,
+    SkillsTitle,
 };
 
 export default Typo;

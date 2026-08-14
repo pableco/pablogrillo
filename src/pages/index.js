@@ -17,6 +17,8 @@ import Typo from '../styles/text.styles';
 import {
     List,
     IconItem,
+    Tag,
+    TagList,
 } from '../styles/list.styles';
 import * as Icons from '../icons';
 import {
@@ -26,6 +28,7 @@ import {
     education,
     profile,
     sections,
+    skills,
     splitAt,
     work,
 } from '../content/cv';
@@ -57,6 +60,17 @@ const DefinitionColumn = ({ items, renderItem }) => (
             </Fragment>
         ))}
     </dl>
+);
+
+const SkillGroup = ({ group }) => (
+    <>
+        <Typo.H4>{group.title}</Typo.H4>
+        <TagList role="list">
+            {group.items.map((item) => (
+                <Tag key={item}>{item}</Tag>
+            ))}
+        </TagList>
+    </>
 );
 
 const renderWork = (item) => (
@@ -124,6 +138,7 @@ export default function Home() {
     });
 
     const [aboutLeft, aboutRight] = splitAt(about.paragraphs, about.columnSplit);
+    const [skillsLeft, skillsRight] = splitAt(skills.groups, skills.columnSplit);
     const [workLeft, workRight] = splitAt(work.items, work.columnSplit);
     const [educationLeft, educationRight] = splitAt(education.items, education.columnSplit);
     const [coursesLeft, coursesRight] = splitAt(courses.items, courses.columnSplit);
@@ -174,6 +189,23 @@ export default function Home() {
                         <Column>
                             {aboutRight.map((segments, index) => (
                                 <Paragraph key={index} segments={segments} />
+                            ))}
+                        </Column>
+                    </SectionContentCss>
+                </SectionWrapperCss>
+                <SectionWrapperCss id={skills.id}>
+                    <SectionTitleCss nameHeight={nameHeight}>
+                        <Typo.SkillsTitle>{skills.label}</Typo.SkillsTitle>
+                    </SectionTitleCss>
+                    <SectionContentCss>
+                        <Column>
+                            {skillsLeft.map((group) => (
+                                <SkillGroup key={group.title} group={group} />
+                            ))}
+                        </Column>
+                        <Column>
+                            {skillsRight.map((group) => (
+                                <SkillGroup key={group.title} group={group} />
                             ))}
                         </Column>
                     </SectionContentCss>
