@@ -3,8 +3,9 @@
  *
  * Este módulo es datos puros: sin JSX, sin imports de React y sin SVG, para que
  * pueda consumirlo tanto la página (`src/pages/index.js`) como código de
- * servidor (el system prompt del chat). Si cambias algo aquí, cambia en los dos
- * sitios a la vez — que es justamente el objetivo.
+ * servidor (el system prompt del chat, ver `src/lib/systemPrompt.ts`). Si
+ * cambias algo aquí, cambia en los dos sitios a la vez — que es justamente
+ * el objetivo.
  *
  * Convenciones:
  * - `id` de cada sección coincide con el ancla de la página (`#about`, `#work`…).
@@ -14,13 +15,104 @@
  *   intercalado; un segmento con `mark: true` se resalta.
  */
 
-export const profile = {
+export interface Profile {
+    name: string;
+    fullName: string;
+    titles: [string, string];
+}
+
+export interface AboutSegment {
+    text: string;
+    mark?: boolean;
+}
+
+export interface AboutSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    paragraphs: AboutSegment[][];
+}
+
+export interface SkillGroup {
+    title: string;
+    items: string[];
+}
+
+export interface SkillsSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    groups: SkillGroup[];
+}
+
+export interface WorkItem {
+    year: number;
+    company: string;
+    role: string;
+    description: string;
+}
+
+export interface WorkSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    items: WorkItem[];
+}
+
+export interface EducationItem {
+    year: number;
+    title: string;
+    school: string;
+    note?: string;
+}
+
+export interface EducationSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    items: EducationItem[];
+}
+
+export interface CourseItem {
+    year: number;
+    title: string;
+    org: string;
+    url?: string;
+}
+
+export interface CoursesSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    items: CourseItem[];
+}
+
+export type ContactIcon = 'email' | 'phone' | 'github' | 'linkedin' | 'behance';
+
+export interface ContactItem {
+    icon: ContactIcon;
+    label: string;
+    href: string;
+}
+
+export interface ContactSection {
+    id: string;
+    label: string;
+    columnSplit: number;
+    email: string;
+    phone: string;
+    items: ContactItem[];
+}
+
+export type Section = AboutSection | SkillsSection | WorkSection | EducationSection | CoursesSection | ContactSection;
+
+export const profile: Profile = {
     name: 'pablo grillo',
     fullName: 'Pablo Grillo',
     titles: ['Design Engineer', 'UX Designer'],
 };
 
-export const about = {
+export const about: AboutSection = {
     id: 'about',
     label: 'About',
     columnSplit: 2,
@@ -46,7 +138,7 @@ export const about = {
     ],
 };
 
-export const skills = {
+export const skills: SkillsSection = {
     id: 'skills',
     label: 'Skills',
     columnSplit: 2,
@@ -107,7 +199,7 @@ export const skills = {
     ],
 };
 
-export const work = {
+export const work: WorkSection = {
     id: 'work',
     label: 'Work',
     columnSplit: 4,
@@ -157,7 +249,7 @@ export const work = {
     ],
 };
 
-export const education = {
+export const education: EducationSection = {
     id: 'education',
     label: 'Education',
     columnSplit: 2,
@@ -187,7 +279,7 @@ export const education = {
     ],
 };
 
-export const courses = {
+export const courses: CoursesSection = {
     id: 'courses',
     label: 'Courses',
     columnSplit: 4,
@@ -236,7 +328,7 @@ export const courses = {
     ],
 };
 
-export const contact = {
+export const contact: ContactSection = {
     id: 'contact',
     label: 'Contact',
     columnSplit: 2,
@@ -252,7 +344,7 @@ export const contact = {
 };
 
 /** Orden de las secciones, usado para el menú de navegación. */
-export const sections = [about, work, education, courses, skills, contact];
+export const sections: Section[] = [about, work, education, courses, skills, contact];
 
 /** Parte una lista en las dos columnas del layout. */
-export const splitAt = (items, index) => [items.slice(0, index), items.slice(index)];
+export const splitAt = <T,>(items: T[], index: number): [T[], T[]] => [items.slice(0, index), items.slice(index)];
