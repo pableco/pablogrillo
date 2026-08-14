@@ -8,7 +8,7 @@ export const size = {
     desktop: 2560,
 };
 
-export default {
+const mediaQueries = {
     phones: 'only screen and (max-width: 479px)',
     phonesLargeW: 'only screen and (min-width: 375px)',
     phonesLargeH: 'only screen and (min-height: 668px)', // one pixel more than iphone6
@@ -39,6 +39,10 @@ export default {
 
     // ipadLandscape: `all and (device-width: 768px) and
     // (device-height: 1024px) and (orientation:landscape)`
+    // Matches every width the rail column stays at its narrowest
+    // (columTitleMobile, 5rem — see layout.styles.js), up to the moment
+    // mobileL widens it. Derived from size.mobileL so the two can't drift.
+    belowMobileL: `(max-width: ${size.mobileL - 1}px)`,
     mobileS: `(min-width: ${size.mobileS}px)`,
     mobileM: `(min-width: ${size.mobileM}px)`,
     mobileL: `(min-width: ${size.mobileL}px)`,
@@ -48,5 +52,7 @@ export default {
     desktop: `(min-width: ${size.desktop}px)`,
     desktopL: `(min-width: ${size.desktop}px)`,
 };
+
+export default mediaQueries;
 
 

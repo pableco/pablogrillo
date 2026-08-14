@@ -2,11 +2,11 @@ import Head from 'next/head';
 import {
     WrapperCss,
 } from './layout.styles';
+import { skills } from '../content/cv';
 
 export const siteUrl = 'https://pablogrillo.com';
 export const siteName = 'Pablo Grillo';
 export const siteTitle = 'Pablo Grillo — Design Engineer & UX Designer';
-// eslint-disable-next-line max-len
 export const siteDescription = 'Pablo Grillo, Design Engineer and UX Designer. Senior Design Engineer at Roiback, leading design systems, backoffice tools and a community of front end developers.';
 export const siteImage = `${siteUrl}/images/og-image.png`;
 
@@ -23,12 +23,14 @@ const personSchema = {
         '@type': 'Organization',
         name: 'Roiback',
     },
+    // Los términos de diseño viven en la prosa del CV; el resto sale de
+    // content/cv.js para que el schema no se desincronice de la página.
     knowsAbout: [
         'Design Engineering',
         'User Experience Design',
-        'Design Systems',
         'Front End Development',
         'Design Thinking',
+        ...skills.groups.flatMap((group) => group.items),
     ],
     sameAs: [
         'https://es.linkedin.com/in/grillopablo',
