@@ -104,9 +104,21 @@ const SectionContentCommon = css`
     ${({ theme }) => css`
         grid-column: 2 / 3;
         padding: ${theme.r200};
+        /*
+         * The vertical rail title (see AboutTitle in text.styles.js) is
+         * sticky and centers itself in the viewport while its section
+         * scrolls by, but can only stay centered within its own row's
+         * bounds. In the last ~half its own height before the row ends, it
+         * detaches from center and pins to the row's bottom edge instead.
+         * Below tablet, where that sticky behavior is active, bottom
+         * padding needs to clear that pin zone so the title lands in blank
+         * space instead of overlapping the section's last visible content.
+         */
+        padding-bottom: ${theme.r600};
 
         @media ${mediaQueries.mobileL} {
             padding: ${theme.r300};
+            padding-bottom: ${theme.r600};
         }
         @media ${mediaQueries.tablet} {
             padding: ${theme.r400};
