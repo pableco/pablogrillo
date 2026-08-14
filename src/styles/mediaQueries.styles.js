@@ -8,7 +8,7 @@ export const size = {
     desktop: 2560,
 };
 
-export default {
+const mediaQueries = {
     phones: 'only screen and (max-width: 479px)',
     phonesLargeW: 'only screen and (min-width: 375px)',
     phonesLargeH: 'only screen and (min-height: 668px)', // one pixel more than iphone6
@@ -48,5 +48,7 @@ export default {
     desktop: `(min-width: ${size.desktop}px)`,
     desktopL: `(min-width: ${size.desktop}px)`,
 };
+
+export default mediaQueries;
 
 

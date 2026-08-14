@@ -6,7 +6,6 @@ import {
 export const siteUrl = 'https://pablogrillo.com';
 export const siteName = 'Pablo Grillo';
 export const siteTitle = 'Pablo Grillo — Design Engineer & UX Designer';
-// eslint-disable-next-line max-len
 export const siteDescription = 'Pablo Grillo, Design Engineer and UX Designer. Senior Design Engineer at Roiback, leading design systems, backoffice tools and a community of front end developers.';
 export const siteImage = `${siteUrl}/images/og-image.png`;
 
