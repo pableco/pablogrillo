@@ -252,7 +252,7 @@ export const contact = {
 };
 
 /** Orden de las secciones, usado para el menú de navegación. */
-export const sections = [about, skills, work, education, courses, contact];
+export const sections = [about, work, education, courses, skills, contact];
 
 /** Parte una lista en las dos columnas del layout. */
 export const splitAt = (items, index) => [items.slice(0, index), items.slice(index)];

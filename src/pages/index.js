@@ -193,23 +193,6 @@ export default function Home() {
                         </Column>
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={skills.id}>
-                    <SectionTitleCss nameHeight={nameHeight}>
-                        <Typo.SkillsTitle>{skills.label}</Typo.SkillsTitle>
-                    </SectionTitleCss>
-                    <SectionContentCss>
-                        <Column>
-                            {skillsLeft.map((group) => (
-                                <SkillGroup key={group.title} group={group} />
-                            ))}
-                        </Column>
-                        <Column>
-                            {skillsRight.map((group) => (
-                                <SkillGroup key={group.title} group={group} />
-                            ))}
-                        </Column>
-                    </SectionContentCss>
-                </SectionWrapperCss>
                 <SectionWrapperCss id={work.id}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.WorkTitle>{work.label}</Typo.WorkTitle>
@@ -235,6 +218,23 @@ export default function Home() {
                     <SectionContentCss>
                         <DefinitionColumn items={coursesLeft} renderItem={renderCourse} />
                         <DefinitionColumn items={coursesRight} renderItem={renderCourse} />
+                    </SectionContentCss>
+                </SectionWrapperCss>
+                <SectionWrapperCss id={skills.id}>
+                    <SectionTitleCss nameHeight={nameHeight}>
+                        <Typo.SkillsTitle>{skills.label}</Typo.SkillsTitle>
+                    </SectionTitleCss>
+                    <SectionContentCss>
+                        <Column>
+                            {skillsLeft.map((group) => (
+                                <SkillGroup key={group.title} group={group} />
+                            ))}
+                        </Column>
+                        <Column>
+                            {skillsRight.map((group) => (
+                                <SkillGroup key={group.title} group={group} />
+                            ))}
+                        </Column>
                     </SectionContentCss>
                 </SectionWrapperCss>
                 <SectionWrapperCss id={contact.id}>
