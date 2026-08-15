@@ -6,6 +6,9 @@ import PhoneIcon from './phone.svg';
 import LinkedinIcon from './linkedin.svg';
 import BehanceIcon from './be.svg';
 import GithubIcon from './github.svg';
+import MessageCircleIcon from './message-circle.svg';
+import XIcon from './x.svg';
+import SendIcon from './send.svg';
 
 const defaultIconProps = css`
     ${({ theme }) => css`
@@ -36,6 +39,12 @@ const Github = styled(GithubIcon)`
     ${defaultIconProps}
 `;
 
+// Sin defaultIconProps: estos no son iconos de lista con texto al lado,
+// se dimensionan y colorean en el punto de uso (ver Chat.styles.ts).
+const MessageCircle = styled(MessageCircleIcon)``;
+const Close = styled(XIcon)``;
+const Send = styled(SendIcon)``;
+
 const WrapperDown = styled.div`
     ${({ theme, visible }) => css`
         fill: none;
@@ -50,9 +59,12 @@ const WrapperDown = styled.div`
 
 export {
     Behance,
-    WrapperDown,
+    Close,
     Email,
     Github,
     Linkedin,
+    MessageCircle,
     Phone,
+    Send,
+    WrapperDown,
 }
