@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 export const ToggleButton = styled.button`
     ${({ theme }) => css`
         align-items: center;
-        background: ${theme.neutral700};
+        background: ${theme.main500};
         border: none;
         border-radius: ${theme.round};
         box-shadow: ${theme.boxShadowBottom2};
@@ -294,10 +294,13 @@ export const TextArea = styled.textarea`
         flex: 1;
         font-family: inherit;
         font-size: ${theme.b2};
+        height: ${theme.iconDefaultSize};
         line-height: ${theme.lhB};
         max-height: 12rem;
-        min-height: ${theme.iconDefaultSize};
-        padding: ${theme.r075} ${theme.r100};
+        /* Centra verticalmente la línea de texto dentro de la altura fija:
+           reparte lo que sobra tras la línea de texto y los bordes entre
+           el padding superior e inferior. */
+        padding: calc((${theme.iconDefaultSize} - ${theme.lhB} * ${theme.b2} - 2 * ${theme.borderS}) / 2) ${theme.r100};
         resize: none;
 
         &:focus-visible {
