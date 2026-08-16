@@ -5,78 +5,50 @@ import mediaQueries from '../../styles/mediaQueries.styles';
 const PANEL_WIDTH = '38rem';
 const PANEL_HEIGHT = '58rem';
 
-export const Wrapper = styled.div`
-    ${({ theme }) => css`
-        position: fixed;
-        right: ${theme.r200};
-        bottom: ${theme.r200};
-        z-index: ${theme.zModal};
+const OPEN_TRANSITION = '.2s ease-in-out';
 
-        @media ${mediaQueries.tablet} {
-            right: ${theme.r300};
-            bottom: ${theme.r300};
-        }
-    `};
-`;
-
-export const ToggleButton = styled.button`
-    ${({ theme }) => css`
-        align-items: center;
-        background: ${theme.main500};
-        border: none;
-        border-radius: ${theme.round};
-        box-shadow: ${theme.boxShadowBottom2};
-        color: ${theme.neutral050};
-        cursor: pointer;
-        display: flex;
-        height: ${theme.iconDefaultSize};
-        justify-content: center;
-        transition: transform ${theme.animationTimeS} ease-in-out;
-        width: ${theme.iconDefaultSize};
-
-        svg {
-            height: ${theme.iconsSizeMM};
-            width: ${theme.iconsSizeMM};
-        }
-
-        &:hover {
-            transform: scale(1.05);
-        }
-
-        &:focus-visible {
-            outline: ${theme.borderM} solid ${theme.main500};
-            outline-offset: ${theme.r025};
-        }
-    `};
-`;
-
-export const Panel = styled.div`
-    ${({ theme }) => css`
-        /* Móvil primero: pantalla completa — ver riesgo #5 del plan, una
-           burbuja flotante taparía el contenido en pantallas pequeñas. */
+export const Panel = styled.div<{ $open: boolean }>`
+    ${({ theme, $open }) => css`
+        /* El panel es siempre la misma caja: cerrado, se ve solo la
+           cabecera; al abrir, crece hacia arriba/lados sin moverse de
+           sitio, así el chat se despliega bajo el propio botón. Móvil
+           primero: pantalla completa al abrir — ver riesgo #5 del plan,
+           una burbuja flotante taparía el contenido en pantallas
+           pequeñas. */
         background: ${theme.colorBg};
         border: 0;
-        border-radius: 0;
-        bottom: 0;
+        border-radius: ${$open ? 0 : theme.r200};
+        bottom: ${$open ? 0 : theme.r200};
         box-shadow: ${theme.boxShadowBottom4};
         display: flex;
         flex-direction: column;
-        height: 100dvh;
+        height: ${$open ? '100dvh' : theme.iconDefaultSize};
         overflow: hidden;
         position: fixed;
-        right: 0;
-        top: 0;
-        width: 100vw;
+        right: ${$open ? 0 : theme.r200};
+        transition: ${OPEN_TRANSITION};
+        transition-property: border-radius, bottom, height, right, width;
+        width: ${$open ? '100vw' : `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))`};
+        z-index: ${theme.zModal};
 
         @media ${mediaQueries.tablet} {
             border: ${theme.borderM} solid ${theme.neutral900};
             border-radius: ${theme.r200};
-            bottom: calc(${theme.iconDefaultSize} + ${theme.r200});
-            height: min(${PANEL_HEIGHT}, 75vh);
+            bottom: ${theme.r300};
+            height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : theme.iconDefaultSize};
             right: ${theme.r300};
-            top: auto;
             width: min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}));
         }
+    `};
+`;
+
+export const Body = styled.div`
+    ${css`
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
     `};
 `;
 
@@ -102,13 +74,14 @@ export const Title = styled.p`
     `};
 `;
 
-export const CloseButton = styled.button`
+export const ToggleButton = styled.button`
     ${({ theme }) => css`
         background: none;
         border: none;
         color: inherit;
         cursor: pointer;
         display: flex;
+        flex: none;
         padding: ${theme.r025};
 
         svg {

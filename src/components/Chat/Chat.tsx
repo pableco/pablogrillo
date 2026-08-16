@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 
 import * as Icons from '../../icons';
 import {
-    CloseButton,
+    Body,
     EmptyState,
     ErrorBanner,
     Header,
@@ -22,7 +22,6 @@ import {
     Title,
     ToggleButton,
     TypingIndicator,
-    Wrapper,
 } from './Chat.styles';
 
 const SUGGESTED_QUESTIONS = [
@@ -47,6 +46,7 @@ const markdownComponents = {
 
 export default function Chat() {
     const [isOpen, setIsOpen] = useState(false);
+    const [hasOpened, setHasOpened] = useState(false);
     const [input, setInput] = useState('');
 
     const { messages, sendMessage, status, error, clearError, regenerate } = useChat();
@@ -62,6 +62,13 @@ export default function Chat() {
             textareaRef.current?.focus();
         }
     }, [isOpen]);
+
+    // El cuerpo se monta la primera vez que se abre, para que las
+    // siguientes aperturas/cierres puedan animarse.
+    const handleToggle = useCallback(() => {
+        setHasOpened(true);
+        setIsOpen((open) => !open);
+    }, []);
 
     // Esc cierra el panel.
     useEffect(() => {
@@ -104,16 +111,16 @@ export default function Chat() {
     };
 
     return (
-        <Wrapper>
-            {isOpen && (
-                <Panel role="region" aria-label="Chat about Pablo Grillo">
-                    <Header>
-                        <Title>Ask about Pablo</Title>
-                        <CloseButton onClick={() => setIsOpen(false)} aria-label="Close">
-                            <Icons.Close />
-                        </CloseButton>
-                    </Header>
+        <Panel $open={isOpen} role="region" aria-label="Chat about Pablo Grillo">
+            <Header>
+                <Title>Ask about Pablo</Title>
+                <ToggleButton type="button" onClick={handleToggle} aria-label={isOpen ? 'Close' : 'Ask about Pablo'}>
+                    {isOpen ? <Icons.Close /> : <Icons.MessageCircle />}
+                </ToggleButton>
+            </Header>
 
+            {hasOpened && (
+                <Body inert={!isOpen}>
                     <MessageList ref={listRef} aria-live="polite">
                         {messages.length === 0 ? (
                             <EmptyState>
@@ -178,14 +185,8 @@ export default function Chat() {
                             <Icons.Send />
                         </SendButton>
                     </InputForm>
-                </Panel>
+                </Body>
             )}
-
-            {!isOpen && (
-                <ToggleButton type="button" onClick={() => setIsOpen(true)} aria-label="Ask about Pablo">
-                    <Icons.MessageCircle />
-                </ToggleButton>
-            )}
-        </Wrapper>
+        </Panel>
     );
 }
