@@ -230,8 +230,8 @@ export const formColors = {
 
 export const formSettings = {
     formFieldBorderRadius: '0',
-    formFieldBorder: `${borders.borderWidthS} solid ${formColors.formFieldColor}`,
-    formFieldBorderFocus: `${borders.borderWidthM} solid ${formColors.formFieldColorFocus}`,
+    formFieldBorder: `${borders.borderS} solid ${formColors.formFieldColor}`,
+    formFieldBorderFocus: `${borders.borderM} solid ${formColors.formFieldColorFocus}`,
     formFieldRound: rhythm.r050,
 };
 
@@ -257,8 +257,8 @@ export const images = {
     imageThumbSize: '14rem',
     imageBackgroundSize: '24rem',
     imageBGOverlay: `${colors.neutralOpacity999}`,
-    imageBGradientTop: `linear-gradient(to top, ${colors.neutralTransparent999}, ${colors.neutralOpacity900})`,
-    imageBGradientBottom: `linear-gradient(to bottom, ${colors.neutralTransparent999}, ${colors.neutralOpacity900})`,
+    imageBGradientTop: `linear-gradient(to top, ${colors.transparent999}, ${colors.neutralOpacity900})`,
+    imageBGradientBottom: `linear-gradient(to bottom, ${colors.transparent999}, ${colors.neutralOpacity900})`,
 };
 
 export const base = {
@@ -266,7 +266,7 @@ export const base = {
     roundedCard: '0',
     /* Icon in button defaut size */
     /* text shadow default fallback for tex over images */
-    textShadow: `0 .1rem .3rem ${boxShadowOpacity.boxShadowOpacity025}`,
+    textShadow: `0 .1rem .3rem ${boxShadowOpacity.boxShadowopacity025}`,
 
 
     /* DON'T DELETE  optional variables [start] */
@@ -307,5 +307,7 @@ const themeDefault = {
     ...images,
     ...base,
 };
+
+export type Theme = typeof themeDefault;
 
 export default themeDefault;
