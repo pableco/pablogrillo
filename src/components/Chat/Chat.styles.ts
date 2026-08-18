@@ -52,19 +52,34 @@ export const Body = styled.div`
     `};
 `;
 
-export const Header = styled.header`
+/* Toda la barra es el botón que abre/cierra el chat: un <p> y un
+   icono sueltos solo eran clicables en su propia caja, dejando el
+   resto de la franja muerta al tacto/clic. */
+export const Header = styled.button`
     ${({ theme }) => css`
         align-items: center;
         background: ${theme.neutral700};
+        border: none;
         color: ${theme.neutral050};
+        cursor: pointer;
         display: flex;
         flex: none;
+        font: inherit;
         justify-content: space-between;
         padding: ${theme.r150} ${theme.r200};
+        text-align: left;
+        width: 100%;
+
+        &:focus-visible {
+            outline: ${theme.borderS} solid ${theme.neutral050};
+            outline-offset: -${theme.borderM};
+        }
     `};
 `;
 
-export const Title = styled.p`
+// span, no p: vive dentro de un <button> y <p> no es contenido de fraseo
+// (el modelo de contenido de <button> solo admite ese tipo de hijos).
+export const Title = styled.span`
     ${({ theme }) => css`
         font-size: ${theme.b1};
         font-weight: ${theme.bold};
@@ -74,23 +89,16 @@ export const Title = styled.p`
     `};
 `;
 
-export const ToggleButton = styled.button`
+export const ToggleIcon = styled.span`
     ${({ theme }) => css`
-        background: none;
-        border: none;
-        color: inherit;
-        cursor: pointer;
+        align-items: center;
         display: flex;
         flex: none;
-        padding: ${theme.r025};
+        justify-content: center;
 
         svg {
             height: ${theme.iconsSizeS};
             width: ${theme.iconsSizeS};
-        }
-
-        &:focus-visible {
-            outline: ${theme.borderS} solid ${theme.neutral050};
         }
     `};
 `;
