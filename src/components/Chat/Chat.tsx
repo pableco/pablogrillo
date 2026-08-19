@@ -103,6 +103,15 @@ export default function Chat() {
         if (!isOpen || !viewport || !panel) return undefined;
 
         const sync = () => {
+            // Con zoom, el viewport visual deja de ser una ventana sobre
+            // el de maquetación a escala 1:1 y estas cuentas colocarían
+            // el panel donde no toca: mejor devolverlo a sus valores CSS.
+            if (viewport.scale > 1.01) {
+                panel.style.removeProperty(VIEWPORT_HEIGHT);
+                panel.style.removeProperty(VIEWPORT_INSET);
+                return;
+            }
+
             const inset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
             panel.style.setProperty(VIEWPORT_HEIGHT, `${viewport.height}px`);
             panel.style.setProperty(VIEWPORT_INSET, `${inset}px`);

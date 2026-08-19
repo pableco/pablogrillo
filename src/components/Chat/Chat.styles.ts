@@ -306,14 +306,17 @@ export const TextArea = styled.textarea`
         color: ${theme.colorText};
         flex: 1;
         font-family: inherit;
-        font-size: ${theme.b2};
+        /* No bajar de 16px: Safari en iOS hace zoom automático al enfocar
+           un campo con letra más pequeña, y ese zoom encoge el viewport
+           visual, que es justo lo que mide el panel para colocarse. */
+        font-size: ${theme.b1};
         height: ${theme.iconDefaultSize};
         line-height: ${theme.lhB};
         max-height: 12rem;
         /* Centra verticalmente la línea de texto dentro de la altura fija:
            reparte lo que sobra tras la línea de texto y los bordes entre
            el padding superior e inferior. */
-        padding: calc((${theme.iconDefaultSize} - ${theme.lhB} * ${theme.b2} - 2 * ${theme.borderS}) / 2) ${theme.r100};
+        padding: calc((${theme.iconDefaultSize} - ${theme.lhB} * ${theme.b1} - 2 * ${theme.borderS}) / 2) ${theme.r100};
         resize: none;
 
         &:focus-visible {
