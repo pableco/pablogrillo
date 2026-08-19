@@ -205,7 +205,7 @@ export const work: WorkSection = {
     columnSplit: 4,
     items: [
         {
-            year: 2026,
+            year: 2023,
             company: 'Roiback',
             role: 'Team Lead',
             description: 'Leading the redesign of the company\'s backoffice tools while managing a team of developers and coordinating designers across the organization.',

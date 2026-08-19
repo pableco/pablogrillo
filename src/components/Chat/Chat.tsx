@@ -22,6 +22,8 @@ import {
     Title,
     ToggleIcon,
     TypingIndicator,
+    VIEWPORT_HEIGHT,
+    VIEWPORT_INSET,
 } from './Chat.styles';
 
 const SUGGESTED_QUESTIONS = [
@@ -52,6 +54,7 @@ export default function Chat() {
     const { messages, sendMessage, status, error, clearError, regenerate } = useChat();
 
     const listRef = useRef<HTMLDivElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const isBusy = status === 'streaming' || status === 'submitted';
@@ -88,6 +91,49 @@ export default function Chat() {
         if (list) list.scrollTop = list.scrollHeight;
     }, [messages, status]);
 
+    // Al abrir el teclado, el navegador encoge el viewport visual pero
+    // deja intacto el de maquetación, contra el que se posiciona un
+    // elemento `fixed`: el panel se queda del alto de la pantalla
+    // completa y su campo de escritura acaba tapado por el teclado.
+    // Publicamos el alto visible y el hueco que ocupa el teclado para
+    // que Chat.styles.ts los use en lugar de `100dvh` / `bottom: 0`.
+    useEffect(() => {
+        const viewport = window.visualViewport;
+        const panel = panelRef.current;
+        if (!isOpen || !viewport || !panel) return undefined;
+
+        const sync = () => {
+            // Con zoom, el viewport visual deja de ser una ventana sobre
+            // el de maquetación a escala 1:1 y estas cuentas colocarían
+            // el panel donde no toca: mejor devolverlo a sus valores CSS.
+            if (viewport.scale > 1.01) {
+                panel.style.removeProperty(VIEWPORT_HEIGHT);
+                panel.style.removeProperty(VIEWPORT_INSET);
+                return;
+            }
+
+            const inset = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
+            panel.style.setProperty(VIEWPORT_HEIGHT, `${viewport.height}px`);
+            panel.style.setProperty(VIEWPORT_INSET, `${inset}px`);
+
+            // El teclado se come parte de la conversación: volvemos al
+            // final para no dejar al usuario mirando un hueco vacío.
+            const list = listRef.current;
+            if (list) list.scrollTop = list.scrollHeight;
+        };
+
+        sync();
+        viewport.addEventListener('resize', sync);
+        viewport.addEventListener('scroll', sync);
+
+        return () => {
+            viewport.removeEventListener('resize', sync);
+            viewport.removeEventListener('scroll', sync);
+            panel.style.removeProperty(VIEWPORT_HEIGHT);
+            panel.style.removeProperty(VIEWPORT_INSET);
+        };
+    }, [isOpen]);
+
     const submitMessage = useCallback(
         (text: string) => {
             const trimmed = text.trim();
@@ -111,7 +157,7 @@ export default function Chat() {
     };
 
     return (
-        <Panel $open={isOpen} role="region" aria-label="Chat about Pablo Grillo">
+        <Panel ref={panelRef} $open={isOpen} role="region" aria-label="Chat about Pablo Grillo">
             <Header type="button" onClick={handleToggle} aria-label={isOpen ? 'Close' : 'Ask about Pablo'} aria-expanded={isOpen}>
                 <Title>Ask about Pablo</Title>
                 <ToggleIcon aria-hidden="true">{isOpen ? <Icons.Close /> : <Icons.MessageCircle />}</ToggleIcon>

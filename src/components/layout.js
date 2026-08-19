@@ -46,6 +46,14 @@ export default function Layout({ children }) {
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="canonical" href={siteUrl} />
+                {/* Sustituye al viewport por defecto de Next para pedir que el
+                    teclado virtual encoja el viewport de maquetación. Donde se
+                    soporta (Chrome en Android), el panel del chat se ajusta
+                    solo; el resto lo cubre Chat.tsx con VisualViewport. */}
+                <meta
+                    name="viewport"
+                    content="width=device-width, interactive-widget=resizes-content"
+                />
                 <meta name="description" content={siteDescription} />
                 <meta name="author" content={siteName} />
 
