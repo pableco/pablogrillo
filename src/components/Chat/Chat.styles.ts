@@ -12,6 +12,11 @@ const BAR_HEIGHT = '5rem';
 
 const OPEN_TRANSITION = '.2s ease-in-out';
 
+/* Medidas del viewport visible que Chat.tsx mantiene al día mientras el
+   panel está abierto (ver el efecto que escucha a window.visualViewport). */
+export const VIEWPORT_HEIGHT = '--chat-viewport-height';
+export const VIEWPORT_INSET = '--chat-viewport-inset';
+
 /* Toda la barra es el botón que abre/cierra el chat: un <p> y un
    icono sueltos solo eran clicables en su propia caja, dejando el
    resto de la franja muerta al tacto/clic. */
@@ -51,11 +56,17 @@ export const Panel = styled.div<{ $open: boolean }>`
         background: ${theme.colorBg};
         border: 0;
         border-radius: ${$open ? 0 : BAR_HEIGHT};
-        bottom: ${$open ? 0 : theme.r200};
+        /* El teclado del móvil encoge el viewport visual pero no el de
+           maquetación, así que un panel fijo pegado abajo y de alto
+           100dvh queda por debajo del teclado y se lleva consigo el
+           campo de escritura. Chat.tsx publica el alto y el hueco reales
+           en estas variables; los valores de reserva son los de siempre,
+           para cuando no hay teclado ni VisualViewport. */
+        bottom: ${$open ? `var(${VIEWPORT_INSET}, 0px)` : theme.r200};
         box-shadow: ${theme.boxShadowBottom4};
         display: flex;
         flex-direction: column;
-        height: ${$open ? '100dvh' : BAR_HEIGHT};
+        height: ${$open ? `var(${VIEWPORT_HEIGHT}, 100dvh)` : BAR_HEIGHT};
         overflow: hidden;
         position: fixed;
         right: ${$open ? 0 : theme.r200};
@@ -77,8 +88,11 @@ export const Panel = styled.div<{ $open: boolean }>`
         @media ${mediaQueries.tablet} {
             border: ${theme.borderM} solid ${theme.neutral900};
             border-radius: ${$open ? theme.r200 : BAR_HEIGHT};
-            bottom: ${theme.r300};
+            /* Aquí el panel flota, así que basta con subirlo por encima
+               del teclado y no dejarlo más alto que lo que se ve. */
+            bottom: calc(${theme.r300} + var(${VIEWPORT_INSET}, 0px));
             height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : BAR_HEIGHT};
+            max-height: ${$open ? `calc(var(${VIEWPORT_HEIGHT}, 100dvh) - ${theme.r600})` : 'none'};
             right: ${theme.r300};
             width: ${$open ? `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))` : BAR_WIDTH};
         }
