@@ -5,52 +5,12 @@ import mediaQueries from '../../styles/mediaQueries.styles';
 const PANEL_WIDTH = '38rem';
 const PANEL_HEIGHT = '58rem';
 
+/* Barra colapsada: pastilla de tamaño fijo. El radio iguala la altura
+   para que los extremos queden completamente redondeados. */
+const BAR_WIDTH = '26rem';
+const BAR_HEIGHT = '5rem';
+
 const OPEN_TRANSITION = '.2s ease-in-out';
-
-export const Panel = styled.div<{ $open: boolean }>`
-    ${({ theme, $open }) => css`
-        /* El panel es siempre la misma caja: cerrado, se ve solo la
-           cabecera; al abrir, crece hacia arriba/lados sin moverse de
-           sitio, así el chat se despliega bajo el propio botón. Móvil
-           primero: pantalla completa al abrir — ver riesgo #5 del plan,
-           una burbuja flotante taparía el contenido en pantallas
-           pequeñas. */
-        background: ${theme.colorBg};
-        border: 0;
-        border-radius: ${$open ? 0 : theme.r200};
-        bottom: ${$open ? 0 : theme.r200};
-        box-shadow: ${theme.boxShadowBottom4};
-        display: flex;
-        flex-direction: column;
-        height: ${$open ? '100dvh' : theme.iconDefaultSize};
-        overflow: hidden;
-        position: fixed;
-        right: ${$open ? 0 : theme.r200};
-        transition: ${OPEN_TRANSITION};
-        transition-property: border-radius, bottom, height, right, width;
-        width: ${$open ? '100vw' : `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))`};
-        z-index: ${theme.zModal};
-
-        @media ${mediaQueries.tablet} {
-            border: ${theme.borderM} solid ${theme.neutral900};
-            border-radius: ${theme.r200};
-            bottom: ${theme.r300};
-            height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : theme.iconDefaultSize};
-            right: ${theme.r300};
-            width: min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}));
-        }
-    `};
-`;
-
-export const Body = styled.div`
-    ${css`
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        min-height: 0;
-        overflow: hidden;
-    `};
-`;
 
 /* Toda la barra es el botón que abre/cierra el chat: un <p> y un
    icono sueltos solo eran clicables en su propia caja, dejando el
@@ -66,7 +26,10 @@ export const Header = styled.button`
         flex: none;
         font: inherit;
         justify-content: space-between;
-        padding: ${theme.r150} ${theme.r200};
+        /* Sin padding vertical: la altura la fija min-height y el
+           contenido se centra solo, sin depender del interlineado. */
+        min-height: ${BAR_HEIGHT};
+        padding: 0 ${theme.r200};
         text-align: left;
         width: 100%;
 
@@ -74,6 +37,61 @@ export const Header = styled.button`
             outline: ${theme.borderS} solid ${theme.neutral050};
             outline-offset: -${theme.borderM};
         }
+    `};
+`;
+
+export const Panel = styled.div<{ $open: boolean }>`
+    ${({ theme, $open }) => css`
+        /* El panel es siempre la misma caja: cerrado, se ve solo la
+           cabecera; al abrir, crece hacia arriba/lados sin moverse de
+           sitio, así el chat se despliega bajo el propio botón. Móvil
+           primero: pantalla completa al abrir — ver riesgo #5 del plan,
+           una burbuja flotante taparía el contenido en pantallas
+           pequeñas. */
+        background: ${theme.colorBg};
+        border: 0;
+        border-radius: ${$open ? 0 : BAR_HEIGHT};
+        bottom: ${$open ? 0 : theme.r200};
+        box-shadow: ${theme.boxShadowBottom4};
+        display: flex;
+        flex-direction: column;
+        height: ${$open ? '100dvh' : BAR_HEIGHT};
+        overflow: hidden;
+        position: fixed;
+        right: ${$open ? 0 : theme.r200};
+        transition: ${OPEN_TRANSITION};
+        transition-property: border-radius, bottom, height, right, width;
+        width: ${$open ? '100vw' : `min(${BAR_WIDTH}, calc(100vw - ${theme.r400}))`};
+        z-index: ${theme.zModal};
+
+        ${!$open &&
+        css`
+            /* Colapsado la cabecera es lo único visible: que ocupe todo
+               el alto real de la pastilla — descontando el borde, que
+               resta al box interior — y no deje ver el fondo del panel. */
+            ${Header} {
+                min-height: 100%;
+            }
+        `};
+
+        @media ${mediaQueries.tablet} {
+            border: ${theme.borderM} solid ${theme.neutral900};
+            border-radius: ${$open ? theme.r200 : BAR_HEIGHT};
+            bottom: ${theme.r300};
+            height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : BAR_HEIGHT};
+            right: ${theme.r300};
+            width: ${$open ? `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))` : BAR_WIDTH};
+        }
+    `};
+`;
+
+export const Body = styled.div`
+    ${css`
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
     `};
 `;
 
