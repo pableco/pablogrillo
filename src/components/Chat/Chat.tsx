@@ -20,7 +20,7 @@ import {
     SuggestionList,
     TextArea,
     Title,
-    ToggleButton,
+    ToggleIcon,
     TypingIndicator,
 } from './Chat.styles';
 
@@ -112,11 +112,9 @@ export default function Chat() {
 
     return (
         <Panel $open={isOpen} role="region" aria-label="Chat about Pablo Grillo">
-            <Header>
+            <Header type="button" onClick={handleToggle} aria-label={isOpen ? 'Close' : 'Ask about Pablo'} aria-expanded={isOpen}>
                 <Title>Ask about Pablo</Title>
-                <ToggleButton type="button" onClick={handleToggle} aria-label={isOpen ? 'Close' : 'Ask about Pablo'}>
-                    {isOpen ? <Icons.Close /> : <Icons.MessageCircle />}
-                </ToggleButton>
+                <ToggleIcon aria-hidden="true">{isOpen ? <Icons.Close /> : <Icons.MessageCircle />}</ToggleIcon>
             </Header>
 
             {hasOpened && (

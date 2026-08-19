@@ -5,7 +5,40 @@ import mediaQueries from '../../styles/mediaQueries.styles';
 const PANEL_WIDTH = '38rem';
 const PANEL_HEIGHT = '58rem';
 
+/* Barra colapsada: pastilla de tamaño fijo. El radio iguala la altura
+   para que los extremos queden completamente redondeados. */
+const BAR_WIDTH = '26rem';
+const BAR_HEIGHT = '5rem';
+
 const OPEN_TRANSITION = '.2s ease-in-out';
+
+/* Toda la barra es el botón que abre/cierra el chat: un <p> y un
+   icono sueltos solo eran clicables en su propia caja, dejando el
+   resto de la franja muerta al tacto/clic. */
+export const Header = styled.button`
+    ${({ theme }) => css`
+        align-items: center;
+        background: ${theme.neutral700};
+        border: none;
+        color: ${theme.neutral050};
+        cursor: pointer;
+        display: flex;
+        flex: none;
+        font: inherit;
+        justify-content: space-between;
+        /* Sin padding vertical: la altura la fija min-height y el
+           contenido se centra solo, sin depender del interlineado. */
+        min-height: ${BAR_HEIGHT};
+        padding: 0 ${theme.r200};
+        text-align: left;
+        width: 100%;
+
+        &:focus-visible {
+            outline: ${theme.borderS} solid ${theme.neutral050};
+            outline-offset: -${theme.borderM};
+        }
+    `};
+`;
 
 export const Panel = styled.div<{ $open: boolean }>`
     ${({ theme, $open }) => css`
@@ -17,27 +50,37 @@ export const Panel = styled.div<{ $open: boolean }>`
            pequeñas. */
         background: ${theme.colorBg};
         border: 0;
-        border-radius: ${$open ? 0 : theme.r200};
+        border-radius: ${$open ? 0 : BAR_HEIGHT};
         bottom: ${$open ? 0 : theme.r200};
         box-shadow: ${theme.boxShadowBottom4};
         display: flex;
         flex-direction: column;
-        height: ${$open ? '100dvh' : theme.iconDefaultSize};
+        height: ${$open ? '100dvh' : BAR_HEIGHT};
         overflow: hidden;
         position: fixed;
         right: ${$open ? 0 : theme.r200};
         transition: ${OPEN_TRANSITION};
         transition-property: border-radius, bottom, height, right, width;
-        width: ${$open ? '100vw' : `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))`};
+        width: ${$open ? '100vw' : `min(${BAR_WIDTH}, calc(100vw - ${theme.r400}))`};
         z-index: ${theme.zModal};
+
+        ${!$open &&
+        css`
+            /* Colapsado la cabecera es lo único visible: que ocupe todo
+               el alto real de la pastilla — descontando el borde, que
+               resta al box interior — y no deje ver el fondo del panel. */
+            ${Header} {
+                min-height: 100%;
+            }
+        `};
 
         @media ${mediaQueries.tablet} {
             border: ${theme.borderM} solid ${theme.neutral900};
-            border-radius: ${theme.r200};
+            border-radius: ${$open ? theme.r200 : BAR_HEIGHT};
             bottom: ${theme.r300};
-            height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : theme.iconDefaultSize};
+            height: ${$open ? `min(${PANEL_HEIGHT}, 75vh)` : BAR_HEIGHT};
             right: ${theme.r300};
-            width: min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}));
+            width: ${$open ? `min(${PANEL_WIDTH}, calc(100vw - ${theme.r400}))` : BAR_WIDTH};
         }
     `};
 `;
@@ -52,19 +95,9 @@ export const Body = styled.div`
     `};
 `;
 
-export const Header = styled.header`
-    ${({ theme }) => css`
-        align-items: center;
-        background: ${theme.neutral700};
-        color: ${theme.neutral050};
-        display: flex;
-        flex: none;
-        justify-content: space-between;
-        padding: ${theme.r150} ${theme.r200};
-    `};
-`;
-
-export const Title = styled.p`
+// span, no p: vive dentro de un <button> y <p> no es contenido de fraseo
+// (el modelo de contenido de <button> solo admite ese tipo de hijos).
+export const Title = styled.span`
     ${({ theme }) => css`
         font-size: ${theme.b1};
         font-weight: ${theme.bold};
@@ -74,23 +107,16 @@ export const Title = styled.p`
     `};
 `;
 
-export const ToggleButton = styled.button`
+export const ToggleIcon = styled.span`
     ${({ theme }) => css`
-        background: none;
-        border: none;
-        color: inherit;
-        cursor: pointer;
+        align-items: center;
         display: flex;
         flex: none;
-        padding: ${theme.r025};
+        justify-content: center;
 
         svg {
             height: ${theme.iconsSizeS};
             width: ${theme.iconsSizeS};
-        }
-
-        &:focus-visible {
-            outline: ${theme.borderS} solid ${theme.neutral050};
         }
     `};
 `;

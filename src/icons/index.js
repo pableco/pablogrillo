@@ -41,9 +41,22 @@ const Github = styled(GithubIcon)`
 
 // Sin defaultIconProps: estos no son iconos de lista con texto al lado,
 // se dimensionan y colorean en el punto de uso (ver Chat.styles.ts).
-const MessageCircle = styled(MessageCircleIcon)``;
-const Close = styled(XIcon)``;
-const Send = styled(SendIcon)``;
+// Son iconos de trazo (Feather): pisan el "fill: currentColor" global,
+// que los rellenaría en vez de dejarlos solo con el borde.
+const strokeIconProps = css`
+    fill: none;
+    stroke: currentColor;
+`;
+
+const MessageCircle = styled(MessageCircleIcon)`
+    ${strokeIconProps}
+`;
+const Close = styled(XIcon)`
+    ${strokeIconProps}
+`;
+const Send = styled(SendIcon)`
+    ${strokeIconProps}
+`;
 
 const WrapperDown = styled.div`
     ${({ theme, visible }) => css`
