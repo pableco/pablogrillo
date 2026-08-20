@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    # develop y master no existen todavía en este repo (la rama larga es
+    # main); van listadas para que el pipeline las cubra si se crean.
+    branches: [main, develop, master]
+
+# Una PR que recibe varios push seguidos solo necesita terminar el último.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint and types
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+  e2e:
+    name: Functional tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Solo Chromium: es el único navegador que usan los proyectos de
+      # playwright.config.ts, y bajar los tres triplicaría el arranque.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Las pruebas suplantan /api/chat (ver tests/support/chat.ts), así que
+      # no hace falta una clave real — pero el módulo del cliente de
+      # Anthropic sí quiere encontrar la variable definida al arrancar.
+      - name: Run Playwright
+        run: npm run test:e2e
+        env:
+          ANTHROPIC_API_KEY: dummy-key-for-tests
+
+      - name: Upload report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
