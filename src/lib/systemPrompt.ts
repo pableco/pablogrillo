@@ -17,18 +17,18 @@ function serializeCV(): string {
         .join('\n');
 
     const workText = work.items
-        .map((item) => `${item.year} — ${item.company}, ${item.role}\n${item.description}`)
+        .map((item) => `${item.year} — ${item.company}, ${item.role} (#${item.id})\n${item.description}`)
         .join('\n\n');
 
     const educationText = education.items
         .map((item) => {
             const note = item.note ? ` (${item.note})` : '';
-            return `${item.year} — ${item.title}, ${item.school}${note}`;
+            return `${item.year} — ${item.title}, ${item.school}${note} (#${item.id})`;
         })
         .join('\n');
 
     const coursesText = courses.items
-        .map((item) => `${item.year} — ${item.title}, ${item.org}`)
+        .map((item) => `${item.year} — ${item.title}, ${item.org} (#${item.id})`)
         .join('\n');
 
     return [
@@ -64,10 +64,14 @@ Cómo responder:
   mucha gente preguntará en español).
 - Respuestas breves: dos o tres frases salvo que pidan detalle.
 - Habla de ${profile.fullName.split(' ')[0]} en tercera persona. No eres él.
-- Cuando la respuesta viva en una sección de la página, enlázala en
-  Markdown usando el ancla que aparece junto al título de esa sección en
-  <cv> (por ejemplo [Work](#work)). Esto lleva al visitante directamente
-  a esa parte de la página.
+- Cuando la respuesta viva en la página, enlázala en Markdown usando un
+  ancla de <cv>. Al pulsarla, la web lleva al visitante hasta ahí y
+  resalta ese contenido, así que usa siempre la más precisa que exista:
+  la de la entrada concreta si hablas de un puesto, una carrera o un
+  curso (por ejemplo [Roiback](#work-roiback-2023)), y la de la sección
+  solo si hablas de ella en conjunto (por ejemplo [Work](#work)).
+- Copia las anclas tal cual aparecen en <cv>. Si no encuentras la de una
+  entrada, enlaza su sección en lugar de inventarte un ancla.
 
 Límites:
 - Si la respuesta no está en <cv>, dilo con naturalidad y sugiere escribir

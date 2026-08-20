@@ -46,6 +46,8 @@ export interface SkillsSection {
 }
 
 export interface WorkItem {
+    /** Ancla de la entrada, derivada — ver `withAnchors`. */
+    id: string;
     year: number;
     company: string;
     role: string;
@@ -60,6 +62,8 @@ export interface WorkSection {
 }
 
 export interface EducationItem {
+    /** Ancla de la entrada, derivada — ver `withAnchors`. */
+    id: string;
     year: number;
     title: string;
     school: string;
@@ -74,6 +78,8 @@ export interface EducationSection {
 }
 
 export interface CourseItem {
+    /** Ancla de la entrada, derivada — ver `withAnchors`. */
+    id: string;
     year: number;
     title: string;
     org: string;
@@ -105,6 +111,46 @@ export interface ContactSection {
 }
 
 export type Section = AboutSection | SkillsSection | WorkSection | EducationSection | CoursesSection | ContactSection;
+
+/**
+ * Convierte un texto en un fragmento de ancla: sin acentos, en minúsculas
+ * y separado por guiones. Se corta a cuatro palabras porque estas anclas
+ * las escribe el modelo del chat en sus respuestas, y una cadena corta es
+ * más difícil de equivocar (y más barata en tokens) que un título entero.
+ */
+const slug = (value: string): string => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .split('-')
+    .slice(0, 4)
+    .join('-');
+
+/**
+ * Deriva el `id` de cada entrada a partir de su propio contenido, en vez de
+ * escribirlo a mano, para que no pueda desincronizarse de lo que se ve en
+ * pantalla. El año va al final porque desempata las entradas que comparten
+ * empresa o título (Roiback aparece dos veces). Estos ids son a la vez el
+ * ancla del HTML y la que el chat cita en sus respuestas, así que
+ * cambiarlos rompe enlaces ya compartidos: trátalos como parte del
+ * contenido, no como un detalle interno.
+ */
+const withAnchors = <T extends { year: number }>(
+    prefix: string,
+    key: (item: T) => string,
+    items: T[],
+): (T & { id: string })[] => {
+    const ids = items.map((item) => `${prefix}-${slug(key(item))}-${item.year}`);
+    const duplicate = ids.find((id, index) => ids.indexOf(id) !== index);
+
+    if (duplicate) {
+        throw new Error(`cv.ts: dos entradas de "${prefix}" comparten el ancla "${duplicate}".`);
+    }
+
+    return items.map((item, index) => ({ ...item, id: ids[index] }));
+};
 
 export const profile: Profile = {
     name: 'pablo grillo',
@@ -203,7 +249,7 @@ export const work: WorkSection = {
     id: 'work',
     label: 'Work',
     columnSplit: 4,
-    items: [
+    items: withAnchors('work', (item) => item.company, [
         {
             year: 2023,
             company: 'Roiback',
@@ -246,14 +292,14 @@ export const work: WorkSection = {
             role: 'Co-Founder',
             description: 'Audiovisual production and post-production. Motion Graphics.',
         },
-    ],
+    ]),
 };
 
 export const education: EducationSection = {
     id: 'education',
     label: 'Education',
     columnSplit: 2,
-    items: [
+    items: withAnchors('education', (item) => item.title, [
         {
             year: 2012,
             title: 'User Experience Design | Human Computer Interaction',
@@ -276,14 +322,14 @@ export const education: EducationSection = {
             school: 'Universidad de Buenos Aires',
             note: 'two years completed',
         },
-    ],
+    ]),
 };
 
 export const courses: CoursesSection = {
     id: 'courses',
     label: 'Courses',
     columnSplit: 4,
-    items: [
+    items: withAnchors('courses', (item) => item.title, [
         {
             year: 2024,
             title: 'Google Data Analytics Professional Certificate',
@@ -325,7 +371,7 @@ export const courses: CoursesSection = {
             org: 'UBA',
             url: 'https://www.uba.ar/',
         },
-    ],
+    ]),
 };
 
 export const contact: ContactSection = {

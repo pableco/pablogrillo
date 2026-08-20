@@ -1,4 +1,21 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, keyframes } from 'styled-components';
+
+import { HIGHLIGHT_ATTR } from '../lib/highlight';
+
+/*
+ * El color se mantiene la primera mitad para dar tiempo a que termine el
+ * scroll suave — si empezara a apagarse ya, el destino llegaría descolorido.
+ */
+const highlightFade = (theme) => keyframes`
+    0%, 50% {
+        background-color: ${theme.main050};
+        outline-color: ${theme.main500};
+    }
+    100% {
+        background-color: transparent;
+        outline-color: transparent;
+    }
+`;
 
 const GlobalStyle = createGlobalStyle`
     ${({ theme }) => css`
@@ -111,6 +128,18 @@ const GlobalStyle = createGlobalStyle`
         }
         mark {
             background-color: ${theme.main050};
+        }
+
+        /*
+         * Destino de un enlace del chat. Lo pone y lo quita highlight.ts;
+         * aquí solo vive el aspecto. El outline (y no un border) porque no
+         * ocupa espacio y por tanto no descoloca nada al aparecer.
+         */
+        [${HIGHLIGHT_ATTR}] {
+            animation: ${highlightFade(theme)} 2.4s ease-out;
+            border-radius: ${theme.r050};
+            outline: ${theme.borderM} solid transparent;
+            outline-offset: ${theme.r050};
         }
     `};
 `;

@@ -51,13 +51,16 @@ const Paragraph = ({ segments }) => (
     </Typo.P>
 );
 
+// El <div> agrupa año y contenido en una sola caja — válido dentro de un
+// <dl> — para que el ancla de la entrada tenga algo que señalar y el chat
+// pueda resaltarla entera de una pieza. Ver src/lib/highlight.ts.
 const DefinitionColumn = ({ items, renderItem }) => (
     <dl>
-        {items.map((item, index) => (
-            <Fragment key={`${item.year}-${index}`}>
+        {items.map((item) => (
+            <div key={item.id} id={item.id}>
                 <Typo.YearCss>{item.year}</Typo.YearCss>
                 <dd>{renderItem(item)}</dd>
-            </Fragment>
+            </div>
         ))}
     </dl>
 );
