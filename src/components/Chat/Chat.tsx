@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { FormEvent, KeyboardEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { FormEvent, KeyboardEvent, MouseEvent } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { isTextUIPart, type UIMessage } from 'ai';
 import ReactMarkdown from 'react-markdown';
 
 import * as Icons from '../../icons';
+import { highlightTarget } from '../../lib/highlight';
+import mediaQueries from '../../styles/mediaQueries.styles';
 import {
     Body,
     EmptyState,
@@ -37,14 +39,23 @@ function messageText(message: UIMessage): string {
     return message.parts.filter(isTextUIPart).map((part) => part.text).join('');
 }
 
-const markdownComponents = {
+/** Componentes de react-markdown, parametrizados con el manejador de anclas. */
+const buildMarkdownComponents = (onAnchorClick: (event: MouseEvent<HTMLAnchorElement>) => void) => ({
     p: ({ children }: { children?: React.ReactNode }) => <p>{children}</p>,
-    a: ({ href, children }: { href?: string; children?: React.ReactNode }) => (
-        <a href={href} target={href?.startsWith('#') ? undefined : '_blank'} rel="noreferrer">
-            {children}
-        </a>
-    ),
-};
+    a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
+        const isAnchor = href?.startsWith('#') ?? false;
+        return (
+            <a
+                href={href}
+                target={isAnchor ? undefined : '_blank'}
+                rel="noreferrer"
+                onClick={isAnchor ? onAnchorClick : undefined}
+            >
+                {children}
+            </a>
+        );
+    },
+});
 
 export default function Chat() {
     const [isOpen, setIsOpen] = useState(false);
@@ -142,6 +153,25 @@ export default function Chat() {
             void sendMessage({ text: trimmed });
         },
         [isBusy, sendMessage],
+    );
+
+    // Un enlace a un ancla no navega: llevamos nosotros la vista hasta el
+    // contenido y lo resaltamos. En móvil el panel ocupa toda la pantalla,
+    // así que además hay que cerrarlo o el visitante no vería el destino.
+    const handleAnchorClick = useCallback((event: MouseEvent<HTMLAnchorElement>) => {
+        const href = event.currentTarget.getAttribute('href');
+        if (!href?.startsWith('#')) return;
+
+        const floatingPanel = window.matchMedia(mediaQueries.tablet).matches;
+        if (!highlightTarget(decodeURIComponent(href.slice(1)))) return;
+
+        event.preventDefault();
+        if (!floatingPanel) setIsOpen(false);
+    }, []);
+
+    const markdownComponents = useMemo(
+        () => buildMarkdownComponents(handleAnchorClick),
+        [handleAnchorClick],
     );
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
