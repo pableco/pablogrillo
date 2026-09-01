@@ -287,6 +287,12 @@ export const work: WorkSection = {
             description: 'User Experience, User-Centered Design, Usability, UI Design, Design Engineer, Front End Development, Marketing Online.',
         },
         {
+            year: 2006,
+            company: 'Ingamana',
+            role: 'Web Designer & ActionScript Developer',
+            description: 'Award-winning interactive design and development studio in Buenos Aires. Design and development of web applications in Flash, HTML, CSS and JavaScript for international studios and brands like Bacardi, Adidas, Carte d\'Or, Bic.',
+        },
+        {
             year: 2003,
             company: 'Moveo Imagen y Sonido',
             role: 'Co-Founder',
