@@ -85,7 +85,11 @@ test.describe('chat panel', () => {
         await page.getByPlaceholder('Ask a question…').fill('hola');
         await page.keyboard.press('Enter');
 
-        await expect(page.getByRole('alert')).toBeVisible();
+        // Acotado al panel: Next inyecta su propio anunciador de rutas con
+        // role="alert" al hidratar, y buscarlo en toda la página encuentra
+        // los dos — según llegue antes o después, de forma intermitente.
+        const panel = page.getByRole('region', { name: 'Chat about Pablo Grillo' });
+        await expect(panel.getByRole('alert')).toBeVisible();
         await expect(page.getByRole('button', { name: 'Retry' })).toBeVisible();
     });
 });
