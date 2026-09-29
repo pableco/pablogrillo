@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { work } from '../src/content/cv';
+import { moreAnchor, work } from '../src/content/cv';
 
 test.describe('CV page', () => {
     test.beforeEach(async ({ page }) => {
@@ -35,5 +35,16 @@ test.describe('CV page', () => {
         await expect(entry).toContainText(current.company);
         await expect(entry).toContainText(current.role);
         await expect(entry).toContainText(String(current.year));
+    });
+
+    test('keeps the extra detail of an entry folded until asked for', async ({ page }) => {
+        const entry = work.items.find((item) => item.details)!;
+        const more = page.locator(`#${moreAnchor(entry.id)}`);
+        const text = more.getByText(entry.details![0]);
+
+        await expect(text).toBeHidden();
+
+        await more.getByText('More about this role').click();
+        await expect(text).toBeVisible();
     });
 });

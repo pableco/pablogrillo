@@ -1,4 +1,4 @@
-import { about, contact, courses, education, profile, skills, work } from '../content/cv';
+import { about, contact, courses, education, moreAnchor, profile, skills, work } from '../content/cv';
 
 /**
  * Serializa el CV a texto plano para el system prompt. No es Markdown ni
@@ -17,7 +17,11 @@ function serializeCV(): string {
         .join('\n');
 
     const workText = work.items
-        .map((item) => `${item.year} — ${item.company}, ${item.role} (#${item.id})\n${item.description}`)
+        .map((item) => {
+            const entry = `${item.year} — ${item.company}, ${item.role} (#${item.id})\n${item.description}`;
+            if (!item.details) return entry;
+            return `${entry}\nMás detalle, plegado en la página (#${moreAnchor(item.id)}):\n${item.details.join('\n')}`;
+        })
         .join('\n\n');
 
     const educationText = education.items
@@ -70,6 +74,11 @@ Cómo responder:
   la de la entrada concreta si hablas de un puesto, una carrera o un
   curso (por ejemplo [Roiback](#work-roiback-2023)), y la de la sección
   solo si hablas de ella en conjunto (por ejemplo [Work](#work)).
+- Algunas entradas traen "Más detalle", que la página muestra plegado. Si
+  tu respuesta se apoya en ese detalle, o te piden más información sobre
+  esa entrada, enlaza su ancla terminada en -more en vez de la de la
+  entrada: al pulsarla, la web lo despliega y lo resalta. Si no lo usas,
+  enlaza la entrada y deja el detalle plegado.
 - Copia las anclas tal cual aparecen en <cv>. Si no encuentras la de una
   entrada, enlaza su sección en lugar de inventarte un ancla.
 

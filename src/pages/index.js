@@ -26,6 +26,7 @@ import {
     contact,
     courses,
     education,
+    moreAnchor,
     profile,
     sections,
     skills,
@@ -80,6 +81,14 @@ const renderWork = (item) => (
     <>
         <Typo.H4>{`${item.company} — ${item.role}`}</Typo.H4>
         <Typo.P>{item.description}</Typo.P>
+        {item.details ? (
+            <Typo.Details id={moreAnchor(item.id)}>
+                <Typo.Summary>More about this role</Typo.Summary>
+                {item.details.map((text) => (
+                    <Typo.P key={text}>{text}</Typo.P>
+                ))}
+            </Typo.Details>
+        ) : null}
     </>
 );
 

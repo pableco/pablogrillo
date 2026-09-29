@@ -52,6 +52,11 @@ export interface WorkItem {
     company: string;
     role: string;
     description: string;
+    /**
+     * Contexto que la página muestra plegado bajo la entrada. El chat lo
+     * conoce entero y lo despliega enlazando `moreAnchor(id)`.
+     */
+    details?: string[];
 }
 
 export interface WorkSection {
@@ -151,6 +156,12 @@ const withAnchors = <T extends { year: number }>(
 
     return items.map((item, index) => ({ ...item, id: ids[index] }));
 };
+
+/**
+ * Ancla del detalle plegado de una entrada. No choca con las de las
+ * entradas porque esas siempre terminan en el año.
+ */
+export const moreAnchor = (id: string): string => `${id}-more`;
 
 export const profile: Profile = {
     name: 'pablo grillo',
@@ -267,24 +278,36 @@ export const work: WorkSection = {
             company: 'Roiback',
             role: 'Design Engineer & UX',
             description: 'From UX/Front End Lead to Senior Design Engineer. Built from scratch the mobile web app for hotel booking flows and led the Design System “TALAIOTS”.',
+            details: [
+                'Joined as Mobile UX Designer and Front-end Supervisor, focused on conversion rate optimization and on keeping the front-end codebase scalable and readable.',
+            ],
         },
         {
             year: 2014,
             company: 'yourttoo.com',
             role: 'CTO & Co-Founder',
             description: 'Co-Founder and CIO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.',
+            details: [
+                'Worked across yourttoo.com and OpenMarket.travel. Besides building and managing the tech team, coordinated the external vendors.',
+            ],
         },
         {
             year: 2013,
             company: 'Accenture España',
             role: 'External IT Consultant',
             description: 'Front-end supervisor and trainer. Website performance and conversion funnel optimization for high traffic ecommerce sites. UI designer.',
+            details: [
+                'Engaged through Accenture Interactive | Fjord as an external services provider.',
+            ],
         },
         {
             year: 2011,
             company: 'Orizonia',
             role: 'UX/UI Designer, B2B sites and webapps',
             description: 'User Experience, User-Centered Design, Usability, UI Design, Design Engineer, Front End Development, Marketing Online.',
+            details: [
+                'Reported directly to the head of Marketing and Product, combining UX, UI, analytics and project management.',
+            ],
         },
         {
             year: 2003,
