@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { moreAnchor, work } from '../src/content/cv';
+import { courses, moreAnchor, work } from '../src/content/cv';
 
 test.describe('CV page', () => {
     test.beforeEach(async ({ page }) => {
@@ -46,5 +46,16 @@ test.describe('CV page', () => {
 
         await more.getByText('More about this role').click();
         await expect(text).toBeVisible();
+    });
+
+    test('keeps earlier courses folded at the end of the section', async ({ page }) => {
+        const course = courses.items.find((item) => item.folded)!;
+        const fold = page.locator(`#${moreAnchor(courses.id)}`);
+        const entry = fold.locator(`#${course.id}`);
+
+        await expect(entry).toBeHidden();
+
+        await fold.getByText('Earlier courses').click();
+        await expect(entry).toBeVisible();
     });
 });

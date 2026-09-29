@@ -16,23 +16,31 @@ function serializeCV(): string {
         .map((group) => `${group.title}: ${group.items.join(', ')}`)
         .join('\n');
 
+    const withDetails = (entry: string, id: string, details?: string[]): string => (details
+        ? `${entry}\nMás detalle, plegado en la página (#${moreAnchor(id)}):\n${details.join('\n')}`
+        : entry);
+
     const workText = work.items
-        .map((item) => {
-            const entry = `${item.year} — ${item.company}, ${item.role} (#${item.id})\n${item.description}`;
-            if (!item.details) return entry;
-            return `${entry}\nMás detalle, plegado en la página (#${moreAnchor(item.id)}):\n${item.details.join('\n')}`;
-        })
+        .map((item) => withDetails(
+            `${item.year} — ${item.company}, ${item.role} (#${item.id})\n${item.description}`,
+            item.id,
+            item.details,
+        ))
         .join('\n\n');
 
     const educationText = education.items
         .map((item) => {
             const note = item.note ? ` (${item.note})` : '';
-            return `${item.year} — ${item.title}, ${item.school}${note} (#${item.id})`;
+            return withDetails(`${item.year} — ${item.title}, ${item.school}${note} (#${item.id})`, item.id, item.details);
         })
         .join('\n');
 
     const coursesText = courses.items
-        .map((item) => `${item.year} — ${item.title}, ${item.org} (#${item.id})`)
+        .map((item) => {
+            const org = item.org ? `, ${item.org}` : '';
+            const folded = item.folded ? ', plegado en la página' : '';
+            return `${item.year} — ${item.title}${org} (#${item.id}${folded})`;
+        })
         .join('\n');
 
     return [
@@ -74,10 +82,12 @@ Cómo responder:
   la de la entrada concreta si hablas de un puesto, una carrera o un
   curso (por ejemplo [Roiback](#work-roiback-2023)), y la de la sección
   solo si hablas de ella en conjunto (por ejemplo [Work](#work)).
-- Algunas entradas traen "Más detalle", que la página muestra plegado. Si
-  tu respuesta se apoya en ese detalle, o te piden más información sobre
-  esa entrada, enlaza su ancla terminada en -more en vez de la de la
-  entrada: al pulsarla, la web lo despliega y lo resalta. Si no lo usas,
+- Parte de <cv> está plegado en la página: los bloques "Más detalle" y
+  las entradas marcadas "plegado en la página". Si tu respuesta se apoya
+  en algo plegado, o te piden más información sobre una entrada que tiene
+  "Más detalle", enlaza el ancla de lo plegado (la terminada en -more para
+  un bloque "Más detalle"; la de la propia entrada para una entrada
+  plegada): al pulsarla, la web lo despliega y lo resalta. Si no lo usas,
   enlaza la entrada y deja el detalle plegado.
 - Copia las anclas tal cual aparecen en <cv>. Si no encuentras la de una
   entrada, enlaza su sección en lugar de inventarte un ancla.

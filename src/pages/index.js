@@ -9,6 +9,7 @@ import {
     MainCss,
     MenuCss,
     SectionContentCss,
+    SectionFoldCss,
     SectionFooterCss,
     SectionTitleCss,
     SectionWrapperCss,
@@ -77,18 +78,20 @@ const SkillGroup = ({ group }) => (
     </>
 );
 
+const MoreDetails = ({ item, label }) => (item.details ? (
+    <Typo.Details id={moreAnchor(item.id)}>
+        <Typo.Summary>{label}</Typo.Summary>
+        {item.details.map((text) => (
+            <Typo.P key={text}>{text}</Typo.P>
+        ))}
+    </Typo.Details>
+) : null);
+
 const renderWork = (item) => (
     <>
         <Typo.H4>{`${item.company} — ${item.role}`}</Typo.H4>
         <Typo.P>{item.description}</Typo.P>
-        {item.details ? (
-            <Typo.Details id={moreAnchor(item.id)}>
-                <Typo.Summary>More about this role</Typo.Summary>
-                {item.details.map((text) => (
-                    <Typo.P key={text}>{text}</Typo.P>
-                ))}
-            </Typo.Details>
-        ) : null}
+        <MoreDetails item={item} label="More about this role" />
     </>
 );
 
@@ -99,15 +102,18 @@ const renderEducation = (item) => (
             {item.note ? `${item.school} ` : item.school}
             {item.note ? <em>{`(${item.note})`}</em> : null}
         </Typo.P>
+        <MoreDetails item={item} label="More" />
     </>
 );
 
 const renderCourse = (item) => (
     <>
         <Typo.H4>{item.title}</Typo.H4>
-        <Typo.P>
-            {item.url ? <a href={item.url}>{item.org}</a> : item.org}
-        </Typo.P>
+        {item.org ? (
+            <Typo.P>
+                {item.url ? <a href={item.url}>{item.org}</a> : item.org}
+            </Typo.P>
+        ) : null}
     </>
 );
 
@@ -153,7 +159,9 @@ export default function Home() {
     const [skillsLeft, skillsRight] = splitAt(skills.groups, skills.columnSplit);
     const [workLeft, workRight] = splitAt(work.items, work.columnSplit);
     const [educationLeft, educationRight] = splitAt(education.items, education.columnSplit);
-    const [coursesLeft, coursesRight] = splitAt(courses.items, courses.columnSplit);
+    const [coursesLeft, coursesRight] = splitAt(courses.items.filter((item) => !item.folded), courses.columnSplit);
+    const earlierCourses = courses.items.filter((item) => item.folded);
+    const [earlierLeft, earlierRight] = splitAt(earlierCourses, Math.ceil(earlierCourses.length / 2));
     const [contactLeft, contactRight] = splitAt(contact.items, contact.columnSplit);
 
     const renderContactList = (items) => (
@@ -230,6 +238,15 @@ export default function Home() {
                     <SectionContentCss>
                         <DefinitionColumn items={coursesLeft} renderItem={renderCourse} />
                         <DefinitionColumn items={coursesRight} renderItem={renderCourse} />
+                        {earlierCourses.length > 0 ? (
+                            <SectionFoldCss id={moreAnchor(courses.id)}>
+                                <Typo.Summary>Earlier courses</Typo.Summary>
+                                <div>
+                                    <DefinitionColumn items={earlierLeft} renderItem={renderCourse} />
+                                    <DefinitionColumn items={earlierRight} renderItem={renderCourse} />
+                                </div>
+                            </SectionFoldCss>
+                        ) : null}
                     </SectionContentCss>
                 </SectionWrapperCss>
                 <SectionWrapperCss id={skills.id}>

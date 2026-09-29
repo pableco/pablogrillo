@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { moreAnchor, work } from '../src/content/cv';
+import { courses, moreAnchor, work } from '../src/content/cv';
 import { HIGHLIGHT_ATTR, openChat, stubChatReply } from './support/chat';
 
 // Dos etapas en la misma empresa: el caso que obliga a que las anclas sean
@@ -97,6 +97,23 @@ test.describe('an entry with folded detail', () => {
         await expect(page.locator(`#${entry.id}`)).toHaveAttribute(HIGHLIGHT_ATTR, '');
         await expect(page.locator(`#${more}`)).not.toHaveAttribute('open');
     });
+});
+
+test('a link to a folded course unfolds its block and highlights the course', async ({ page }) => {
+    const course = courses.items.find((item) => item.folded)!;
+
+    await stubChatReply(page, `Hizo [${course.title}](#${course.id}).`);
+    await page.goto('/');
+    await openChat(page);
+    await page.getByPlaceholder('Ask a question…').fill('qué cursos antiguos hizo?');
+    await page.keyboard.press('Enter');
+
+    await page.getByRole('link', { name: course.title }).click();
+
+    await expect(page.locator(`#${moreAnchor(courses.id)}`)).toHaveAttribute('open', '');
+    const target = page.locator(`#${course.id}`);
+    await expect(target).toHaveAttribute(HIGHLIGHT_ATTR, '');
+    await expect(target).toBeInViewport();
 });
 
 test('a section link still highlights the whole section', async ({ page }) => {
