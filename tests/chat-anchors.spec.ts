@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { work } from '../src/content/cv';
+import { courses, moreAnchor, work } from '../src/content/cv';
 import { HIGHLIGHT_ATTR, openChat, stubChatReply } from './support/chat';
 
 // Dos etapas en la misma empresa: el caso que obliga a que las anclas sean
@@ -64,6 +64,56 @@ test.describe('following a link from an answer', () => {
             await expect(page.getByPlaceholder('Ask a question…')).toBeVisible();
         }
     });
+});
+
+test.describe('an entry with folded detail', () => {
+    const entry = work.items.find((item) => item.details)!;
+    const more = moreAnchor(entry.id);
+
+    test('unfolds and highlights it when the answer links the detail', async ({ page }) => {
+        await stubChatReply(page, `Te lo cuento [aquí](#${more}).`);
+        await page.goto('/');
+        await openChat(page);
+        await page.getByPlaceholder('Ask a question…').fill('cuéntame más');
+        await page.keyboard.press('Enter');
+
+        await page.getByRole('link', { name: 'aquí' }).click();
+
+        const detail = page.locator(`#${more}`);
+        await expect(detail).toHaveAttribute('open', '');
+        await expect(detail).toHaveAttribute(HIGHLIGHT_ATTR, '');
+        await expect(detail.getByText(entry.details![0])).toBeInViewport();
+    });
+
+    test('stays folded when the answer only links the entry', async ({ page }) => {
+        await stubChatReply(page, `Estuvo en [${entry.company}](#${entry.id}).`);
+        await page.goto('/');
+        await openChat(page);
+        await page.getByPlaceholder('Ask a question…').fill('dónde estuvo?');
+        await page.keyboard.press('Enter');
+
+        await page.getByRole('link', { name: entry.company }).click();
+
+        await expect(page.locator(`#${entry.id}`)).toHaveAttribute(HIGHLIGHT_ATTR, '');
+        await expect(page.locator(`#${more}`)).not.toHaveAttribute('open');
+    });
+});
+
+test('a link to a folded course unfolds its block and highlights the course', async ({ page }) => {
+    const course = courses.items.find((item) => item.folded)!;
+
+    await stubChatReply(page, `Hizo [${course.title}](#${course.id}).`);
+    await page.goto('/');
+    await openChat(page);
+    await page.getByPlaceholder('Ask a question…').fill('qué cursos antiguos hizo?');
+    await page.keyboard.press('Enter');
+
+    await page.getByRole('link', { name: course.title }).click();
+
+    await expect(page.locator(`#${moreAnchor(courses.id)}`)).toHaveAttribute('open', '');
+    const target = page.locator(`#${course.id}`);
+    await expect(target).toHaveAttribute(HIGHLIGHT_ATTR, '');
+    await expect(target).toBeInViewport();
 });
 
 test('a section link still highlights the whole section', async ({ page }) => {

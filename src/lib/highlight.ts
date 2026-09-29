@@ -19,6 +19,11 @@ export function highlightTarget(id: string): boolean {
     const target = document.getElementById(id);
     if (!target) return false;
 
+    // Hay que abrirlo antes de desplazarse: un <details> cerrado no ocupa
+    // su alto real y el scroll acabaría centrando otra cosa.
+    const folded = target.closest('details');
+    if (folded) folded.open = true;
+
     const stillMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     target.scrollIntoView({ behavior: stillMotion ? 'auto' : 'smooth', block: 'center' });
 

@@ -101,6 +101,38 @@ const YearCss = styled.dt`
 const A = styled.a`
 `;
 
+const Summary = styled.summary`
+    ${({ theme }) => css`
+        display: inline-flex;
+        align-items: center;
+        gap: ${theme.r050};
+        padding-bottom: ${theme.r150};
+        color: ${theme.colorLink};
+        font-size: ${theme.b2};
+        cursor: pointer;
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: '+';
+            width: 1ch;
+        }
+
+        @media ${mediaQueries.laptopL} {
+            font-size: ${theme.b1};
+        }
+    `};
+`;
+
+const Details = styled.details`
+    &[open] > ${Summary}::before {
+        content: '−';
+    }
+`;
+
 
 const AboutTitle = styled(H3)`
     ${({ theme }) => css`
@@ -169,6 +201,8 @@ const Typo = {
     H4,
     P,
     A,
+    Details,
+    Summary,
     AboutTitle,
     WorkTitle,
     EducationTitle,

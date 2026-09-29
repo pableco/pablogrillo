@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import mediaQueries from '../styles/mediaQueries.styles';
+import Typo from '../styles/text.styles';
 
 const layoutConstants = {
     columTitleMobile: '5rem',
@@ -143,8 +144,30 @@ const SectionContentCss = styled.div`
             margin-bottom: ${theme.r100};
         }
 
+        /* Sin párrafo debajo del título, suple el hueco que ese párrafo daba. */
+        dd > h4:last-child {
+            padding-bottom: calc(${theme.r100} + ${theme.r150});
+        }
+
         @media ${mediaQueries.tablet} {
             grid-template-columns: repeat(2, 1fr);
+        }
+    `};
+`;
+
+// Ocupa la fila entera de la grilla de la sección y repite dentro sus dos
+// columnas, para que lo plegado se lea igual que lo que está a la vista.
+const SectionFoldCss = styled(Typo.Details)`
+    ${({ theme }) => css`
+        grid-column: 1 / -1;
+
+        > div {
+            display: grid;
+            column-gap: ${theme.r200};
+
+            @media ${mediaQueries.tablet} {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     `};
 `;
@@ -174,6 +197,7 @@ export {
     MainCss,
     MenuCss,
     SectionContentCss,
+    SectionFoldCss,
     SectionFooterCss,
     SectionTitleCss,
     SectionWrapperCss,
