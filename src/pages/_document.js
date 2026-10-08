@@ -30,7 +30,9 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <Html lang="en">
+            // Con i18n en next.config.js, Next pasa el idioma de la página
+            // que se está renderizando: `/es` sale con lang="es".
+            <Html lang={this.props.locale ?? 'en'}>
                 <Head />
                 <body>
                     <Main />

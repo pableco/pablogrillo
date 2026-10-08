@@ -1,7 +1,8 @@
 import { Fragment, useState, useRef, useEffect } from "react"
-import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import {
     Column,
     ContentTitle,
@@ -22,18 +23,8 @@ import {
     TagList,
 } from '../styles/list.styles';
 import * as Icons from '../icons';
-import {
-    about,
-    contact,
-    courses,
-    education,
-    moreAnchor,
-    profile,
-    sections,
-    skills,
-    splitAt,
-    work,
-} from '../content/cv';
+import { moreAnchor, splitAt } from '../content/cv';
+import { getCV, getStrings, toLocale } from '../content/i18n';
 
 const contactIcons = {
     email: Icons.Email,
@@ -87,22 +78,22 @@ const MoreDetails = ({ item, label }) => (item.details ? (
     </Typo.Details>
 ) : null);
 
-const renderWork = (item) => (
+const renderWork = (item, strings) => (
     <>
         <Typo.H4>{`${item.company} — ${item.role}`}</Typo.H4>
         <Typo.P>{item.description}</Typo.P>
-        <MoreDetails item={item} label="More about this role" />
+        <MoreDetails item={item} label={strings.moreAboutRole} />
     </>
 );
 
-const renderEducation = (item) => (
+const renderEducation = (item, strings) => (
     <>
         <Typo.H4>{item.title}</Typo.H4>
         <Typo.P>
             {item.note ? `${item.school} ` : item.school}
             {item.note ? <em>{`(${item.note})`}</em> : null}
         </Typo.P>
-        <MoreDetails item={item} label="More" />
+        <MoreDetails item={item} label={strings.more} />
     </>
 );
 
@@ -118,6 +109,19 @@ const renderCourse = (item) => (
 );
 
 export default function Home() {
+    const locale = toLocale(useRouter().locale);
+    const strings = getStrings(locale);
+    const {
+        about,
+        contact,
+        courses,
+        education,
+        profile,
+        sections,
+        skills,
+        work,
+    } = getCV(locale);
+
     const [nameHeight, setNameHeight] = useState(0);
     const [showArrowHeight, setShowArrowHeight] = useState(true);
 
@@ -179,13 +183,11 @@ export default function Home() {
 
     return (
         <Layout>
-            <Head>
-                <title>{siteTitle}</title>
-            </Head>
             <HeaderCss>
+                <LanguageSwitcher locale={locale} />
                 <ContentTitle ref={nameEl}>
                     <Typo.Name>{profile.name}</Typo.Name>
-                    <Typo.Title><span>{profile.titles[0]}</span> and <span>{profile.titles[1]}</span></Typo.Title>
+                    <Typo.Title><span>{profile.titles[0]}</span> {strings.titleJoiner} <span>{profile.titles[1]}</span></Typo.Title>
                     <Icons.WrapperDown ref={arrowEl} visible={showArrowHeight}>
                     </Icons.WrapperDown>
                 </ContentTitle>
@@ -218,8 +220,8 @@ export default function Home() {
                         <Typo.WorkTitle>{work.label}</Typo.WorkTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
-                        <DefinitionColumn items={workLeft} renderItem={renderWork} />
-                        <DefinitionColumn items={workRight} renderItem={renderWork} />
+                        <DefinitionColumn items={workLeft} renderItem={(item) => renderWork(item, strings)} />
+                        <DefinitionColumn items={workRight} renderItem={(item) => renderWork(item, strings)} />
                     </SectionContentCss>
                 </SectionWrapperCss>
                 <SectionWrapperCss id={education.id}>
@@ -227,8 +229,8 @@ export default function Home() {
                         <Typo.EducationTitle>{education.label}</Typo.EducationTitle>
                     </SectionTitleCss>
                     <SectionContentCss>
-                        <DefinitionColumn items={educationLeft} renderItem={renderEducation} />
-                        <DefinitionColumn items={educationRight} renderItem={renderEducation} />
+                        <DefinitionColumn items={educationLeft} renderItem={(item) => renderEducation(item, strings)} />
+                        <DefinitionColumn items={educationRight} renderItem={(item) => renderEducation(item, strings)} />
                     </SectionContentCss>
                 </SectionWrapperCss>
                 <SectionWrapperCss id={courses.id}>
@@ -240,7 +242,7 @@ export default function Home() {
                         <DefinitionColumn items={coursesRight} renderItem={renderCourse} />
                         {earlierCourses.length > 0 ? (
                             <SectionFoldCss id={moreAnchor(courses.id)}>
-                                <Typo.Summary>Earlier courses</Typo.Summary>
+                                <Typo.Summary>{strings.earlierCourses}</Typo.Summary>
                                 <div>
                                     <DefinitionColumn items={earlierLeft} renderItem={renderCourse} />
                                     <DefinitionColumn items={earlierRight} renderItem={renderCourse} />
