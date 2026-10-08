@@ -5,6 +5,7 @@ import { isTextUIPart, type UIMessage } from 'ai';
 import ReactMarkdown from 'react-markdown';
 
 import * as Icons from '../../icons';
+import { getStrings, type Locale } from '../../content/i18n';
 import { highlightTarget } from '../../lib/highlight';
 import mediaQueries from '../../styles/mediaQueries.styles';
 import {
@@ -27,12 +28,6 @@ import {
     VIEWPORT_HEIGHT,
     VIEWPORT_INSET,
 } from './Chat.styles';
-
-const SUGGESTED_QUESTIONS = [
-    'Where does Pablo work right now?',
-    'What technologies does he use?',
-    'How can I get in touch?',
-];
 
 /** Texto de un mensaje: concatena solo sus partes de tipo texto. */
 function messageText(message: UIMessage): string {
@@ -57,12 +52,25 @@ const buildMarkdownComponents = (onAnchorClick: (event: MouseEvent<HTMLAnchorEle
     },
 });
 
-export default function Chat() {
+interface ChatProps {
+    /**
+     * Idioma de la página. Llega como prop desde _app y no con useRouter
+     * aquí dentro: el objeto del router es mutable y el React Compiler
+     * renuncia a memorizar los callbacks que dependen de él.
+     */
+    locale: Locale;
+}
+
+export default function Chat({ locale }: ChatProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [hasOpened, setHasOpened] = useState(false);
     const [input, setInput] = useState('');
 
     const { messages, sendMessage, status, error, clearError, regenerate } = useChat();
+
+    // El idioma viaja con cada petición para que el servidor le pase al
+    // modelo el CV en el idioma de la página (ver systemPrompt.ts).
+    const strings = getStrings(locale).chat;
 
     const listRef = useRef<HTMLDivElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
@@ -150,9 +158,9 @@ export default function Chat() {
             const trimmed = text.trim();
             if (!trimmed || isBusy) return;
             setInput('');
-            void sendMessage({ text: trimmed });
+            void sendMessage({ text: trimmed }, { body: { locale } });
         },
-        [isBusy, sendMessage],
+        [isBusy, sendMessage, locale],
     );
 
     // Un enlace a un ancla no navega: llevamos nosotros la vista hasta el
@@ -187,9 +195,9 @@ export default function Chat() {
     };
 
     return (
-        <Panel ref={panelRef} $open={isOpen} role="region" aria-label="Chat about Pablo Grillo">
-            <Header type="button" onClick={handleToggle} aria-label={isOpen ? 'Close' : 'Ask about Pablo'} aria-expanded={isOpen}>
-                <Title>Ask about Pablo</Title>
+        <Panel ref={panelRef} $open={isOpen} role="region" aria-label={strings.region}>
+            <Header type="button" onClick={handleToggle} aria-label={isOpen ? strings.close : strings.open} aria-expanded={isOpen}>
+                <Title>{strings.open}</Title>
                 <ToggleIcon aria-hidden="true">{isOpen ? <Icons.Close /> : <Icons.MessageCircle />}</ToggleIcon>
             </Header>
 
@@ -198,9 +206,9 @@ export default function Chat() {
                     <MessageList ref={listRef} aria-live="polite">
                         {messages.length === 0 ? (
                             <EmptyState>
-                                <p>Ask me anything about Pablo&apos;s work, skills or background.</p>
+                                <p>{strings.intro}</p>
                                 <SuggestionList>
-                                    {SUGGESTED_QUESTIONS.map((question) => (
+                                    {strings.suggestions.map((question) => (
                                         <SuggestionChip key={question} type="button" onClick={() => submitMessage(question)}>
                                             {question}
                                         </SuggestionChip>
@@ -222,7 +230,7 @@ export default function Chat() {
                         )}
 
                         {status === 'submitted' && (
-                            <TypingIndicator aria-label="Pablo's assistant is answering">
+                            <TypingIndicator aria-label={strings.typing}>
                                 <span />
                                 <span />
                                 <span />
@@ -232,15 +240,15 @@ export default function Chat() {
 
                     {error && (
                         <ErrorBanner role="alert">
-                            <span>Something went wrong. Please try again.</span>
+                            <span>{strings.error}</span>
                             <RetryButton
                                 type="button"
                                 onClick={() => {
                                     clearError();
-                                    void regenerate();
+                                    void regenerate({ body: { locale } });
                                 }}
                             >
-                                Retry
+                                {strings.retry}
                             </RetryButton>
                         </ErrorBanner>
                     )}
@@ -251,11 +259,11 @@ export default function Chat() {
                             value={input}
                             onChange={(event) => setInput(event.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask a question…"
+                            placeholder={strings.placeholder}
                             rows={1}
                             disabled={isBusy}
                         />
-                        <SendButton type="submit" disabled={!input.trim() || isBusy} aria-label="Send">
+                        <SendButton type="submit" disabled={!input.trim() || isBusy} aria-label={strings.send}>
                             <Icons.Send />
                         </SendButton>
                     </InputForm>

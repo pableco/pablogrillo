@@ -42,6 +42,56 @@ const HeaderCss = styled.div`
         height: 90vh;
         justify-content: stretch;
         border-right: ${theme.borderM} solid ${theme.neutral900};
+        position: relative;
+    `};
+`;
+
+/*
+ * Selector de idioma, arriba a la derecha de la cabecera. Reutiliza la
+ * pastilla oscura de los años del CV para marcar el idioma activo.
+ */
+const LanguageNavCss = styled.nav`
+    ${({ theme }) => css`
+        position: absolute;
+        top: ${theme.r150};
+        right: ${theme.r150};
+        z-index: ${theme.zBaseTop};
+
+        ul {
+            display: flex;
+            gap: ${theme.r025};
+            list-style: none;
+            border: ${theme.borderS} solid ${theme.neutral700};
+            border-radius: ${theme.round};
+            padding: ${theme.r025};
+        }
+
+        a,
+        span {
+            display: block;
+            border-radius: ${theme.round};
+            font-size: ${theme.b2};
+            font-weight: ${theme.bold};
+            letter-spacing: ${theme.letterb};
+            line-height: 1;
+            padding: ${theme.r050} ${theme.r100} ${theme.r050};
+            text-transform: uppercase;
+        }
+
+        a {
+            color: ${theme.neutral700};
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus-visible {
+            background: ${theme.neutral100};
+        }
+
+        span {
+            background: ${theme.neutral700};
+            color: ${theme.neutral050};
+        }
     `};
 `;
 
@@ -194,6 +244,7 @@ export {
     Column,
     ContentTitle,
     HeaderCss,
+    LanguageNavCss,
     MainCss,
     MenuCss,
     SectionContentCss,

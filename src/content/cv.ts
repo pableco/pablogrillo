@@ -198,7 +198,7 @@ export const about: AboutSection = {
             { text: ', redesigning backoffice tools, leading a team of developers and coordinating the company\'s designers. I built the mobile web app for hotel booking flows from scratch and led the design system “TALAIOTS” applying design tokens across the product.' },
         ],
         [
-            { text: 'I lead a community of 14 Front End developers across 5 separate teams of designers and developers across different time zones, with an emphasis on best practices, scalability, and asynchronous working.' },
+            { text: 'During my first years at Roiback, I led a community of 14 Front End developers across 5 separate teams of designers and developers in different time zones, with an emphasis on best practices, scalability, and asynchronous working.' },
         ],
         [
             { text: 'I believe in the transforming value of design methodologies in the social and business environment. For that reason, I am ' },
@@ -303,6 +303,7 @@ export const work: WorkSection = {
             description: 'Co-Founder, CIO / CTO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.',
             details: [
                 'Worked across yourttoo.com and OpenMarket.travel. Besides building and managing the tech team, coordinated the external vendors.',
+                'yourttoo was later acquired by Jumbo Tours (Alpitour World).',
             ],
         },
         {
@@ -324,6 +325,12 @@ export const work: WorkSection = {
                 'Authored “Orizonia Travel Store” (2012), a UX strategy proposal for the group\'s tour-operator web tools, aimed at both travel agents and travellers. Built with user-centered design and design thinking: competitor benchmarking, four personas with empathy maps, a customer journey map, touchpoints by channel and a SWOT analysis.',
                 'It proposed a multi-brand offer comparator, richer trip pages, responsive design and contact with travellers before, during and after the trip, together with a content strategy and first interface designs.',
             ],
+        },
+        {
+            year: 2006,
+            company: 'Ingamana',
+            role: 'Web Designer & ActionScript Developer',
+            description: 'Award-winning interactive design and development studio in Buenos Aires. Design and development of web applications in Flash, HTML, CSS and JavaScript for international studios and brands like Bacardi, Adidas, Carte d\'Or, Bic.',
         },
         {
             year: 2003,

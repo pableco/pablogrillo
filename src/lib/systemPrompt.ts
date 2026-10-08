@@ -1,4 +1,5 @@
-import { about, contact, courses, education, moreAnchor, profile, skills, work } from '../content/cv';
+import { moreAnchor } from '../content/cv';
+import { defaultLocale, getCV, type Locale } from '../content/i18n';
 
 /**
  * Serializa el CV a texto plano para el system prompt. No es Markdown ni
@@ -7,7 +8,9 @@ import { about, contact, courses, education, moreAnchor, profile, skills, work }
  * que el propio texto le recuerde al modelo qué enlace usar — ver la
  * instrucción de "ubicar la información" en buildSystemPrompt.
  */
-function serializeCV(): string {
+function serializeCV(locale: Locale): string {
+    const { about, contact, courses, education, profile, skills, work } = getCV(locale);
+
     const aboutText = about.paragraphs
         .map((paragraph) => paragraph.map((segment) => segment.text).join(''))
         .join('\n\n');
@@ -45,22 +48,39 @@ function serializeCV(): string {
 
     return [
         `# ${profile.fullName} — ${profile.titles.join(' & ')}`,
-        `## About (#${about.id})`,
+        `## ${about.label} (#${about.id})`,
         aboutText,
-        `## Skills (#${skills.id})`,
+        `## ${skills.label} (#${skills.id})`,
         skillsText,
-        `## Work (#${work.id})`,
+        `## ${work.label} (#${work.id})`,
         workText,
-        `## Education (#${education.id})`,
+        `## ${education.label} (#${education.id})`,
         educationText,
-        `## Courses (#${courses.id})`,
+        `## ${courses.label} (#${courses.id})`,
         coursesText,
-        `## Contact (#${contact.id})`,
+        `## ${contact.label} (#${contact.id})`,
         `Email: ${contact.email}\nPhone: ${contact.phone}`,
     ].join('\n\n');
 }
 
-export function buildSystemPrompt(): string {
+/**
+ * Cómo leer el idioma de la página. El modelo sigue respondiendo en el
+ * idioma de la pregunta; esto le dice en qué idioma están los títulos que va
+ * a citar como texto de los enlaces.
+ */
+const pageLanguage: Record<Locale, string> = {
+    en: 'la web está en inglés, pero mucha gente preguntará en español',
+    es: 'el visitante está viendo la web en español, así que <cv> va en español',
+};
+
+/**
+ * El CV va en el idioma de la página para que el texto de los enlaces
+ * coincida con lo que el visitante tiene delante. Las anclas son las mismas
+ * en todos los idiomas — ver cv.es.ts.
+ */
+export function buildSystemPrompt(locale: Locale = defaultLocale): string {
+    const { contact, profile } = getCV(locale);
+
     return `Eres el asistente de la web personal de ${profile.fullName} (pablogrillo.com).
 
 Tu único trabajo es responder preguntas sobre la trayectoria profesional,
@@ -68,12 +88,11 @@ experiencia, formación, tecnologías y forma de contacto de ${profile.fullName.
 usando exclusivamente la información de <cv> más abajo.
 
 <cv>
-${serializeCV()}
+${serializeCV(locale)}
 </cv>
 
 Cómo responder:
-- Responde en el idioma en que te escriban (la web está en inglés, pero
-  mucha gente preguntará en español).
+- Responde en el idioma en que te escriban (${pageLanguage[locale]}).
 - Respuestas breves: dos o tres frases salvo que pidan detalle.
 - Habla de ${profile.fullName.split(' ')[0]} en tercera persona. No eres él.
 - Cuando la respuesta viva en la página, enlázala en Markdown usando un
