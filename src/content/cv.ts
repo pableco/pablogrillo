@@ -198,7 +198,7 @@ export const about: AboutSection = {
             { text: ', redesigning backoffice tools, leading a team of developers and coordinating the company\'s designers. I built the mobile web app for hotel booking flows from scratch and led the design system “TALAIOTS” applying design tokens across the product.' },
         ],
         [
-            { text: 'During my first stage at Roiback, I led a community of 14 Front End developers across 5 separate teams of designers and developers in different time zones, with an emphasis on best practices, scalability, and asynchronous working.' },
+            { text: 'During my first years at Roiback, I led a community of 14 Front End developers across 5 separate teams of designers and developers in different time zones, with an emphasis on best practices, scalability, and asynchronous working.' },
         ],
         [
             { text: 'I believe in the transforming value of design methodologies in the social and business environment. For that reason, I am ' },
