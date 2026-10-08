@@ -102,7 +102,7 @@ export const es: CVTranslation = {
         },
         'work-yourttoo-com-2014': {
             role: 'CIO / CTO y cofundador',
-            description: 'Cofundador, CIO / CTO. Visión técnica y desarrollo de negocio, arquitectura de sistemas, creación y gestión del equipo técnico, diseño de producto y experiencia de usuario.',
+            description: 'Cofundador, CIO / CTO. Visión técnica y desarrollo de negocio, arquitectura de sistemas, creación y gestión del equipo técnico, diseño de producto y experiencia de usuario. yourttoo fue adquirida más tarde por Jumbo Tours (grupo Alpitour World).',
             details: [
                 'Trabajé en yourttoo.com y OpenMarket.travel. Además de crear y gestionar el equipo técnico, coordiné a los proveedores externos.',
             ],
