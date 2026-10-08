@@ -300,9 +300,10 @@ export const work: WorkSection = {
             year: 2014,
             company: 'yourttoo.com',
             role: 'CIO / CTO & Co-Founder',
-            description: 'Co-Founder, CIO / CTO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience. yourttoo was later acquired by Jumbo Tours (Alpitour World).',
+            description: 'Co-Founder, CIO / CTO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.',
             details: [
                 'Worked across yourttoo.com and OpenMarket.travel. Besides building and managing the tech team, coordinated the external vendors.',
+                'yourttoo was later acquired by Jumbo Tours (Alpitour World).',
             ],
         },
         {
