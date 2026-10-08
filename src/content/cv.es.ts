@@ -61,7 +61,7 @@ export const es: CVTranslation = {
             { text: ', rediseñando las herramientas de backoffice, liderando un equipo de desarrolladores y coordinando a los diseñadores de la empresa. Construí desde cero la web app móvil para los flujos de reserva hotelera y lideré el design system “TALAIOTS”, aplicando design tokens en todo el producto.' },
         ],
         [
-            { text: 'Lidero una comunidad de 14 desarrolladores Front End repartidos en 5 equipos de diseñadores y desarrolladores en distintas zonas horarias, con foco en las buenas prácticas, la escalabilidad y el trabajo asíncrono.' },
+            { text: 'En mi primera etapa en Roiback lideré una comunidad de 14 desarrolladores Front End repartidos en 5 equipos de diseñadores y desarrolladores en distintas zonas horarias, con foco en las buenas prácticas, la escalabilidad y el trabajo asíncrono.' },
         ],
         [
             { text: 'Creo en el valor transformador de las metodologías de diseño en el entorno social y empresarial. Por eso ' },

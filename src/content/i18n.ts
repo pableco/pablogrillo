@@ -157,7 +157,7 @@ const strings: Record<Locale, Strings> = {
     en: {
         ogLocale: 'en_US',
         siteTitle: 'Pablo Grillo — Design Engineer & UX Designer',
-        siteDescription: 'Pablo Grillo, Design Engineer and UX Designer. Senior Design Engineer at Roiback, leading design systems, backoffice tools and a community of front end developers.',
+        siteDescription: 'Pablo Grillo, Design Engineer and UX Designer. Senior Design Engineer at Roiback, working on design systems and backoffice tools.',
         titleJoiner: 'and',
         moreAboutRole: 'More about this role',
         more: 'More',
@@ -183,7 +183,7 @@ const strings: Record<Locale, Strings> = {
     es: {
         ogLocale: 'es_ES',
         siteTitle: 'Pablo Grillo — Design Engineer y UX Designer',
-        siteDescription: 'Pablo Grillo, Design Engineer y UX Designer. Senior Design Engineer en Roiback: design systems, herramientas de backoffice y liderazgo de una comunidad de desarrolladores front end.',
+        siteDescription: 'Pablo Grillo, Design Engineer y UX Designer. Senior Design Engineer en Roiback: design systems y herramientas de backoffice.',
         titleJoiner: 'y',
         moreAboutRole: 'Más sobre este puesto',
         more: 'Más',
