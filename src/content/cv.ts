@@ -52,6 +52,11 @@ export interface WorkItem {
     company: string;
     role: string;
     description: string;
+    /**
+     * Contexto que la página muestra plegado bajo la entrada. El chat lo
+     * conoce entero y lo despliega enlazando `moreAnchor(id)`.
+     */
+    details?: string[];
 }
 
 export interface WorkSection {
@@ -68,6 +73,8 @@ export interface EducationItem {
     title: string;
     school: string;
     note?: string;
+    /** Igual que en `WorkItem`. */
+    details?: string[];
 }
 
 export interface EducationSection {
@@ -82,8 +89,14 @@ export interface CourseItem {
     id: string;
     year: number;
     title: string;
-    org: string;
+    org?: string;
     url?: string;
+    /**
+     * Va al bloque plegado del final de la sección, con ancla
+     * `moreAnchor(courses.id)`. Conserva su propia ancla: enlazarla despliega
+     * el bloque, porque highlight.ts abre el `<details>` que la contiene.
+     */
+    folded?: boolean;
 }
 
 export interface CoursesSection {
@@ -152,6 +165,12 @@ const withAnchors = <T extends { year: number }>(
     return items.map((item, index) => ({ ...item, id: ids[index] }));
 };
 
+/**
+ * Ancla del bloque plegado de una entrada o una sección. No choca con las
+ * de las entradas porque esas siempre terminan en el año.
+ */
+export const moreAnchor = (id: string): string => `${id}-more`;
+
 export const profile: Profile = {
     name: 'pablo grillo',
     fullName: 'Pablo Grillo',
@@ -161,12 +180,17 @@ export const profile: Profile = {
 export const about: AboutSection = {
     id: 'about',
     label: 'About',
-    columnSplit: 2,
+    columnSplit: 3,
     paragraphs: [
         [
             { text: 'I am a Design Engineer, half designer, and half developer. My university ' },
             { text: 'education in computer science and design', mark: true },
             { text: ' allowed me to get jobs as an external contractor on worldwide consulting agencies or as CIO and founder of a startup. I have been through consolidated companies and design studies working for brands like Coke, Adidas, Carte d\'Or, Bacardi, Telefónica, Endesa, Carrefour, etc.' },
+        ],
+        [
+            { text: 'Most of my career has been in the ' },
+            { text: 'leisure, travel and tourism industry', mark: true },
+            { text: ': tour operators, a travel startup and hotel booking technology.' },
         ],
         [
             { text: 'Currently at Roiback as ' },
@@ -267,24 +291,39 @@ export const work: WorkSection = {
             company: 'Roiback',
             role: 'Design Engineer & UX',
             description: 'From UX/Front End Lead to Senior Design Engineer. Built from scratch the mobile web app for hotel booking flows and led the Design System “TALAIOTS”.',
+            details: [
+                'Joined as Mobile UX Designer and Front-end Supervisor, focused on conversion rate optimization and on keeping the front-end codebase scalable and readable.',
+                'Designed the loyalty and gift card and the gift packages flows for Mobilis, delivered as interactive prototypes.',
+            ],
         },
         {
             year: 2014,
             company: 'yourttoo.com',
-            role: 'CTO & Co-Founder',
-            description: 'Co-Founder and CIO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.',
+            role: 'CIO / CTO & Co-Founder',
+            description: 'Co-Founder, CIO / CTO. Technical vision and business development, system architecture, building and managing the tech team, product design and user experience.',
+            details: [
+                'Worked across yourttoo.com and OpenMarket.travel. Besides building and managing the tech team, coordinated the external vendors.',
+            ],
         },
         {
             year: 2013,
             company: 'Accenture España',
             role: 'External IT Consultant',
             description: 'Front-end supervisor and trainer. Website performance and conversion funnel optimization for high traffic ecommerce sites. UI designer.',
+            details: [
+                'Engaged through Accenture Interactive | Fjord as an external services provider.',
+            ],
         },
         {
             year: 2011,
             company: 'Orizonia',
             role: 'UX/UI Designer, B2B sites and webapps',
             description: 'User Experience, User-Centered Design, Usability, UI Design, Design Engineer, Front End Development, Marketing Online.',
+            details: [
+                'Reported directly to the head of Marketing and Product, combining UX, UI, analytics and project management.',
+                'Authored “Orizonia Travel Store” (2012), a UX strategy proposal for the group\'s tour-operator web tools, aimed at both travel agents and travellers. Built with user-centered design and design thinking: competitor benchmarking, four personas with empathy maps, a customer journey map, touchpoints by channel and a SWOT analysis.',
+                'It proposed a multi-brand offer comparator, richer trip pages, responsive design and contact with travellers before, during and after the trip, together with a content strategy and first interface designs.',
+            ],
         },
         {
             year: 2003,
@@ -309,6 +348,9 @@ export const education: EducationSection = {
             year: 2009,
             title: 'Image & Sound Design',
             school: 'Universidad de Buenos Aires',
+            details: [
+                'Taught Broadcast Media and Marketing in the Image & Sound Design degree at Universidad de Buenos Aires (2009).',
+            ],
         },
         {
             year: 2006,
@@ -370,6 +412,32 @@ export const courses: CoursesSection = {
             title: 'Information Architecture',
             org: 'UBA',
             url: 'https://www.uba.ar/',
+        },
+        {
+            year: 2013,
+            title: 'Google AdWords Fundamentals',
+            org: 'Google',
+            folded: true,
+        },
+        {
+            year: 2011,
+            title: 'Tourism 2.0 and Online Reputation',
+            folded: true,
+        },
+        {
+            year: 2011,
+            title: 'Designing a Marketing Plan for e-Tourism',
+            folded: true,
+        },
+        {
+            year: 2010,
+            title: 'Analytics and Measurement in Online Marketing',
+            folded: true,
+        },
+        {
+            year: 2007,
+            title: 'Rich Internet Applications (RIA)',
+            folded: true,
         },
     ]),
 };
