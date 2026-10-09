@@ -4,7 +4,7 @@ Asistente conversacional en la web personal que responde preguntas sobre la
 trayectoria y el CV de Pablo, y ayuda al visitante a localizar esa información
 dentro de la propia página.
 
-**Stack objetivo:** Vercel AI SDK + `@ai-sdk/anthropic` + `claude-haiku-4-5`.
+**Stack objetivo:** Vercel AI SDK + `@ai-sdk/anthropic` + `claude-haiku-5-5`.
 
 ---
 
@@ -28,7 +28,7 @@ Hay tres niveles de "hacer que un modelo sepa sobre tu contenido":
 |---|---|---|
 | **Fine-tuning** | Reentrenar los pesos del modelo con tus datos | **No.** Caro, lento, y Claude no lo ofrece. Nunca es la respuesta para un CV. |
 | **RAG / embeddings** | Trocear el contenido, vectorizarlo, buscar los trozos relevantes por pregunta e inyectarlos | **No.** Es lo correcto con 500 páginas. Con 2.000 tokens es infraestructura (base vectorial, pipeline de indexado, re-ranking) para un problema que no existe. |
-| **Context stuffing** | Meter *todo* el contenido en el system prompt, en cada petición | **Sí.** El CV completo cabe holgadamente. Haiku 4.5 tiene 200K tokens de contexto: usaríamos el **1%**. |
+| **Context stuffing** | Meter *todo* el contenido en el system prompt, en cada petición | **Sí.** El CV completo cabe holgadamente. Haiku 5.5 tiene 1M de tokens de contexto: usaríamos el **0,2%**. |
 
 Traducido: **"entrenarlo" = escribir un buen system prompt que contenga el CV
 entero + las reglas de comportamiento.** No hay fase de entrenamiento, ni base de
@@ -135,7 +135,7 @@ export async function POST(req) {
     }
 
     const result = streamText({
-        model: anthropic('claude-haiku-4-5'),
+        model: anthropic('claude-haiku-5-5'),
         system: buildSystemPrompt(),
         messages: convertToModelMessages(messages),
         maxOutputTokens: 600,
@@ -253,36 +253,46 @@ Necesario **en la primera versión, no en la segunda**:
 
 ## 7. Costes
 
-Haiku 4.5: **$1 / millón de tokens de entrada, $5 / millón de salida**.
+Haiku 5.5: **$0,10 / millón de tokens de entrada, $0,50 / millón de salida**,
+para prompts de hasta 100K tokens. Por encima de ese umbral las tarifas suben a
+$0,50 y $2,50 — irrelevante aquí, pero conviene saber que el escalón existe.
 
-Por conversación (system prompt ~2.000 tokens reenviado en cada turno, historial
-creciente, 6 turnos, ~250 tokens de respuesta):
+El system prompt medido con `buildSystemPrompt()` ronda los **2.300 tokens en
+inglés y 2.400 en español** (el CV entero más las instrucciones). Por conversación
+(prompt reenviado en cada turno, historial creciente, 6 turnos, ~250 tokens de
+respuesta):
 
-- Entrada acumulada: ~18.000 tokens → **$0,018**
-- Salida: ~1.500 tokens → **$0,0075**
-- **≈ $0,026 por conversación** (~2,5 céntimos)
+- Entrada acumulada: ~20.000 tokens → **$0,002**
+- Salida: ~1.500 tokens → **$0,00075**
+- **≈ $0,003 por conversación** (tres décimas de céntimo)
 
-| Volumen mensual | Coste |
-|---|---|
-| 100 conversaciones | ~$2,50 |
-| 500 conversaciones | ~$13 |
-| 2.000 conversaciones | ~$52 |
+| Volumen mensual | Coste | Lo que costaba con Haiku 4.5 |
+|---|---|---|
+| 100 conversaciones | ~$0,30 | ~$2,75 |
+| 500 conversaciones | ~$1,40 | ~$14 |
+| 2.000 conversaciones | ~$5,50 | ~$55 |
 
-Lo realista para una web personal son 50–300 conversaciones/mes → **entre 1 y 8
-dólares al mes**. Y ahí se ve por qué importa el rate limiting: sin él, esos $3 se
-convierten en $300 con un script.
+Lo realista para una web personal son 50–300 conversaciones/mes → **menos de un
+dólar al mes**. Aun así el rate limiting sigue importando: no por la factura de un
+mes normal, sino porque sin él un script convierte ese dólar en cientos.
 
 **Apunte técnico:** el prompt caching de Anthropic (que abarataría el system
-prompt reenviado un ~90%) requiere un prefijo mínimo de **4.096 tokens en Haiku
-4.5**, y este prompt ronda los 2.000. **No se va a activar**, y marcar
-`cache_control` solo cobraría la escritura sin lecturas. No ponerlo. Si algún día
-el prompt supera los 4K tokens, entonces sí.
+prompt reenviado) exigía un prefijo mínimo de **4.096 tokens en Haiku 4.5**, y
+este prompt se queda en ~2.400. **No se va a activar**, y marcar `cache_control`
+solo cobraría la escritura sin lecturas. No ponerlo. Si el prompt crece por encima
+de los 4K tokens, reconsiderarlo — confirmando antes cuál es el mínimo en 5.5, que
+no está verificado aquí.
 
-**Elección de modelo:** Haiku 4.5 es la decisión correcta aquí, no una concesión —
-el trabajo es Q&A sobre un contexto fijo y pequeño, donde mandan latencia y coste,
-no razonamiento profundo. Si en pruebas las respuestas se quedan planas o pierden
-matiz, Sonnet 5 es el escalón siguiente (~3× más caro), pero conviene empezar por
-Haiku y subir solo con evidencia.
+**Elección de modelo:** Haiku es la decisión correcta aquí, no una concesión — el
+trabajo es Q&A sobre un contexto fijo y pequeño, donde mandan latencia y coste, no
+razonamiento profundo. Si en pruebas las respuestas se quedan planas o pierden
+matiz, Sonnet es el escalón siguiente, bastante más caro (consultar la tarifa
+vigente antes de cambiar); conviene empezar por Haiku y subir solo con evidencia.
+
+> **Precios a 9 de octubre de 2026**, tomados de cobertura secundaria del
+> lanzamiento de Haiku 5.5 (7 de octubre) y no de la página de precios de
+> Anthropic, que no era accesible al redactar esto. Verificarlos antes de
+> presupuestar nada que importe.
 
 ---
 
