@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
     }
 
     const result = streamText({
-        model: anthropic('claude-haiku-4-5'),
+        model: anthropic('claude-haiku-5-5'),
         system: buildSystemPrompt(locale),
         messages: await convertToModelMessages(messages as UIMessage[]),
         maxOutputTokens: 600,
