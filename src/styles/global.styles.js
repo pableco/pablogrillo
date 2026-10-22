@@ -8,7 +8,7 @@ import { HIGHLIGHT_ATTR } from '../lib/highlight';
  */
 const highlightFade = (theme) => keyframes`
     0%, 50% {
-        background-color: ${theme.main050};
+        background-color: var(--section-rail, ${theme.main050});
         outline-color: ${theme.main500};
     }
     100% {
@@ -126,8 +126,12 @@ const GlobalStyle = createGlobalStyle`
         svg {
             fill: currentColor;
         }
+        /*
+         * Toma el rail de la sección: el papel de la sección de naranja ya es
+         * main050, y un resaltado de ese color no se vería.
+         */
         mark {
-            background-color: ${theme.main050};
+            background-color: var(--section-rail, ${theme.main050});
         }
 
         /*

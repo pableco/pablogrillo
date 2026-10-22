@@ -119,8 +119,20 @@ const ContentTitle = styled.div`
     `};
 `;
 
+/*
+ * `$tone` elige el tono de la sección en theme.sectionTones. Se reparte en
+ * variables CSS para que el rail, el fondo y los enlaces de dentro lo tomen
+ * sin que cada componente tenga que conocer el índice.
+ */
 const SectionWrapperCss = styled.section`
-    ${({ theme }) => css`
+    ${({ theme, $tone = 0 }) => {
+        const tone = theme.sectionTones[$tone % theme.sectionTones.length];
+        return css`
+        --section-paper: ${tone.paper};
+        --section-rail: ${tone.rail};
+        --section-ink: ${tone.ink};
+
+        background: var(--section-paper);
         display: grid;
         grid-template: auto 1fr / ${layoutConstants.columTitleMobile} 1fr;
 
@@ -137,13 +149,22 @@ const SectionWrapperCss = styled.section`
         }
 
         border-bottom: ${theme.borderM} solid ${theme.neutral900};
-    `};
+
+        a,
+        a:visited {
+            color: var(--section-ink);
+        }
+        a:hover {
+            color: ${theme.colorOver};
+        }
+    `;
+    }};
 `;
 
 const SectionTitleCss = styled.div`
     ${({ theme }) => css`
         grid-column: 1 / 2;
-        background: ${theme.neutral100};
+        background: var(--section-rail);
         border: ${theme.borderM} solid ${theme.neutral900};
         border-width: 0 ${theme.borderM} 0 ${theme.borderM};
         display: flex;

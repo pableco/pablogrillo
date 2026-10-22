@@ -198,7 +198,7 @@ export default function Home() {
                 ))}
             </MenuCss>
             <MainCss>
-                <SectionWrapperCss id={about.id}>
+                <SectionWrapperCss id={about.id} $tone={0}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.AboutTitle>{about.label}</Typo.AboutTitle>
                     </SectionTitleCss>
@@ -215,7 +215,7 @@ export default function Home() {
                         </Column>
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={work.id}>
+                <SectionWrapperCss id={work.id} $tone={1}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.WorkTitle>{work.label}</Typo.WorkTitle>
                     </SectionTitleCss>
@@ -224,7 +224,7 @@ export default function Home() {
                         <DefinitionColumn items={workRight} renderItem={(item) => renderWork(item, strings)} />
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={education.id}>
+                <SectionWrapperCss id={education.id} $tone={2}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.EducationTitle>{education.label}</Typo.EducationTitle>
                     </SectionTitleCss>
@@ -233,7 +233,7 @@ export default function Home() {
                         <DefinitionColumn items={educationRight} renderItem={(item) => renderEducation(item, strings)} />
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={courses.id}>
+                <SectionWrapperCss id={courses.id} $tone={3}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.CoursesTitle>{courses.label}</Typo.CoursesTitle>
                     </SectionTitleCss>
@@ -251,7 +251,7 @@ export default function Home() {
                         ) : null}
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={skills.id}>
+                <SectionWrapperCss id={skills.id} $tone={4}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.SkillsTitle>{skills.label}</Typo.SkillsTitle>
                     </SectionTitleCss>
@@ -268,7 +268,7 @@ export default function Home() {
                         </Column>
                     </SectionContentCss>
                 </SectionWrapperCss>
-                <SectionWrapperCss id={contact.id}>
+                <SectionWrapperCss id={contact.id} $tone={5}>
                     <SectionTitleCss nameHeight={nameHeight}>
                         <Typo.ContactTitle>{contact.label}</Typo.ContactTitle>
                     </SectionTitleCss>

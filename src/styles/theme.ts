@@ -37,56 +37,91 @@ export const font = {
 };
 // Colors
 export const colors = {
-    neutral000: 'hsla(0, 0%, 100%, 1)', // #fff
-    neutral050: 'hsla(230, 30%, 97.4%, 1)', // #f8f8f8
-    neutral100: 'hsla(230, 30%, 90%, 1)', // #e6e6e6
-    neutral200: 'hsla(230, 30%, 80%, 1)', // #cccccc
-    neutral300: 'hsla(230, 30%, 70%, 1)', // #b3b3b3
-    neutral400: 'hsla(230, 30%, 60%, 1)', // #999999
-    neutral500: 'hsla(230, 30%, 50%, 1)', // #808080
-    neutral600: 'hsla(230, 30%, 40%, 1)', // #666666
-    neutral700: 'hsla(230, 30%, 30%, 1)', // #4d4d4d
-    neutral800: 'hsla(230, 30%, 20%, 1)', // #333333
-    neutral900: 'hsla(230, 30%, 10%, 1)', // #1a1a1a
-    neutral999: 'hsla(230, 30%, 0%, 1)', // #000
+    // Grises: negro morado muy desaturado. La saturación sube hacia los
+    // oscuros, que es donde el ojo percibe el matiz.
+    neutral000: 'hsla(285, 20%, 100%, 1)', // #FFFFFF
+    neutral050: 'hsla(285, 10%, 97.5%, 1)', // #F9F8F9
+    neutral100: 'hsla(285, 8%, 92%, 1)', // #EBE9EC
+    neutral200: 'hsla(285, 7%, 82%, 1)', // #D3CED4
+    neutral300: 'hsla(285, 6%, 70%, 1)', // #B5AEB7
+    neutral400: 'hsla(285, 6%, 58%, 1)', // #978D9A
+    neutral500: 'hsla(285, 7%, 46%, 1)', // #796D7E
+    neutral600: 'hsla(285, 8%, 36%, 1)', // #5F5463
+    neutral700: 'hsla(285, 10%, 26%, 1)', // #463C49
+    neutral800: 'hsla(285, 12%, 17%, 1)', // #2E2631
+    neutral900: 'hsla(285, 15%, 10%, 1)', // #1B161D
+    neutral999: 'hsla(285, 22%, 5%, 1)', // #0E0A10
 
     transparent000: 'hsla(0, 0%, 100%, 0)',
-    transparent999: 'hsla(0, 0%, 0%, 0)',
+    transparent999: 'hsla(285, 22%, 5%, 0)',
 
     neutralOpacity000: 'hsla(0, 0%, 100%, .5)',
-    neutralOpacity900: 'hsla(0, 0%, 10%, .5)',
-    neutralOpacity999: 'hsla(0, 0%, 0%, .5)',
+    neutralOpacity900: 'hsla(285, 15%, 10%, .5)',
+    neutralOpacity999: 'hsla(285, 22%, 5%, .5)',
 
-    main: 'hsla(230, 95%, 54%, 1)',
-    main025: 'hsla(230, 95%, 98%, 1)',
-    main050: 'hsla(230, 95%, 95%, 1)',
-    main100: 'hsla(230, 95%, 90%, 1)',
-    main300: 'hsla(230, 95%, 70%, 1)',
-    main500: 'hsla(230, 95%, 50%, 1)',
-    main700: 'hsla(230, 95%, 30%, 1)',
-    main900: 'hsla(230, 95%, 10%, 1)',
+    // Naranja: acción. main500 es el más claro que aguanta texto claro
+    // encima; para texto naranja sobre fondo claro, main700.
+    main: '#B44C1B',
+    main025: '#FEF8F4',
+    main050: '#FDF1E9',
+    main100: '#FBDCC8',
+    main300: '#F2A06E',
+    main500: '#B44C1B',
+    main700: '#9A3F15',
+    main900: '#4A1F0B',
 
-    success: 'hsla(84, 50%, 45%, 1)',
-    success100: 'hsla(84, 50%, 90%, 1)',
-    success300: 'hsla(84, 50%, 70%, 1)',
-    success500: 'hsla(84, 50%, 50%, 1)',
-    success700: 'hsla(84, 50%, 30%, 1)',
-    success900: 'hsla(84, 50%, 10%, 1)',
+    ocre050: '#FBF4E6',
+    ocre100: '#F4E2BB',
+    ocre300: '#E3B86A',
+    ocre500: '#8C6418',
+    ocre700: '#7A5414',
+    ocre900: '#3A2A0E',
 
-    danger: 'hsla(4, 60%, 50%, 1)',
-    danger100: 'hsla(4, 60%, 90%, 1)',
-    danger300: 'hsla(4, 60%, 70%, 1)',
-    danger500: 'hsla(4, 60%, 50%, 1)',
-    danger700: 'hsla(4, 60%, 30%, 1)',
-    danger900: 'hsla(4, 60%, 10%, 1)',
+    rojo050: '#FCEDEB',
+    rojo100: '#F7D2CC',
+    rojo300: '#E3806F',
+    rojo500: '#B8352A',
+    rojo700: '#8E2620',
+    rojo900: '#4A1513',
 
-    warning: 'hsla(54, 100%, 67%, 1)',
-    warning100: 'hsla(54, 100%, 90%, 1)',
-    warning300: 'hsla(54, 100%, 70%, 1)',
-    warning500: 'hsla(54, 100%, 50%, 1)',
-    warning700: 'hsla(54, 100%, 30%, 1)',
-    warning900: 'hsla(54, 100%, 10%, 1)',
+    lila050: '#F4F0F6',
+    lila100: '#E4DCE8',
+
+    success: '#5E7330',
+    success100: 'hsla(80, 40%, 90%, 1)',
+    success300: 'hsla(80, 40%, 70%, 1)',
+    success500: '#5E7330',
+    success700: 'hsla(80, 40%, 25%, 1)',
+    success900: 'hsla(80, 40%, 10%, 1)',
+
+    // Rojo de error separado del rojo de marca, hacia el rosa.
+    danger: '#C21F4D',
+    danger100: 'hsla(343, 72%, 92%, 1)',
+    danger300: 'hsla(343, 72%, 70%, 1)',
+    danger500: '#C21F4D',
+    danger700: 'hsla(343, 72%, 30%, 1)',
+    danger900: 'hsla(343, 72%, 10%, 1)',
+
+    warning: '#E3B86A',
+    warning100: '#F4E2BB',
+    warning300: '#E3B86A',
+    warning500: '#8C6418',
+    warning700: '#7A5414',
+    warning900: '#3A2A0E',
 };
+
+/*
+ * Cada sección del CV lleva un papel tintado, un rail algo más intenso y una
+ * tinta para sus enlaces, como una impresión risográfica. Las secciones
+ * recorren la lista en orden y vuelven a empezar cuando se acaba. Todas las
+ * tintas pasan AA como texto sobre su papel.
+ */
+export const sectionTones = [
+    { paper: colors.main050, rail: colors.main100, ink: colors.main700 },
+    { paper: colors.rojo050, rail: colors.rojo100, ink: colors.rojo700 },
+    { paper: colors.ocre050, rail: colors.ocre100, ink: colors.ocre700 },
+    { paper: colors.lila050, rail: colors.lila100, ink: colors.neutral800 },
+];
 
 export const layers = {
     zBottom: '-1',
@@ -275,8 +310,11 @@ export const base = {
     /* Colors */
     colorBg: colors.neutral050,
     colorText: colors.neutral700,
-    colorTextSecondary: colors.neutral500,
-    colorLink: colors.main500,
+    // neutral500 no llega a 4,5:1 sobre los papeles tintados de las secciones.
+    colorTextSecondary: colors.neutral600,
+    colorLink: colors.main700,
+    colorOver: colors.rojo700,
+    colorVisited: colors.main700,
     /* buttons */
     // buttonPrimaryTextColor: colors.neutral000,
     // buttonSecondaryTextColor: colors.colorMid,
@@ -306,6 +344,7 @@ const themeDefault = {
     ...icons,
     ...images,
     ...base,
+    sectionTones,
 };
 
 export type Theme = typeof themeDefault;
