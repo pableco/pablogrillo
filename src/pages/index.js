@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import Layout from '../components/layout';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import PencilLines from '../components/PencilLines';
 import {
     Column,
     ContentTitle,
@@ -214,6 +215,7 @@ export default function Home() {
                             ))}
                         </Column>
                     </SectionContentCss>
+                    <PencilLines />
                 </SectionWrapperCss>
                 <SectionWrapperCss id={work.id} $tone={1}>
                     <SectionTitleCss nameHeight={nameHeight}>
@@ -223,6 +225,7 @@ export default function Home() {
                         <DefinitionColumn items={workLeft} renderItem={(item) => renderWork(item, strings)} />
                         <DefinitionColumn items={workRight} renderItem={(item) => renderWork(item, strings)} />
                     </SectionContentCss>
+                    <PencilLines />
                 </SectionWrapperCss>
                 <SectionWrapperCss id={education.id} $tone={2}>
                     <SectionTitleCss nameHeight={nameHeight}>
@@ -232,6 +235,7 @@ export default function Home() {
                         <DefinitionColumn items={educationLeft} renderItem={(item) => renderEducation(item, strings)} />
                         <DefinitionColumn items={educationRight} renderItem={(item) => renderEducation(item, strings)} />
                     </SectionContentCss>
+                    <PencilLines />
                 </SectionWrapperCss>
                 <SectionWrapperCss id={courses.id} $tone={3}>
                     <SectionTitleCss nameHeight={nameHeight}>
@@ -250,6 +254,7 @@ export default function Home() {
                             </SectionFoldCss>
                         ) : null}
                     </SectionContentCss>
+                    <PencilLines />
                 </SectionWrapperCss>
                 <SectionWrapperCss id={skills.id} $tone={4}>
                     <SectionTitleCss nameHeight={nameHeight}>
@@ -267,6 +272,7 @@ export default function Home() {
                             ))}
                         </Column>
                     </SectionContentCss>
+                    <PencilLines />
                 </SectionWrapperCss>
                 <SectionWrapperCss id={contact.id} $tone={5}>
                     <SectionTitleCss nameHeight={nameHeight}>
@@ -276,6 +282,7 @@ export default function Home() {
                         {renderContactList(contactLeft)}
                         {renderContactList(contactRight)}
                     </SectionFooterCss>
+                    <PencilLines />
                 </SectionWrapperCss>
             </MainCss>
         </Layout>

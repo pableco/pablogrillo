@@ -27,7 +27,8 @@ const TagList = styled.ul`
 const Tag = styled.li`
     ${({ theme }) => css`
         list-style: none;
-        background: ${theme.neutral100};
+        /* El rail de la sección: el chip va en la misma gama que su papel. */
+        background: var(--section-rail, ${theme.neutral100});
         border-radius: ${theme.round};
         color: ${theme.colorText};
         font-size: ${theme.b2};

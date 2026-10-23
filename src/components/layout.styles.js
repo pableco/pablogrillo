@@ -131,7 +131,10 @@ const SectionWrapperCss = styled.section`
         --section-paper: ${tone.paper};
         --section-rail: ${tone.rail};
         --section-ink: ${tone.ink};
+        --pencil-line: ${theme.neutral900};
 
+        position: relative;
+        isolation: isolate;
         background: var(--section-paper);
         display: grid;
         grid-template: auto 1fr / ${layoutConstants.columTitleMobile} 1fr;
@@ -156,6 +159,16 @@ const SectionWrapperCss = styled.section`
         }
         a:hover {
             color: ${theme.colorOver};
+        }
+
+        /* Hasta que PencilLines la dibuja: sin bordes ni fondo de rail. */
+        &[data-pencil='pending'] {
+            border-bottom-color: transparent;
+
+            > :first-child {
+                background: transparent;
+                border-color: transparent;
+            }
         }
     `;
     }};
