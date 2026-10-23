@@ -43,6 +43,47 @@ const HeaderCss = styled.div`
         justify-content: stretch;
         border-right: ${theme.borderM} solid ${theme.neutral900};
         position: relative;
+        isolation: isolate;
+        --pencil-line: ${theme.neutral900};
+        --pencil-pill: ${theme.neutral700};
+
+        /*
+         * Entrada a lápiz (PencilIntro). Mientras dura, la cabecera pierde
+         * sus bordes, el nombre y el subtítulo se ven como contorno que
+         * avanza según --intro-name y --intro-subtitle, y en la fase de
+         * rayado se rellenan con trazos cada vez más juntos (--intro-gap).
+         */
+        html[data-pencil-intro] & {
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+        }
+
+        html[data-pencil-intro] & h1,
+        html[data-pencil-intro] & h2 {
+            background: transparent;
+            color: transparent;
+            -webkit-text-stroke: 1px ${theme.neutral900};
+            filter: var(--intro-boil, none);
+        }
+
+        html[data-pencil-intro] & h1 {
+            clip-path: inset(-.2em var(--intro-name, 100%) -.2em 0);
+        }
+
+        html[data-pencil-intro] & h2 {
+            clip-path: inset(-.2em var(--intro-subtitle, 100%) -.2em 0);
+        }
+
+        html[data-pencil-intro='hatch'] & h1 {
+            background: repeating-linear-gradient(-45deg, ${theme.neutral900} 0 1.5px, transparent 1.5px var(--intro-gap, 12px));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        html[data-pencil-intro='hatch'] & h2 {
+            color: ${theme.neutral100};
+            -webkit-text-stroke: 0;
+        }
     `};
 `;
 

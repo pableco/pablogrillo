@@ -33,7 +33,18 @@ export default class MyDocument extends Document {
             // Con i18n en next.config.js, Next pasa el idioma de la página
             // que se está renderizando: `/es` sale con lang="es".
             <Html lang={this.props.locale ?? 'en'}>
-                <Head />
+                <Head>
+                    {/* Marca la entrada a lápiz antes del primer pintado, para
+                        que el nombre no se vea entero y luego desaparezca. Si
+                        la animación no llega a arrancar (JavaScript roto o
+                        lento), la marca se quita sola a los 4 s. Ver
+                        PencilIntro.tsx. */}
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: "(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.dataset.pencilIntro='pending';setTimeout(function(){if(d.dataset.pencilIntro==='pending')delete d.dataset.pencilIntro},4000)}catch(e){}})()",
+                        }}
+                    />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />

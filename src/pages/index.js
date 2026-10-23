@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import Layout from '../components/layout';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import PencilIntro from '../components/PencilIntro';
 import PencilLines from '../components/PencilLines';
 import {
     Column,
@@ -185,6 +186,7 @@ export default function Home() {
     return (
         <Layout>
             <HeaderCss>
+                <PencilIntro />
                 <LanguageSwitcher locale={locale} />
                 <ContentTitle ref={nameEl}>
                     <Typo.Name>{profile.name}</Typo.Name>
